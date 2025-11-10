@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Yago
+namespace Yago.RepositoryCreator
 {
-    public partial class Form1 : Form
+    public partial class FormRepositoryCreator : Form
     {
-        public Form1()
+        public FormRepositoryCreator()
         {
             InitializeComponent();
         }
