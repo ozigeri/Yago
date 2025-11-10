@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormEntryPoint));
             this.pnlNavbar = new System.Windows.Forms.Panel();
             this.btnVersions = new System.Windows.Forms.Button();
             this.btnRepoCreator = new System.Windows.Forms.Button();
@@ -94,8 +95,9 @@
             this.ClientSize = new System.Drawing.Size(600, 420);
             this.Controls.Add(this.pnlContent);
             this.Controls.Add(this.pnlNavbar);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormEntryPoint";
-            this.Text = "YAGO";
+            this.Text = "YAGO Environmental Builder";
             this.Load += new System.EventHandler(this.FormEntryPoint_Load);
             this.pnlNavbar.ResumeLayout(false);
             this.ResumeLayout(false);
