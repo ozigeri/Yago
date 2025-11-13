@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Yago.Versions.Commands;
 
 namespace Yago.Versions
 {
@@ -15,6 +16,17 @@ namespace Yago.Versions
         public FormVersions()
         {
             InitializeComponent();
+
+            EnvironmentController controller = new EnvironmentController(
+                comboBoxPhp,
+                comboBoxComposer,
+                comboBoxNode,
+                comboBoxTemplateLoad,
+                textBoxTemplateSave,
+                btnStart,
+                btnTemplateSave,
+                btnTemplateLoad
+            );
         }
     }
 }
