@@ -66,7 +66,8 @@
     <Compile Include="Templates\FormTemplates.Designer.cs">
       <DependentUpon>FormTemplates.cs</DependentUpon>
     </Compile>
-    <Compile Include="Versions\Commands\EnvironmentController.cs" />
+    <Compile Include="Versions\Commands\OpenCmdCommand.cs" />
+    <Compile Include="Versions\Controllers\EnvironmentController.cs" />
     <Compile Include="Versions\Core\EnvironmentManager.cs" />
     <Compile Include="Versions\Enums\VersionType.cs" />
     <Compile Include="Versions\FormVersions.cs">
@@ -103,8 +104,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Versions\Controllers\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
