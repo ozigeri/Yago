@@ -120,10 +120,10 @@ A Yago alkalmazás fő használói:
 - Formátum: `név;php;composer;node`  
 - Példa:
   ```txt
-  Laravel;8.2;2.6;18.0
+  Moodle;8.2;2.6;18.0
 
 
-- Név: A sablon neve (pl. Moodle, Laravel, Wordpress)  
+- Név: A sablon neve (pl. Moodle, Neptun, Wordpress)  
 - php: A kiválasztott PHP verzió  
 - composer: A Composer verziója (ha nincs megadva, akkor „default” érték kerül be)  
 - node: A Node.js verziója  
