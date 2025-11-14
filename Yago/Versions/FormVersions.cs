@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Yago.Versions.Controllers;
+using Yago;
 
 namespace Yago.Versions
 {
@@ -16,6 +17,24 @@ namespace Yago.Versions
         public FormVersions()
         {
             InitializeComponent();
+
+            DoubleBuffered = true;
+            UIStyleHelpers.ApplyFormStyle(this);
+
+            UIStyleHelpers.StyleButton(btnStart);
+            UIStyleHelpers.StyleButton(btnTemplateSave);
+            UIStyleHelpers.StyleButton(btnTemplateLoad);
+
+            UIStyleHelpers.StyleComboBox(comboBoxPhp);
+            UIStyleHelpers.StyleComboBox(comboBoxComposer);
+            UIStyleHelpers.StyleComboBox(comboBoxNode);
+            UIStyleHelpers.StyleComboBox(comboBoxTemplateLoad);
+
+            UIStyleHelpers.StyleTextBox(textBoxTemplateSave);
+
+            UIStyleHelpers.StyleLabel(lblPhp);
+            UIStyleHelpers.StyleLabel(lblComposer);
+            UIStyleHelpers.StyleLabel(lblNode);
 
             EnvironmentController controller = new EnvironmentController(
                 comboBoxPhp,
