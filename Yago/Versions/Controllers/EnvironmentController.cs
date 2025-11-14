@@ -1,4 +1,5 @@
-﻿using EnviromentBuilder.Core.Commands;
+﻿using EnviromentBuilder.Core;
+using EnviromentBuilder.Core.Commands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,6 +49,13 @@ namespace Yago.Versions.Controllers
             LoadVersions();
 
             startButton.Click += StartButton_Click;
+            saveTemplateButton.Click += SaveTemplateButton_Click;
+
+            templateLoadBox.SelectedIndex = -1;
+
+            TemplateManager.InitializeTemplateComboBox(templateLoadBox);
+
+            btnTemplateLoad.Click += TemplateLoadButton_Click;
         }
 
         private void LoadVersions()
@@ -83,6 +91,40 @@ namespace Yago.Versions.Controllers
 
             OpenCmdCommand openCmd = new OpenCmdCommand(phpPath, composerPath, nodePath);
             openCmd.Execute();
+        }
+        private void SaveTemplateButton_Click(object sender, EventArgs e)
+        {
+            string name = templateNameBox.Text.Trim();
+            string php = phpBox.SelectedItem?.ToString();
+            string composer = composerBox.SelectedItem?.ToString();
+            string node = nodeBox.SelectedItem?.ToString();
+
+            TemplateManager.SaveTemplate(name, php, composer, node);
+
+            TemplateManager.InitializeTemplateComboBox(templateLoadBox);
+        }
+        private void TemplateLoadButton_Click(object sender, EventArgs e)
+        {
+            if (templateLoadBox.SelectedItem == null)
+            {
+                MessageBox.Show("Kérlek válassz ki egy sablont!", "Figyelmeztetés", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string selectedTemplate = templateLoadBox.SelectedItem.ToString();
+            var result = TemplateManager.LoadTemplate(selectedTemplate);
+
+            if (!result.HasValue)
+            {
+                MessageBox.Show("Nem sikerült betölteni a sablont!", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            phpBox.SelectedItem = result.Value.php;
+            composerBox.SelectedItem = result.Value.composer;
+            nodeBox.SelectedItem = result.Value.node;
+
+            MessageBox.Show($"'{selectedTemplate}' sablon sikeresen betöltve!", "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
