@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Yago.Templates.TemplateModel
 {
-    internal class TemplateModel
+    public class TemplateModel
     {
         public string Name { get; set; }
         public string Php { get; set; }
