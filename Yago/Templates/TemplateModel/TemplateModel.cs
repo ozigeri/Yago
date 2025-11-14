@@ -13,6 +13,8 @@ namespace Yago.Templates.TemplateModel
         public string Composer { get; set; }
         public string Node { get; set; }
 
+        // templates.txt - name;php;composer;node
+
         public TemplateModel(string name, string php, string composer, string node)
         {
             Name = name;
