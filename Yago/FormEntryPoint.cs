@@ -19,6 +19,13 @@ namespace Yago
         public FormEntryPoint()
         {
             InitializeComponent();
+
+            DoubleBuffered = true;
+            UIStyleHelpers.ApplyFormStyle(this);
+
+            UIStyleHelpers.StyleButton(btnVersions);
+            UIStyleHelpers.StyleButton(btnRepoCreator);
+            UIStyleHelpers.StyleButton(btnTemplates);
         }
 
         private void FormEntryPoint_Load(object sender, EventArgs e)

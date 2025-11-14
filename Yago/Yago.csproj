@@ -66,6 +66,7 @@
     <Compile Include="Templates\FormTemplates.Designer.cs">
       <DependentUpon>FormTemplates.cs</DependentUpon>
     </Compile>
+    <Compile Include="UIStyleHelper.cs" />
     <Compile Include="Versions\Commands\OpenCmdCommand.cs" />
     <Compile Include="Versions\Controllers\EnvironmentController.cs" />
     <Compile Include="Versions\Core\EnvironmentManager.cs" />
