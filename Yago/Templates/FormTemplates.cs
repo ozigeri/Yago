@@ -16,5 +16,7 @@ namespace Yago.Templates
         {
             InitializeComponent();
         }
+
+        
     }
 }

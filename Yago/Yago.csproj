@@ -66,6 +66,7 @@
     <Compile Include="Templates\FormTemplates.Designer.cs">
       <DependentUpon>FormTemplates.cs</DependentUpon>
     </Compile>
+    <Compile Include="Templates\TemplateModel\TemplateModel.cs" />
     <Compile Include="UIStyleHelper.cs" />
     <Compile Include="Versions\Commands\OpenCmdCommand.cs" />
     <Compile Include="Versions\Controllers\EnvironmentController.cs" />
@@ -90,6 +91,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Templates\FormTemplates.resx">
+      <DependentUpon>FormTemplates.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Versions\FormVersions.resx">
       <DependentUpon>FormVersions.cs</DependentUpon>
     </EmbeddedResource>

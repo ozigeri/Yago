@@ -28,31 +28,43 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblPageTitle = new System.Windows.Forms.Label();
+            this.dataGridTemplates = new System.Windows.Forms.DataGridView();
+            this.btnTemplateDelete = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridTemplates)).BeginInit();
             this.SuspendLayout();
             // 
-            // lblPageTitle
+            // dataGridTemplates
             // 
-            this.lblPageTitle.AutoSize = true;
-            this.lblPageTitle.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
-            this.lblPageTitle.Location = new System.Drawing.Point(230, 140);
-            this.lblPageTitle.Name = "lblPageTitle";
-            this.lblPageTitle.Size = new System.Drawing.Size(100, 30);
-            this.lblPageTitle.TabIndex = 0;
-            this.lblPageTitle.Text = "Templates";
+            this.dataGridTemplates.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridTemplates.Location = new System.Drawing.Point(12, 75);
+            this.dataGridTemplates.Name = "dataGridTemplates";
+            this.dataGridTemplates.Size = new System.Drawing.Size(528, 150);
+            this.dataGridTemplates.TabIndex = 0;
+            // 
+            // btnTemplateDelete
+            // 
+            this.btnTemplateDelete.Location = new System.Drawing.Point(232, 282);
+            this.btnTemplateDelete.Name = "btnTemplateDelete";
+            this.btnTemplateDelete.Size = new System.Drawing.Size(157, 49);
+            this.btnTemplateDelete.TabIndex = 1;
+            this.btnTemplateDelete.Text = "Template törlése";
+            this.btnTemplateDelete.UseVisualStyleBackColor = true;
             // 
             // FormTemplates
             // 
             this.ClientSize = new System.Drawing.Size(600, 420);
-            this.Controls.Add(this.lblPageTitle);
+            this.Controls.Add(this.btnTemplateDelete);
+            this.Controls.Add(this.dataGridTemplates);
             this.Name = "FormTemplates";
             this.Text = "Templates";
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridTemplates)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
+
         }
 
         #endregion
 
-        private System.Windows.Forms.Label lblPageTitle;
+        private System.Windows.Forms.DataGridView dataGridTemplates;
+        private System.Windows.Forms.Button btnTemplateDelete;
     }
 }
