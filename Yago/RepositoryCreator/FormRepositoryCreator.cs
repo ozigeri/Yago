@@ -16,5 +16,11 @@ namespace Yago.RepositoryCreator
         {
             InitializeComponent();
         }
+
+        private void pathButton_Click(object sender, EventArgs e)
+        {
+            folderBrowserDialog1.ShowDialog();
+            pathBox.Text = folderBrowserDialog1.SelectedPath;
+        }
     }
 }

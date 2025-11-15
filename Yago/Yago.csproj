@@ -91,6 +91,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="RepositoryCreator\FormRepositoryCreator.resx">
+      <DependentUpon>FormRepositoryCreator.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Templates\FormTemplates.resx">
       <DependentUpon>FormTemplates.cs</DependentUpon>
     </EmbeddedResource>
