@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 using Yago.RepositoryCreator.RCEnums;
 
 namespace Yago.RepositoryCreator
@@ -17,6 +18,21 @@ namespace Yago.RepositoryCreator
         {
             InitializeComponent();
             appBox.DataSource = Enum.GetValues(typeof(App));
+
+            UIStyleHelpers.ApplyFormStyle(this);
+
+            UIStyleHelpers.StyleButton(repoButton);
+            UIStyleHelpers.StyleButton(versionButton);
+            UIStyleHelpers.StyleButton(pathButton);
+
+            UIStyleHelpers.StyleComboBox(appBox);
+
+            UIStyleHelpers.StyleTextBox(nameBox);
+            UIStyleHelpers.StyleTextBox(pathBox);
+
+            UIStyleHelpers.StyleLabel(nameL);
+            UIStyleHelpers.StyleLabel(pathL);
+            UIStyleHelpers.StyleLabel(appL);
         }
 
         private void pathButton_Click(object sender, EventArgs e)

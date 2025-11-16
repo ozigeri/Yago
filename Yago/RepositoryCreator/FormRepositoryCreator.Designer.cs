@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.appL = new System.Windows.Forms.Label();
+            this.nameL = new System.Windows.Forms.Label();
+            this.pathL = new System.Windows.Forms.Label();
             this.appBox = new System.Windows.Forms.ComboBox();
             this.nameBox = new System.Windows.Forms.TextBox();
             this.pathButton = new System.Windows.Forms.Button();
@@ -40,32 +40,32 @@
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.SuspendLayout();
             // 
-            // label1
+            // appL
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(144, 52);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(29, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "App:";
+            this.appL.AutoSize = true;
+            this.appL.Location = new System.Drawing.Point(144, 52);
+            this.appL.Name = "appL";
+            this.appL.Size = new System.Drawing.Size(29, 13);
+            this.appL.TabIndex = 0;
+            this.appL.Text = "App:";
             // 
-            // label2
+            // nameL
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(144, 92);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(30, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Név:";
+            this.nameL.AutoSize = true;
+            this.nameL.Location = new System.Drawing.Point(144, 92);
+            this.nameL.Name = "nameL";
+            this.nameL.Size = new System.Drawing.Size(30, 13);
+            this.nameL.TabIndex = 1;
+            this.nameL.Text = "Név:";
             // 
-            // label3
+            // pathL
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(144, 133);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(79, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Elérési útvonal:";
+            this.pathL.AutoSize = true;
+            this.pathL.Location = new System.Drawing.Point(144, 133);
+            this.pathL.Name = "pathL";
+            this.pathL.Size = new System.Drawing.Size(79, 13);
+            this.pathL.TabIndex = 2;
+            this.pathL.Text = "Elérési útvonal:";
             // 
             // appBox
             // 
@@ -88,7 +88,7 @@
             this.pathButton.Name = "pathButton";
             this.pathButton.Size = new System.Drawing.Size(195, 25);
             this.pathButton.TabIndex = 5;
-            this.pathButton.Text = "Gyökér mappa kiválasztása";
+            this.pathButton.Text = "Mappa kiválasztása";
             this.pathButton.UseVisualStyleBackColor = true;
             this.pathButton.Click += new System.EventHandler(this.pathButton_Click);
             // 
@@ -127,9 +127,9 @@
             this.Controls.Add(this.pathButton);
             this.Controls.Add(this.nameBox);
             this.Controls.Add(this.appBox);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.pathL);
+            this.Controls.Add(this.nameL);
+            this.Controls.Add(this.appL);
             this.Name = "FormRepositoryCreator";
             this.Text = "Repository Creator";
             this.ResumeLayout(false);
@@ -139,9 +139,9 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label appL;
+        private System.Windows.Forms.Label nameL;
+        private System.Windows.Forms.Label pathL;
         private System.Windows.Forms.ComboBox appBox;
         private System.Windows.Forms.TextBox nameBox;
         private System.Windows.Forms.Button pathButton;
