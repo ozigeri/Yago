@@ -60,6 +60,7 @@
     <Compile Include="RepositoryCreator\FormRepositoryCreator.Designer.cs">
       <DependentUpon>FormRepositoryCreator.cs</DependentUpon>
     </Compile>
+    <Compile Include="RepositoryCreator\RCEnums\App.cs" />
     <Compile Include="Templates\FormTemplates.cs">
       <SubType>Form</SubType>
     </Compile>
