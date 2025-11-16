@@ -8,6 +8,6 @@ namespace Yago.RepositoryCreator.RCEnums
 {
     public enum App
     {
-        Vanilla, Vue, React, Preact, Lit, Svelte, Solid, Qwik, Angular, Marko
+        Laravel, Vanilla, Vue, React, Preact, Lit, Svelte, Solid, Qwik, Angular, Marko
     }
 }

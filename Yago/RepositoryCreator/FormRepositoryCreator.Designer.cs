@@ -108,6 +108,7 @@
             this.versionButton.TabIndex = 7;
             this.versionButton.Text = "Verzió kiválasztása";
             this.versionButton.UseVisualStyleBackColor = true;
+            this.versionButton.Click += new System.EventHandler(this.versionButton_Click);
             // 
             // repoButton
             // 
@@ -117,6 +118,7 @@
             this.repoButton.TabIndex = 8;
             this.repoButton.Text = "Repozitórium létrehozása";
             this.repoButton.UseVisualStyleBackColor = true;
+            this.repoButton.Click += new System.EventHandler(this.repoButton_Click);
             // 
             // FormRepositoryCreator
             // 
