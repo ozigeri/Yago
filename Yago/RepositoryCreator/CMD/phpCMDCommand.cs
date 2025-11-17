@@ -32,9 +32,15 @@ namespace Yago.RepositoryCreator.CMD
             string phpPath = @"C:\xampp\php";
             StringBuilder sb = new StringBuilder();
 
+            sb.AppendLine("@echo off");
             sb.AppendLine($"cd {location}");
             sb.AppendLine($"set \"PATH={phpPath};%PATH%\"");
-            sb.AppendLine($"\"{composerPath}\" create-project laravel/laravel {name}");
+            sb.AppendLine($"call \"{composerPath}\" create-project laravel/laravel {name}");
+            sb.AppendLine($"cd {name}");
+            sb.AppendLine("cls");
+            sb.AppendLine("echo Repository letrehozva!");
+            sb.AppendLine("timeout /t 5 /nobreak >nul");
+            sb.AppendLine("exit");
 
 
             File.WriteAllText(tempBatPath, sb.ToString(), Encoding.Default);
