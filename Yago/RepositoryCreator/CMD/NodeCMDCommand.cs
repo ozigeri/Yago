@@ -26,14 +26,18 @@ namespace Yago.RepositoryCreator.CMD
             string tempBatPath = Path.Combine(Path.GetTempPath(), "node_temp_start.bat");
 
             StringBuilder sb = new StringBuilder();
-
+            sb.AppendLine("@echo off");
             sb.AppendLine($"cd {location}");
             sb.AppendLine($"set \"NODE_HOME=C:\\nodejs\\v{version}\"");
             sb.AppendLine("set \"PATH=%NODE_HOME%;%PATH%\"");
-            sb.AppendLine($"npm create vite@latest {name} -- --template {app.ToLower()}\"");
-            sb.AppendLine("Repo created!");
+            sb.AppendLine($"echo No | npm create vite@latest {name} -- --template {app.ToLower()}\"");
+            sb.AppendLine($"cd {name}");
+            sb.AppendLine("call npm install");
+            sb.AppendLine("echo Repo created!");
+            sb.AppendLine("start http://localhost:5173");
+            sb.AppendLine("start cmd /k \"npm run dev\"");
+            sb.AppendLine("exit");
 
-            sb.AppendLine("cmd /k");
 
             File.WriteAllText(tempBatPath, sb.ToString(), Encoding.Default);
 
