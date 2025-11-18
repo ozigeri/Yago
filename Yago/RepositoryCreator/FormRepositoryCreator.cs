@@ -19,7 +19,8 @@ namespace Yago.RepositoryCreator
 {
     public partial class FormRepositoryCreator : Form
     {
-        string php, composer, nodeJs;
+        string php, composer, nodeJs, type;
+        bool check = false;
         public FormRepositoryCreator()
         {
             InitializeComponent();
@@ -53,22 +54,24 @@ namespace Yago.RepositoryCreator
 
             if (appBox.SelectedItem.ToString() == App.Laravel.ToString())
             {
-                SelectVersionPhp selectVersion = new SelectVersionPhp(EnvironmentManager.GetSoftwareVersion(VersionType.Php).ToArray(), EnvironmentManager.GetSoftwareVersion(VersionType.Composer).ToArray());
+                SelectVersionPhp selectVersion = new SelectVersionPhp(EnvironmentManager.GetSoftwareVersion(VersionType.Php).ToArray(), EnvironmentManager.GetSoftwareVersion(VersionType.Composer).ToArray(), php, composer);
                 selectVersion.StartPosition = FormStartPosition.CenterParent;
                 selectVersion.ShowDialog();
-
                 php = selectVersion.SelectedPhp;
                 composer = selectVersion.SelectedComposer;
                 nodeJs = null;
+                type = "laravel";
             }
             else
             {
-                SelectVersionNodeJS selectVersion = new SelectVersionNodeJS(EnvironmentManager.GetSoftwareVersion(VersionType.NodeJs).ToArray());
+                SelectVersionNodeJS selectVersion = new SelectVersionNodeJS(EnvironmentManager.GetSoftwareVersion(VersionType.NodeJs).ToArray(), nodeJs, check);
                 selectVersion.StartPosition = FormStartPosition.CenterParent;
                 selectVersion.ShowDialog();
                 nodeJs = selectVersion.SelectedNode;
                 composer = null;
                 php = null;
+                type = "nemLaravel";
+                check = selectVersion.openBrowser;
             }
 
             
@@ -77,16 +80,50 @@ namespace Yago.RepositoryCreator
 
         private void repoButton_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(nodeJs))
+            if (string.IsNullOrWhiteSpace(appBox.SelectedItem.ToString()))
             {
-                NodeCMDCommand nCMDC = new NodeCMDCommand(appBox.SelectedItem.ToString(), nameBox.Text, pathBox.Text, nodeJs);
-                nCMDC.Execute();
+                MessageBox.Show("Add meg a frameworkot!", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(nameBox.Text))
+            {
+                MessageBox.Show("Add meg a cél mappa nevét!", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(pathBox.Text) || pathBox.Text == "Elérési útvonal...")
+            {
+                MessageBox.Show("Add meg a cél mappa elérési útvonalát!", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
 
-            if (!string.IsNullOrEmpty(php) && !string.IsNullOrEmpty(composer))
+            if (type == "nemLaravel")
             {
+                if (string.IsNullOrWhiteSpace(nodeJs))
+                {
+                    MessageBox.Show("Add meg a Node.js verzióját!", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+
+                }
+
+                NodeCMDCommand nCMDC = new NodeCMDCommand(appBox.SelectedItem.ToString(), nameBox.Text, pathBox.Text, nodeJs);
+                nCMDC.Execute(check);
+            }
+            else
+            {
+                if (string.IsNullOrWhiteSpace(composer))
+                {
+                    MessageBox.Show("Add meg a composer verzióját!", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                if (string.IsNullOrWhiteSpace(php))
+                {
+                    MessageBox.Show("Add meg a php verzióját!", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 phpCMDCommand pCMDC = new phpCMDCommand(appBox.SelectedItem.ToString(), nameBox.Text, pathBox.Text, php, composer);
                 pCMDC.Execute();
+
             }
         }
     }
