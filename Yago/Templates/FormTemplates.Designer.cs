@@ -36,14 +36,14 @@
             // dataGridTemplates
             // 
             this.dataGridTemplates.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridTemplates.Location = new System.Drawing.Point(12, 75);
+            this.dataGridTemplates.Location = new System.Drawing.Point(60, 82);
             this.dataGridTemplates.Name = "dataGridTemplates";
             this.dataGridTemplates.Size = new System.Drawing.Size(528, 150);
             this.dataGridTemplates.TabIndex = 0;
             // 
             // btnTemplateDelete
             // 
-            this.btnTemplateDelete.Location = new System.Drawing.Point(232, 282);
+            this.btnTemplateDelete.Location = new System.Drawing.Point(262, 273);
             this.btnTemplateDelete.Name = "btnTemplateDelete";
             this.btnTemplateDelete.Size = new System.Drawing.Size(157, 49);
             this.btnTemplateDelete.TabIndex = 1;
@@ -57,6 +57,7 @@
             this.Controls.Add(this.dataGridTemplates);
             this.Name = "FormTemplates";
             this.Text = "Templates";
+            this.Load += new System.EventHandler(this.TemplatesForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridTemplates)).EndInit();
             this.ResumeLayout(false);
 

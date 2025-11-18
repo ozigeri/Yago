@@ -81,6 +81,7 @@
     <Compile Include="Templates\FormTemplates.Designer.cs">
       <DependentUpon>FormTemplates.cs</DependentUpon>
     </Compile>
+    <Compile Include="Templates\Methods\TemplateMethods.cs" />
     <Compile Include="Templates\TemplateModel\TemplateModel.cs" />
     <Compile Include="UIStyleHelper.cs" />
     <Compile Include="Versions\Commands\OpenCmdCommand.cs" />
