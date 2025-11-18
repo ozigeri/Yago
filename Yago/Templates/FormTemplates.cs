@@ -32,20 +32,20 @@ namespace Yago.Templates
 
             var colName = new DataGridViewTextBoxColumn();
             colName.Name = "Name";
-            colName.HeaderText = "Template Name";
+            colName.HeaderText = "Sablon neve";
             colName.ReadOnly = true;
             dataGridTemplates.Columns.Add(colName);
 
             var colEdit = new DataGridViewButtonColumn();
             colEdit.Name = "Edit";
-            colEdit.HeaderText = "";
+            colEdit.HeaderText = "Sablon szerkesztése";
             colEdit.Text = "Edit";
             colEdit.UseColumnTextForButtonValue = true;
             dataGridTemplates.Columns.Add(colEdit);
 
             var colSelect = new DataGridViewCheckBoxColumn();
             colSelect.Name = "Select";
-            colSelect.HeaderText = "";
+            colSelect.HeaderText = "Sablon törlése";
             dataGridTemplates.Columns.Add(colSelect);
 
             dataGridTemplates.AllowUserToAddRows = false;
