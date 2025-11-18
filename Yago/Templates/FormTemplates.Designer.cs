@@ -40,6 +40,7 @@
             this.dataGridTemplates.Name = "dataGridTemplates";
             this.dataGridTemplates.Size = new System.Drawing.Size(528, 150);
             this.dataGridTemplates.TabIndex = 0;
+            this.dataGridTemplates.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridTemplates_CellContentClick);
             // 
             // btnTemplateDelete
             // 
