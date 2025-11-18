@@ -66,5 +66,29 @@ namespace Yago.Templates
                 dataGridTemplates.Rows.Add(name, "Edit", false);
             }
         }
+
+        private void dataGridTemplates_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
+            if (e.RowIndex < 0)
+                return;
+
+            
+            if (dataGridTemplates.Columns[e.ColumnIndex].Name == "Edit")
+            {
+                string templateName = dataGridTemplates.Rows[e.RowIndex].Cells["Name"].Value.ToString();
+
+                
+                EditTemplateButton(templateName);
+            }
+        }
+
+        private void EditTemplateButton(string templateName)
+        {
+            EditTemplate editForm = new EditTemplate();
+            editForm.Show();
+        }
+
+
     }
 }
