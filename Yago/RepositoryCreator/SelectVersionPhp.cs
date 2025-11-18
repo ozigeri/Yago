@@ -15,7 +15,7 @@ namespace Yago.RepositoryCreator
         public string SelectedPhp => phpBox.SelectedItem?.ToString();
         public string SelectedComposer => composerBox.SelectedItem?.ToString();
 
-        public SelectVersionPhp(string[] php, string[] composer)
+        public SelectVersionPhp(string[] php, string[] composer, string phpd, string composerd)
         {
             InitializeComponent();
             DoubleBuffered = true;
@@ -29,6 +29,8 @@ namespace Yago.RepositoryCreator
 
             phpBox.Items.AddRange(php);
             composerBox.Items.AddRange(composer);
+            phpBox.Text = phpd;
+            composerBox.Text = composerd;
 
         }
 

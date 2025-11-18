@@ -15,7 +15,7 @@ namespace Yago.RepositoryCreator
     {
         public string SelectedNode => sVersionComboBox.SelectedItem?.ToString();
 
-        public SelectVersionNodeJS(string[] verType)
+        public SelectVersionNodeJS(string[] verType, string node)
         {
             InitializeComponent();
 
@@ -23,6 +23,7 @@ namespace Yago.RepositoryCreator
             UIStyleHelpers.StyleComboBox(sVersionComboBox);
             UIStyleHelpers.StyleLabel(sVersionLabel);
             sVersionComboBox.Items.AddRange(verType);
+            sVersionComboBox.Text = node;
         }
 
         private void button1_Click(object sender, EventArgs e)
