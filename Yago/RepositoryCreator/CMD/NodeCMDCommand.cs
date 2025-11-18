@@ -21,7 +21,7 @@ namespace Yago.RepositoryCreator.CMD
             this.location = location;
             this.version = version;
         }
-        public void Execute()
+        public void Execute(bool opensBrowser)
         {
             string tempBatPath = Path.Combine(Path.GetTempPath(), "node_temp_start.bat");
 
@@ -34,7 +34,7 @@ namespace Yago.RepositoryCreator.CMD
             sb.AppendLine($"cd {name}");
             sb.AppendLine("call npm install");
             sb.AppendLine("echo Repo created!");
-            sb.AppendLine("start http://localhost:5173");
+            if (opensBrowser) sb.AppendLine("start http://localhost:5173");
             sb.AppendLine("start cmd /k \"npm run dev\"");
             sb.AppendLine("exit");
 

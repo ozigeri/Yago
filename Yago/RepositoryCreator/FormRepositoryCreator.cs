@@ -20,6 +20,7 @@ namespace Yago.RepositoryCreator
     public partial class FormRepositoryCreator : Form
     {
         string php, composer, nodeJs, type;
+        bool check = false;
         public FormRepositoryCreator()
         {
             InitializeComponent();
@@ -63,13 +64,14 @@ namespace Yago.RepositoryCreator
             }
             else
             {
-                SelectVersionNodeJS selectVersion = new SelectVersionNodeJS(EnvironmentManager.GetSoftwareVersion(VersionType.NodeJs).ToArray(), nodeJs);
+                SelectVersionNodeJS selectVersion = new SelectVersionNodeJS(EnvironmentManager.GetSoftwareVersion(VersionType.NodeJs).ToArray(), nodeJs, check);
                 selectVersion.StartPosition = FormStartPosition.CenterParent;
                 selectVersion.ShowDialog();
                 nodeJs = selectVersion.SelectedNode;
                 composer = null;
                 php = null;
                 type = "nemLaravel";
+                check = selectVersion.openBrowser;
             }
 
             
@@ -104,7 +106,7 @@ namespace Yago.RepositoryCreator
                 }
 
                 NodeCMDCommand nCMDC = new NodeCMDCommand(appBox.SelectedItem.ToString(), nameBox.Text, pathBox.Text, nodeJs);
-                nCMDC.Execute();
+                nCMDC.Execute(check);
             }
             else
             {

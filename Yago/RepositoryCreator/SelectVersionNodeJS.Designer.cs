@@ -31,6 +31,7 @@
             this.Ok = new System.Windows.Forms.Button();
             this.sVersionLabel = new System.Windows.Forms.Label();
             this.sVersionComboBox = new System.Windows.Forms.ComboBox();
+            this.viteBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // Ok
@@ -60,11 +61,22 @@
             this.sVersionComboBox.Size = new System.Drawing.Size(121, 21);
             this.sVersionComboBox.TabIndex = 2;
             // 
+            // viteBox
+            // 
+            this.viteBox.AutoSize = true;
+            this.viteBox.Location = new System.Drawing.Point(85, 105);
+            this.viteBox.Name = "viteBox";
+            this.viteBox.Size = new System.Drawing.Size(160, 17);
+            this.viteBox.TabIndex = 3;
+            this.viteBox.Text = "Vite automatikus megnyitása";
+            this.viteBox.UseVisualStyleBackColor = true;
+            // 
             // SelectVersionNodeJS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(326, 209);
+            this.Controls.Add(this.viteBox);
             this.Controls.Add(this.sVersionComboBox);
             this.Controls.Add(this.sVersionLabel);
             this.Controls.Add(this.Ok);
@@ -80,5 +92,6 @@
         private System.Windows.Forms.Button Ok;
         private System.Windows.Forms.Label sVersionLabel;
         private System.Windows.Forms.ComboBox sVersionComboBox;
+        private System.Windows.Forms.CheckBox viteBox;
     }
 }
