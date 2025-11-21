@@ -84,5 +84,26 @@ namespace Yago.Templates.Methods
 
             combo.SelectedIndex = -1;
         }
+
+        public static void DeleteTemplates(List<string> names)
+        {
+            var all = LoadTemplates();
+
+            
+            foreach (string name in names)
+            {
+                if (all.ContainsKey(name))
+                    all.Remove(name);
+            }
+
+            
+            using (StreamWriter sw = new StreamWriter(TemplateFile, false))
+            {
+                foreach (var t in all.Values)
+                {
+                    sw.WriteLine($"{t.Name};{t.Php};{t.Composer};{t.Node}");
+                }
+            }
+        }
     }
 }

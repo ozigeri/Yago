@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Yago.Templates.Methods;
 using Yago.Versions;
 
 namespace Yago.Templates
@@ -87,6 +88,52 @@ namespace Yago.Templates
         {
             EditTemplate editForm = new EditTemplate(templateName);
             editForm.Show();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            List<string> itemsToDelete = new List<string>();
+
+            foreach (DataGridViewRow row in dataGridTemplates.Rows)
+            {
+                bool isChecked = Convert.ToBoolean(row.Cells["Select"].Value);
+                if (isChecked)
+                {
+                    string templateName = row.Cells["Name"].Value.ToString();
+                    itemsToDelete.Add(templateName);
+                }
+            }
+
+            if (itemsToDelete.Count == 0)
+            {
+                MessageBox.Show("Nincs kijelölt sablon!", "Hiba",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+
+            DialogResult result = MessageBox.Show(
+                $"{itemsToDelete.Count} sablon törlése.\nBiztosan törölni szeretnéd?",
+                "Megerősítés",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (result == DialogResult.No)
+                return; 
+
+
+            TemplateMethods.DeleteTemplates(itemsToDelete);
+
+
+            for (int i = dataGridTemplates.Rows.Count - 1; i >= 0; i--)
+            {
+                bool isChecked = Convert.ToBoolean(dataGridTemplates.Rows[i].Cells["Select"].Value);
+                if (isChecked)
+                    dataGridTemplates.Rows.RemoveAt(i);
+            }
+
+            MessageBox.Show("A kijelölt sablonok törölve lettek.",
+                "Siker", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
 
