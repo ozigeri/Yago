@@ -50,6 +50,7 @@
             this.btnTemplateDelete.TabIndex = 1;
             this.btnTemplateDelete.Text = "Template törlése";
             this.btnTemplateDelete.UseVisualStyleBackColor = true;
+            this.btnTemplateDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // FormTemplates
             // 
