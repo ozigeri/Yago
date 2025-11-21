@@ -85,7 +85,7 @@ namespace Yago.Templates
 
         private void EditTemplateButton(string templateName)
         {
-            EditTemplate editForm = new EditTemplate();
+            EditTemplate editForm = new EditTemplate(templateName);
             editForm.Show();
         }
 

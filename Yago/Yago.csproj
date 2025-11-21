@@ -88,6 +88,7 @@
       <DependentUpon>FormTemplates.cs</DependentUpon>
     </Compile>
     <Compile Include="Templates\Methods\TemplateMethods.cs" />
+    <Compile Include="Templates\TemplateItem.cs" />
     <Compile Include="Templates\TemplateModel\TemplateModel.cs" />
     <Compile Include="UIStyleHelper.cs" />
     <Compile Include="Versions\Commands\OpenCmdCommand.cs" />
@@ -121,6 +122,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RepositoryCreator\SelectVersionPhp.resx">
       <DependentUpon>SelectVersionPhp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Templates\EditTemplate.resx">
+      <DependentUpon>EditTemplate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Templates\FormTemplates.resx">
       <DependentUpon>FormTemplates.cs</DependentUpon>
