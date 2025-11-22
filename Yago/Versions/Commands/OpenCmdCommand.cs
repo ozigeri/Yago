@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Text;
 
-namespace EnviromentBuilder.Core.Commands
+namespace Yago.Commands
 {
     public class OpenCmdCommand
     {

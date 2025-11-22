@@ -4,7 +4,7 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Collections.Generic;
 
-namespace EnviromentBuilder.Core
+namespace Yago.Versions.Core
 {
     public static class TemplateManager
     {

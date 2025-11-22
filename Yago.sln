@@ -5,6 +5,8 @@ VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yago", "Yago\Yago.csproj", "{A469F7C3-1EA9-4CED-B989-980117F5B44E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Versions.Tests", "Versions.Tests\Versions.Tests.csproj", "{9FF5EBE0-67BE-45BF-BAFC-F3E99B3E702F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{A469F7C3-1EA9-4CED-B989-980117F5B44E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A469F7C3-1EA9-4CED-B989-980117F5B44E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A469F7C3-1EA9-4CED-B989-980117F5B44E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FF5EBE0-67BE-45BF-BAFC-F3E99B3E702F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FF5EBE0-67BE-45BF-BAFC-F3E99B3E702F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FF5EBE0-67BE-45BF-BAFC-F3E99B3E702F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FF5EBE0-67BE-45BF-BAFC-F3E99B3E702F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
