@@ -17,6 +17,24 @@ namespace Yago.Versions
         {
             InitializeComponent();
 
+            DoubleBuffered = true;
+            UIStyleHelpers.ApplyFormStyle(this);
+
+            UIStyleHelpers.StyleButton(btnPhpBrowse);
+            UIStyleHelpers.StyleButton(btnComposerBrowse);
+            UIStyleHelpers.StyleButton(btnNodeBrowse);
+            UIStyleHelpers.StyleButton(btnOk);
+            UIStyleHelpers.StyleButton(btnCancel);
+
+            UIStyleHelpers.StyleTextBox(txtPhp);
+            UIStyleHelpers.StyleTextBox(txtComposer);
+            UIStyleHelpers.StyleTextBox(txtNode);
+
+
+            UIStyleHelpers.StyleLabel(lblPhp);
+            UIStyleHelpers.StyleLabel(lblComposer);
+            UIStyleHelpers.StyleLabel(lblNode);
+
             PathController controller = new PathController(
             txtPhp,
             txtNode,

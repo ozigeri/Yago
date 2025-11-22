@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.lblPhp = new System.Windows.Forms.Label();
-            this.lblCompser = new System.Windows.Forms.Label();
+            this.lblComposer = new System.Windows.Forms.Label();
             this.lblNode = new System.Windows.Forms.Label();
             this.txtPhp = new System.Windows.Forms.TextBox();
             this.txtComposer = new System.Windows.Forms.TextBox();
@@ -45,25 +45,25 @@
             // lblPhp
             // 
             this.lblPhp.AutoSize = true;
-            this.lblPhp.Location = new System.Drawing.Point(51, 29);
+            this.lblPhp.Location = new System.Drawing.Point(35, 29);
             this.lblPhp.Name = "lblPhp";
             this.lblPhp.Size = new System.Drawing.Size(64, 13);
             this.lblPhp.TabIndex = 0;
             this.lblPhp.Text = "PHP mappa";
             // 
-            // lblCompser
+            // lblComposer
             // 
-            this.lblCompser.AutoSize = true;
-            this.lblCompser.Location = new System.Drawing.Point(26, 81);
-            this.lblCompser.Name = "lblCompser";
-            this.lblCompser.Size = new System.Drawing.Size(89, 13);
-            this.lblCompser.TabIndex = 1;
-            this.lblCompser.Text = "Composer mappa";
+            this.lblComposer.AutoSize = true;
+            this.lblComposer.Location = new System.Drawing.Point(12, 81);
+            this.lblComposer.Name = "lblComposer";
+            this.lblComposer.Size = new System.Drawing.Size(89, 13);
+            this.lblComposer.TabIndex = 1;
+            this.lblComposer.Text = "Composer mappa";
             // 
             // lblNode
             // 
             this.lblNode.AutoSize = true;
-            this.lblNode.Location = new System.Drawing.Point(47, 129);
+            this.lblNode.Location = new System.Drawing.Point(31, 129);
             this.lblNode.Name = "lblNode";
             this.lblNode.Size = new System.Drawing.Size(68, 13);
             this.lblNode.TabIndex = 2;
@@ -92,7 +92,7 @@
             // 
             // btnPhpBrowse
             // 
-            this.btnPhpBrowse.Location = new System.Drawing.Point(227, 26);
+            this.btnPhpBrowse.Location = new System.Drawing.Point(243, 24);
             this.btnPhpBrowse.Name = "btnPhpBrowse";
             this.btnPhpBrowse.Size = new System.Drawing.Size(75, 23);
             this.btnPhpBrowse.TabIndex = 6;
@@ -101,7 +101,7 @@
             // 
             // btnComposerBrowse
             // 
-            this.btnComposerBrowse.Location = new System.Drawing.Point(227, 76);
+            this.btnComposerBrowse.Location = new System.Drawing.Point(243, 76);
             this.btnComposerBrowse.Name = "btnComposerBrowse";
             this.btnComposerBrowse.Size = new System.Drawing.Size(75, 23);
             this.btnComposerBrowse.TabIndex = 7;
@@ -110,7 +110,7 @@
             // 
             // btnNodeBrowse
             // 
-            this.btnNodeBrowse.Location = new System.Drawing.Point(227, 127);
+            this.btnNodeBrowse.Location = new System.Drawing.Point(243, 127);
             this.btnNodeBrowse.Name = "btnNodeBrowse";
             this.btnNodeBrowse.Size = new System.Drawing.Size(75, 23);
             this.btnNodeBrowse.TabIndex = 8;
@@ -150,7 +150,7 @@
             this.Controls.Add(this.txtComposer);
             this.Controls.Add(this.txtPhp);
             this.Controls.Add(this.lblNode);
-            this.Controls.Add(this.lblCompser);
+            this.Controls.Add(this.lblComposer);
             this.Controls.Add(this.lblPhp);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormPathConfig";
@@ -164,7 +164,7 @@
         #endregion
 
         private System.Windows.Forms.Label lblPhp;
-        private System.Windows.Forms.Label lblCompser;
+        private System.Windows.Forms.Label lblComposer;
         private System.Windows.Forms.Label lblNode;
         private System.Windows.Forms.TextBox txtPhp;
         private System.Windows.Forms.TextBox txtComposer;
