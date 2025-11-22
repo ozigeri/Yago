@@ -29,6 +29,22 @@ namespace Versions.Tests
             List<string> result = EnvironmentManager.GetSoftwareVersion(VersionType.Php);
             Assert.Empty(result);
         }
+        [Fact]
+        public void LoadAndSavePaths_ShouldPersistValues()
+        {
+            string tempPath = Path.Combine(Path.GetTempPath(), "basepath_test.txt");
+            EnvironmentManagerTestWrapper.SetPathFile(tempPath);
+
+            EnvironmentManager.BasePaths[VersionType.Php] = @"C:\testphp";
+            EnvironmentManager.SavePathsToFile();
+
+            EnvironmentManager.BasePaths[VersionType.Php] = @"C:\reset";
+            EnvironmentManager.LoadPathsFromFile();
+
+            Assert.Equal(@"C:\testphp", EnvironmentManager.BasePaths[VersionType.Php]);
+
+            File.Delete(tempPath);
+        }
     }
     public static class EnvironmentManagerTestWrapper
     {
