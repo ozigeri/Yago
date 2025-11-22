@@ -135,6 +135,9 @@
     <EmbeddedResource Include="Templates\FormTemplates.resx">
       <DependentUpon>FormTemplates.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Versions\FormPathConfig.resx">
+      <DependentUpon>FormPathConfig.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Versions\FormVersions.resx">
       <DependentUpon>FormVersions.cs</DependentUpon>
     </EmbeddedResource>
