@@ -123,5 +123,16 @@ namespace Versions.Tests
             var result = TemplateManager.LoadTemplate("nonexistent");
             Assert.Null(result);
         }
+
+        [Fact]
+        public void GetTemplateNames_ShouldReturnCorrectList()
+        {
+            TemplateManager.SaveTemplate("template1", "7.2", "1.0", "12.0");
+            TemplateManager.SaveTemplate("template2", "7.4", "2.0", "14.0");
+
+            List<string> names = TemplateManager.GetTemplateNames();
+            Assert.Contains("template1", names);
+            Assert.Contains("template2", names);
+        }
     }
 }
