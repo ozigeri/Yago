@@ -48,6 +48,17 @@ namespace Yago.Versions.Core
             }
         }
 
+        public static void SavePathsToFile()
+        {
+            using (StreamWriter sw = new StreamWriter(pathFile, false))
+            {
+                foreach (KeyValuePair<VersionType, string> kvp in BasePaths)
+                {
+                    sw.WriteLine($"{kvp.Key}={kvp.Value}");
+                }
+            }
+        }
+
         private static string CleanVersionName(string folderName)
         {
             // pl.: "php7.2.9" -> "7.2.9"
