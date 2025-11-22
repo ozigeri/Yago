@@ -77,4 +77,31 @@ namespace Versions.Tests
             field.SetValue(null, path);
         }
     }
+    public class TemplateManagerTests
+    {
+        private readonly string tempTemplateFile = Path.Combine(Path.GetTempPath(), "templates_test.txt");
+
+        public TemplateManagerTests()
+        {
+            FieldInfo field = typeof(TemplateManager).GetField("TemplateFile", BindingFlags.Static | BindingFlags.NonPublic);
+            field.SetValue(null, tempTemplateFile);
+            if (File.Exists(tempTemplateFile)) File.Delete(tempTemplateFile);
+            File.Create(tempTemplateFile).Close();
+        }
+
+        [Fact]
+        public void SaveTemplate_ShouldCreateAndLoadTemplate()
+        {
+            TemplateManager.SaveTemplate("myTemplate", "7.4", "2.1", "16.17");
+
+            List<string> templates = TemplateManager.GetTemplateNames();
+            Assert.Contains("myTemplate", templates);
+
+            var loaded = TemplateManager.LoadTemplate("myTemplate");
+            Assert.NotNull(loaded);
+            Assert.Equal("7.4", loaded.Value.php);
+            Assert.Equal("2.1", loaded.Value.composer);
+            Assert.Equal("16.17", loaded.Value.node);
+        }
+    }
 }
