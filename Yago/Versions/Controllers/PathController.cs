@@ -82,6 +82,8 @@ namespace Yago.Versions.Controllers
             EnvironmentManager.BasePaths[VersionType.NodeJs] = txtNode.Text;
             EnvironmentManager.BasePaths[VersionType.Composer] = txtComposer.Text;
 
+            EnvironmentManager.SavePathsToFile();
+
             ((Form)txtPhp.FindForm()).DialogResult = DialogResult.OK;
         }
     }

@@ -11,12 +11,42 @@ namespace Yago.Versions.Core
 {
     public static class EnvironmentManager
     {
+        private static readonly string pathFile = "basepath.txt";
+
+
         public static readonly Dictionary<VersionType, string> BasePaths = new Dictionary<VersionType, string>
         {
             { VersionType.Php, @"C:\php" },
             { VersionType.Composer, @"C:\composer" },
             { VersionType.NodeJs, @"C:\nodejs" }
         };
+
+        public static void LoadPathsFromFile()
+        {
+            if (!File.Exists(pathFile))
+            {
+                return;
+            }
+
+            string[] lines = File.ReadAllLines(pathFile);
+
+            foreach (string line in lines)
+            {
+                string[] parts = line.Split('=');
+                if (parts.Length != 2)
+                {
+                    continue;
+                }
+
+                string key = parts[0].Trim();
+                string value = parts[1].Trim();
+
+                if (Enum.TryParse(key, out VersionType type))
+                {
+                    BasePaths[type] = value;
+                }
+            }
+        }
 
         private static string CleanVersionName(string folderName)
         {
