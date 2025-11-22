@@ -116,5 +116,12 @@ namespace Versions.Tests
 
             Assert.Equal(countBefore, countAfter);
         }
+
+        [Fact]
+        public void LoadTemplate_ShouldReturnNullIfNotExist()
+        {
+            var result = TemplateManager.LoadTemplate("nonexistent");
+            Assert.Null(result);
+        }
     }
 }
