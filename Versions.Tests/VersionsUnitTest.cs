@@ -45,6 +45,7 @@ namespace Versions.Tests
 
             File.Delete(tempPath);
         }
+
         [Fact]
         public void GetSoftwareVersion_ShouldReturnCleanedVersionList()
         {
@@ -102,6 +103,18 @@ namespace Versions.Tests
             Assert.Equal("7.4", loaded.Value.php);
             Assert.Equal("2.1", loaded.Value.composer);
             Assert.Equal("16.17", loaded.Value.node);
+        }
+
+        [Fact]
+        public void SaveTemplate_ShouldPreventDuplicate()
+        {
+            TemplateManager.SaveTemplate("dupTemplate", "7.4", "2.1", "16.17");
+            int countBefore = TemplateManager.GetTemplateNames().Count;
+
+            TemplateManager.SaveTemplate("dupTemplate", "7.4", "2.1", "16.17");
+            int countAfter = TemplateManager.GetTemplateNames().Count;
+
+            Assert.Equal(countBefore, countAfter);
         }
     }
 }
