@@ -49,6 +49,8 @@ namespace Yago.Versions.Controllers
 
         private void Initialize()
         {
+            EnvironmentManager.LoadPathsFromFile();
+
             LoadVersions();
 
             startButton.Click += StartButton_Click;
