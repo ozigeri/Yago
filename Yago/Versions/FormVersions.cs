@@ -44,7 +44,8 @@ namespace Yago.Versions
                 textBoxTemplateSave,
                 btnStart,
                 btnTemplateSave,
-                btnTemplateLoad
+                btnTemplateLoad,
+                btnPaths
             );
         }
     }

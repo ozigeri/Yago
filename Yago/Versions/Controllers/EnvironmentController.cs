@@ -21,6 +21,7 @@ namespace Yago.Versions.Controllers
         private readonly Button startButton;
         private readonly Button saveTemplateButton;
         private readonly Button btnTemplateLoad;
+        private readonly Button btnPaths;
 
         public EnvironmentController(
             ComboBox phpBox,
@@ -30,7 +31,8 @@ namespace Yago.Versions.Controllers
             TextBox templateNameBox,
             Button startButton,
             Button saveTemplateButton,
-            Button btnTemplateLoad)
+            Button btnTemplateLoad,
+            Button btnPaths)
         {
             this.phpBox = phpBox;
             this.composerBox = composerBox;
@@ -40,6 +42,7 @@ namespace Yago.Versions.Controllers
             this.startButton = startButton;
             this.saveTemplateButton = saveTemplateButton;
             this.btnTemplateLoad = btnTemplateLoad;
+            this.btnPaths = btnPaths;
 
             Initialize();
         }
