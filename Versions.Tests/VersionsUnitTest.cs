@@ -141,4 +141,18 @@ namespace Versions.Tests
             TemplateManager.SaveTemplate("", "7.4", "2.0", "16.0");
         }
     }
+    public class OpenCmdCommandTests
+    {
+        [Fact]
+        public void Execute_ShouldCreateBatchFile()
+        {
+            string tempBat = Path.Combine(Path.GetTempPath(), "env_temp_start.bat");
+            if (File.Exists(tempBat)) File.Delete(tempBat);
+
+            OpenCmdCommand cmd = new OpenCmdCommand(@"C:\php", @"C:\composer", @"C:\node");
+            cmd.Execute();
+
+            Assert.True(File.Exists(tempBat));
+        }
+    }
 }
