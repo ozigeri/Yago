@@ -134,5 +134,11 @@ namespace Versions.Tests
             Assert.Contains("template1", names);
             Assert.Contains("template2", names);
         }
+
+        [Fact]
+        public void SaveTemplate_ShouldWarnWhenNameEmpty()
+        {
+            TemplateManager.SaveTemplate("", "7.4", "2.0", "16.0");
+        }
     }
 }
