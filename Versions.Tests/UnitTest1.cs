@@ -21,6 +21,14 @@ namespace Versions.Tests
             result = EnvironmentManagerTestWrapper.CleanVersionName("v16.17.0");
             Assert.Equal("16.17.0", result);
         }
+
+        [Fact]
+        public void GetSoftwareVersion_ShouldReturnEmptyIfDirDoesNotExist()
+        {
+            EnvironmentManager.BasePaths[VersionType.Php] = Path.Combine(Path.GetTempPath(), "nonexistent");
+            List<string> result = EnvironmentManager.GetSoftwareVersion(VersionType.Php);
+            Assert.Empty(result);
+        }
     }
     public static class EnvironmentManagerTestWrapper
     {
