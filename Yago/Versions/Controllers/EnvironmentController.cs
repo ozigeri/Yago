@@ -21,6 +21,7 @@ namespace Yago.Versions.Controllers
         private readonly Button startButton;
         private readonly Button saveTemplateButton;
         private readonly Button btnTemplateLoad;
+        private readonly Button btnPaths;
 
         public EnvironmentController(
             ComboBox phpBox,
@@ -30,7 +31,8 @@ namespace Yago.Versions.Controllers
             TextBox templateNameBox,
             Button startButton,
             Button saveTemplateButton,
-            Button btnTemplateLoad)
+            Button btnTemplateLoad,
+            Button btnPaths)
         {
             this.phpBox = phpBox;
             this.composerBox = composerBox;
@@ -40,12 +42,15 @@ namespace Yago.Versions.Controllers
             this.startButton = startButton;
             this.saveTemplateButton = saveTemplateButton;
             this.btnTemplateLoad = btnTemplateLoad;
+            this.btnPaths = btnPaths;
 
             Initialize();
         }
 
         private void Initialize()
         {
+            EnvironmentManager.LoadPathsFromFile();
+
             LoadVersions();
 
             startButton.Click += StartButton_Click;
@@ -56,6 +61,8 @@ namespace Yago.Versions.Controllers
             TemplateManager.InitializeTemplateComboBox(templateLoadBox);
 
             btnTemplateLoad.Click += TemplateLoadButton_Click;
+
+            btnPaths.Click += BtnPaths_Click;
         }
 
         private void LoadVersions()
@@ -71,6 +78,17 @@ namespace Yago.Versions.Controllers
             if (phpBox.Items.Count > 0) phpBox.SelectedIndex = 0;
             if (composerBox.Items.Count > 0) composerBox.SelectedIndex = 0;
             if (nodeBox.Items.Count > 0) nodeBox.SelectedIndex = 0;
+        }
+
+        private void BtnPaths_Click(object sender, EventArgs e)
+        {
+            using (FormPathConfig popupWindow = new FormPathConfig())
+            {
+                if (popupWindow.ShowDialog() == DialogResult.OK)
+                {
+                    LoadVersions();
+                }
+            }
         }
 
         private void StartButton_Click(object sender, EventArgs e)

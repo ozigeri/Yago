@@ -39,38 +39,15 @@
             this.comboBoxNode = new System.Windows.Forms.ComboBox();
             this.comboBoxTemplateLoad = new System.Windows.Forms.ComboBox();
             this.textBoxTemplateSave = new System.Windows.Forms.TextBox();
+            this.btnPaths = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // comboBoxPhp
-            // 
-            this.comboBoxPhp.FormattingEnabled = true;
-            this.comboBoxPhp.Location = new System.Drawing.Point(174, 43);
-            this.comboBoxPhp.Name = "comboBoxPhp";
-            this.comboBoxPhp.Size = new System.Drawing.Size(212, 24);
-            this.comboBoxPhp.TabIndex = 0;
-            // 
-            // comboBoxComposer
-            // 
-            this.comboBoxComposer.FormattingEnabled = true;
-            this.comboBoxComposer.Location = new System.Drawing.Point(174, 85);
-            this.comboBoxComposer.Name = "comboBoxComposer";
-            this.comboBoxComposer.Size = new System.Drawing.Size(212, 24);
-            this.comboBoxComposer.TabIndex = 1;
-            // 
-            // comboBoxNode
-            // 
-            this.comboBoxNode.FormattingEnabled = true;
-            this.comboBoxNode.Location = new System.Drawing.Point(174, 131);
-            this.comboBoxNode.Name = "comboBoxNode";
-            this.comboBoxNode.Size = new System.Drawing.Size(212, 24);
-            this.comboBoxNode.TabIndex = 2;
             // 
             // lblPhp
             // 
             this.lblPhp.AutoSize = true;
             this.lblPhp.Location = new System.Drawing.Point(57, 46);
             this.lblPhp.Name = "lblPhp";
-            this.lblPhp.Size = new System.Drawing.Size(76, 16);
+            this.lblPhp.Size = new System.Drawing.Size(61, 13);
             this.lblPhp.TabIndex = 3;
             this.lblPhp.Text = "PHP Verzió";
             // 
@@ -79,7 +56,7 @@
             this.lblComposer.AutoSize = true;
             this.lblComposer.Location = new System.Drawing.Point(22, 88);
             this.lblComposer.Name = "lblComposer";
-            this.lblComposer.Size = new System.Drawing.Size(111, 16);
+            this.lblComposer.Size = new System.Drawing.Size(86, 13);
             this.lblComposer.TabIndex = 4;
             this.lblComposer.Text = "Composer Verzió";
             // 
@@ -88,29 +65,22 @@
             this.lblNode.AutoSize = true;
             this.lblNode.Location = new System.Drawing.Point(51, 134);
             this.lblNode.Name = "lblNode";
-            this.lblNode.Size = new System.Drawing.Size(82, 16);
+            this.lblNode.Size = new System.Drawing.Size(65, 13);
             this.lblNode.TabIndex = 5;
             this.lblNode.Text = "Node Verzió";
             // 
             // btnStart
             // 
-            this.btnStart.Location = new System.Drawing.Point(174, 177);
+            this.btnStart.Location = new System.Drawing.Point(174, 172);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(212, 36);
             this.btnStart.TabIndex = 6;
             this.btnStart.Text = "Enviroment indítása";
             this.btnStart.UseVisualStyleBackColor = true;
             // 
-            // textBoxTemplateSave
-            // 
-            this.textBoxTemplateSave.Location = new System.Drawing.Point(56, 255);
-            this.textBoxTemplateSave.Name = "textBoxTemplateSave";
-            this.textBoxTemplateSave.Size = new System.Drawing.Size(196, 22);
-            this.textBoxTemplateSave.TabIndex = 7;
-            // 
             // btnTemplateSave
             // 
-            this.btnTemplateSave.Location = new System.Drawing.Point(54, 293);
+            this.btnTemplateSave.Location = new System.Drawing.Point(54, 304);
             this.btnTemplateSave.Name = "btnTemplateSave";
             this.btnTemplateSave.Size = new System.Drawing.Size(198, 36);
             this.btnTemplateSave.TabIndex = 8;
@@ -119,24 +89,65 @@
             // 
             // btnTemplateLoad
             // 
-            this.btnTemplateLoad.Location = new System.Drawing.Point(311, 293);
+            this.btnTemplateLoad.Location = new System.Drawing.Point(311, 304);
             this.btnTemplateLoad.Name = "btnTemplateLoad";
             this.btnTemplateLoad.Size = new System.Drawing.Size(196, 36);
             this.btnTemplateLoad.TabIndex = 9;
             this.btnTemplateLoad.Text = "Template betöltése";
             this.btnTemplateLoad.UseVisualStyleBackColor = true;
             // 
+            // comboBoxPhp
+            // 
+            this.comboBoxPhp.FormattingEnabled = true;
+            this.comboBoxPhp.Location = new System.Drawing.Point(174, 43);
+            this.comboBoxPhp.Name = "comboBoxPhp";
+            this.comboBoxPhp.Size = new System.Drawing.Size(212, 21);
+            this.comboBoxPhp.TabIndex = 0;
+            // 
+            // comboBoxComposer
+            // 
+            this.comboBoxComposer.FormattingEnabled = true;
+            this.comboBoxComposer.Location = new System.Drawing.Point(174, 85);
+            this.comboBoxComposer.Name = "comboBoxComposer";
+            this.comboBoxComposer.Size = new System.Drawing.Size(212, 21);
+            this.comboBoxComposer.TabIndex = 1;
+            // 
+            // comboBoxNode
+            // 
+            this.comboBoxNode.FormattingEnabled = true;
+            this.comboBoxNode.Location = new System.Drawing.Point(174, 131);
+            this.comboBoxNode.Name = "comboBoxNode";
+            this.comboBoxNode.Size = new System.Drawing.Size(212, 21);
+            this.comboBoxNode.TabIndex = 2;
+            // 
             // comboBoxTemplateLoad
             // 
             this.comboBoxTemplateLoad.FormattingEnabled = true;
-            this.comboBoxTemplateLoad.Location = new System.Drawing.Point(311, 255);
+            this.comboBoxTemplateLoad.Location = new System.Drawing.Point(311, 277);
             this.comboBoxTemplateLoad.Name = "comboBoxTemplateLoad";
-            this.comboBoxTemplateLoad.Size = new System.Drawing.Size(196, 24);
+            this.comboBoxTemplateLoad.Size = new System.Drawing.Size(196, 21);
             this.comboBoxTemplateLoad.TabIndex = 10;
+            // 
+            // textBoxTemplateSave
+            // 
+            this.textBoxTemplateSave.Location = new System.Drawing.Point(54, 278);
+            this.textBoxTemplateSave.Name = "textBoxTemplateSave";
+            this.textBoxTemplateSave.Size = new System.Drawing.Size(196, 20);
+            this.textBoxTemplateSave.TabIndex = 7;
+            // 
+            // btnPaths
+            // 
+            this.btnPaths.Location = new System.Drawing.Point(174, 227);
+            this.btnPaths.Name = "btnPaths";
+            this.btnPaths.Size = new System.Drawing.Size(212, 30);
+            this.btnPaths.TabIndex = 11;
+            this.btnPaths.Text = "Verzió elérési útvonalak módosítása";
+            this.btnPaths.UseVisualStyleBackColor = true;
             // 
             // FormVersions
             // 
             this.ClientSize = new System.Drawing.Size(600, 420);
+            this.Controls.Add(this.btnPaths);
             this.Controls.Add(this.textBoxTemplateSave);
             this.Controls.Add(this.comboBoxTemplateLoad);
             this.Controls.Add(this.comboBoxNode);
@@ -168,5 +179,6 @@
         private System.Windows.Forms.ComboBox comboBoxNode;
         private System.Windows.Forms.ComboBox comboBoxTemplateLoad;
         private System.Windows.Forms.TextBox textBoxTemplateSave;
+        private System.Windows.Forms.Button btnPaths;
     }
 }

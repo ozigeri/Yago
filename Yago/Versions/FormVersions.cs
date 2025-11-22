@@ -24,6 +24,7 @@ namespace Yago.Versions
             UIStyleHelpers.StyleButton(btnStart);
             UIStyleHelpers.StyleButton(btnTemplateSave);
             UIStyleHelpers.StyleButton(btnTemplateLoad);
+            UIStyleHelpers.StyleButton(btnPaths);
 
             UIStyleHelpers.StyleComboBox(comboBoxPhp);
             UIStyleHelpers.StyleComboBox(comboBoxComposer);
@@ -44,7 +45,8 @@ namespace Yago.Versions
                 textBoxTemplateSave,
                 btnStart,
                 btnTemplateSave,
-                btnTemplateLoad
+                btnTemplateLoad,
+                btnPaths
             );
         }
     }
