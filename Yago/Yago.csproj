@@ -93,6 +93,7 @@
     <Compile Include="UIStyleHelper.cs" />
     <Compile Include="Versions\Commands\OpenCmdCommand.cs" />
     <Compile Include="Versions\Controllers\EnvironmentController.cs" />
+    <Compile Include="Versions\Controllers\PathController.cs" />
     <Compile Include="Versions\Core\EnvironmentManager.cs" />
     <Compile Include="Versions\Core\TemplateManager.cs" />
     <Compile Include="Versions\Enums\VersionType.cs" />

@@ -39,6 +39,7 @@
             this.btnNodeBrowse = new System.Windows.Forms.Button();
             this.btnOk = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.SuspendLayout();
             // 
             // lblPhp
@@ -173,5 +174,6 @@
         private System.Windows.Forms.Button btnNodeBrowse;
         private System.Windows.Forms.Button btnOk;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
     }
 }

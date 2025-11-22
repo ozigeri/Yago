@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Yago.Versions.Controllers;
 
 namespace Yago.Versions
 {
@@ -15,6 +16,18 @@ namespace Yago.Versions
         public FormPathConfig()
         {
             InitializeComponent();
+
+            PathController controller = new PathController(
+            txtPhp,
+            txtNode,
+            txtComposer,
+            btnPhpBrowse,
+            btnNodeBrowse,
+            btnComposerBrowse,
+            btnOk,
+            btnCancel,
+            folderBrowserDialog1
+        );
         }
     }
 }
