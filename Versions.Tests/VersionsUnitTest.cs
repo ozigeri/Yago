@@ -154,5 +154,20 @@ namespace Versions.Tests
 
             Assert.True(File.Exists(tempBat));
         }
+
+        [Fact]
+        public void Execute_BatchFileContentShouldContainPaths()
+        {
+            string tempBat = Path.Combine(Path.GetTempPath(), "env_temp_start.bat");
+            if (File.Exists(tempBat)) File.Delete(tempBat);
+
+            OpenCmdCommand cmd = new OpenCmdCommand(@"C:\phpPath", @"C:\composerPath", @"C:\nodePath");
+            cmd.Execute();
+
+            string content = File.ReadAllText(tempBat);
+            Assert.Contains("PHP_HOME=C:\\phpPath", content);
+            Assert.Contains("COMPOSER_HOME=C:\\composerPath", content);
+            Assert.Contains("NODE_HOME=C:\\nodePath", content);
+        }
     }
 }
