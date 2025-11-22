@@ -96,6 +96,12 @@
     <Compile Include="Versions\Core\EnvironmentManager.cs" />
     <Compile Include="Versions\Core\TemplateManager.cs" />
     <Compile Include="Versions\Enums\VersionType.cs" />
+    <Compile Include="Versions\FormPathConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Versions\FormPathConfig.Designer.cs">
+      <DependentUpon>FormPathConfig.cs</DependentUpon>
+    </Compile>
     <Compile Include="Versions\FormVersions.cs">
       <SubType>Form</SubType>
     </Compile>
