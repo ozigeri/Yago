@@ -1,5 +1,4 @@
-﻿using EnviromentBuilder.Core;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Yago.Templates.Methods;
 using Yago.Versions;
+using Yago.Versions.Core;
 
 namespace Yago.Templates
 {
