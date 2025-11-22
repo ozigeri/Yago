@@ -80,7 +80,7 @@
             // 
             // btnTemplateSave
             // 
-            this.btnTemplateSave.Location = new System.Drawing.Point(54, 304);
+            this.btnTemplateSave.Location = new System.Drawing.Point(52, 317);
             this.btnTemplateSave.Name = "btnTemplateSave";
             this.btnTemplateSave.Size = new System.Drawing.Size(198, 36);
             this.btnTemplateSave.TabIndex = 8;
@@ -89,7 +89,7 @@
             // 
             // btnTemplateLoad
             // 
-            this.btnTemplateLoad.Location = new System.Drawing.Point(311, 304);
+            this.btnTemplateLoad.Location = new System.Drawing.Point(311, 317);
             this.btnTemplateLoad.Name = "btnTemplateLoad";
             this.btnTemplateLoad.Size = new System.Drawing.Size(196, 36);
             this.btnTemplateLoad.TabIndex = 9;

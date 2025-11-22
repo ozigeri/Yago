@@ -37,7 +37,7 @@ namespace Yago.Versions
             UIStyleHelpers.StyleLabel(lblComposer);
             UIStyleHelpers.StyleLabel(lblNode);
 
-            EnvironmentController controller = new EnvironmentController(
+            EnvironmentController _ = new EnvironmentController(
                 comboBoxPhp,
                 comboBoxComposer,
                 comboBoxNode,

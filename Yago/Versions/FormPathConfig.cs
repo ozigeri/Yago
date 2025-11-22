@@ -35,7 +35,7 @@ namespace Yago.Versions
             UIStyleHelpers.StyleLabel(lblComposer);
             UIStyleHelpers.StyleLabel(lblNode);
 
-            PathController controller = new PathController(
+            PathController _ = new PathController(
             txtPhp,
             txtNode,
             txtComposer,
