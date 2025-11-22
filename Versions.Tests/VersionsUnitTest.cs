@@ -45,6 +45,24 @@ namespace Versions.Tests
 
             File.Delete(tempPath);
         }
+        [Fact]
+        public void GetSoftwareVersion_ShouldReturnCleanedVersionList()
+        {
+            string tempDir = Path.Combine(Path.GetTempPath(), "version_test");
+            Directory.CreateDirectory(tempDir);
+            string[] dirs = { "php7.2.1", "v7.3.0", "invalid", "v8.0.0" };
+            foreach (string d in dirs) Directory.CreateDirectory(Path.Combine(tempDir, d));
+
+            EnvironmentManager.BasePaths[VersionType.Php] = tempDir;
+            List<string> result = EnvironmentManager.GetSoftwareVersion(VersionType.Php);
+
+            Assert.Contains("7.2.1", result);
+            Assert.Contains("7.3.0", result);
+            Assert.Contains("8.0.0", result);
+            Assert.DoesNotContain("invalid", result);
+
+            Directory.Delete(tempDir, true);
+        }
     }
     public static class EnvironmentManagerTestWrapper
     {
