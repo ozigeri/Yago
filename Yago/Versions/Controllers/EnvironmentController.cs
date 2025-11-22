@@ -59,6 +59,8 @@ namespace Yago.Versions.Controllers
             TemplateManager.InitializeTemplateComboBox(templateLoadBox);
 
             btnTemplateLoad.Click += TemplateLoadButton_Click;
+
+            btnPaths.Click += BtnPaths_Click;
         }
 
         private void LoadVersions()
@@ -74,6 +76,17 @@ namespace Yago.Versions.Controllers
             if (phpBox.Items.Count > 0) phpBox.SelectedIndex = 0;
             if (composerBox.Items.Count > 0) composerBox.SelectedIndex = 0;
             if (nodeBox.Items.Count > 0) nodeBox.SelectedIndex = 0;
+        }
+
+        private void BtnPaths_Click(object sender, EventArgs e)
+        {
+            using (FormPathConfig popupWindow = new FormPathConfig())
+            {
+                if (popupWindow.ShowDialog() == DialogResult.OK)
+                {
+                    LoadVersions();
+                }
+            }
         }
 
         private void StartButton_Click(object sender, EventArgs e)
