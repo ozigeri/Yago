@@ -111,7 +111,7 @@ A Yago alkalmazás fő használói:
 |-------------|-------|
 | Fejlesztési nyelv | C# |
 | IDE | Visual Studio 2022 |
-| .NET verzió | .NET 8.0 vagy magasabb |
+| .NET framework | 4.7.2 |
 | Projekt típusa | Windows Forms Application |
 | Verziókezelés | Git |
 
