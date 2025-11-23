@@ -59,8 +59,16 @@ namespace Yago.RepositoryCreator
         {
             if (appBox.SelectedItem == null)
             {
-                ShowError("Kérlek előbb válassz framework-öt!");
-                return;
+                if (!string.IsNullOrWhiteSpace(appBox.Text) && Enum.TryParse<App>(appBox.Text, true, out App result))
+                {
+                    appBox.SelectedItem = result;
+                }
+                else
+                {
+                    ShowError("Kérlek előbb válassz framework-öt!");
+                    return;
+                }
+   
             }
 
             if (appBox.SelectedItem.ToString() == App.Laravel.ToString())
