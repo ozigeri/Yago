@@ -127,10 +127,6 @@ namespace Yago.RepositoryCreator.CMD
             return sb.ToString();
         }
 
-
-
-
-
         private void RunBatchFile(string filePath, string content)
         {
             File.WriteAllText(filePath, content, Encoding.Default);
