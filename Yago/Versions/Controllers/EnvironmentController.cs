@@ -103,7 +103,7 @@ namespace Yago.Versions.Controllers
             }
 
             string phpPath = $"{EnvironmentManager.BasePaths[VersionType.Php]}\\php{php}";
-            string composerPath = $"{EnvironmentManager.BasePaths[VersionType.Composer]}\\composer{composer}";
+            string composerPath = $"{EnvironmentManager.BasePaths[VersionType.Composer]}\\v{composer}";
             string nodePath = $"{EnvironmentManager.BasePaths[VersionType.NodeJs]}\\v{node}";
 
             OpenCmdCommand openCmd = new OpenCmdCommand(phpPath, composerPath, nodePath);
