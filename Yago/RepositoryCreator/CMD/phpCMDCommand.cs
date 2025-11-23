@@ -5,6 +5,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Yago.Versions.Controllers;
+using Yago.Versions.Core;
+using Yago.Versions.Enums;
 
 namespace Yago.RepositoryCreator.CMD
 {
@@ -28,17 +31,58 @@ namespace Yago.RepositoryCreator.CMD
         {
             string tempBatPath = Path.Combine(Path.GetTempPath(), "php_temp_start.bat");
 
-            string composerPath = @"C:\composer\composer.bat";
-            string phpPath = @"C:\xampp\php";
-            StringBuilder sb = new StringBuilder();
+            string composerPath = EnvironmentManager.BasePaths[VersionType.Composer] + '\\' + 'v' + composer + '\\'; 
+            string phpPath = EnvironmentManager.BasePaths[VersionType.Php] + '\\' + "php" + php + '\\';
 
+           SetupPhpConfig(phpPath);
+
+            string phpExe = $"\"{phpPath}php.exe\"";
+            string phpIni = $"\"{phpPath}php.ini\"";
+            string composerPhar = $"\"{composerPath}composer.phar\"";
+            StringBuilder sb = new StringBuilder();
+          
             sb.AppendLine("@echo off");
-            sb.AppendLine($"cd {location}");
-            sb.AppendLine($"set \"PATH={phpPath};%PATH%\"");
-            sb.AppendLine($"call \"{composerPath}\" create-project laravel/laravel {name}");
-            sb.AppendLine($"cd {name}");
+            sb.AppendLine($"cd /d \"{location}\"");
+            sb.AppendLine($"if not exist \"{name}\" goto :START_INSTALL");
+            sb.AppendLine("\tcolor 0C");
+            sb.AppendLine("\techo.");
+            sb.AppendLine($"\techo !!!!!!!!! HIBA: A(Z) {name} MAPPA MAR LETEZIK !!!!!!!!!");
+            sb.AppendLine("\techo Szeretned TOROLNI a meglevo mappat A TELJES TARTALMAVAL es folytatni a telepitest?");
+            sb.AppendLine("\techo.");
+
+            sb.AppendLine("set /p user_answer=Nyomj 'I' betut a torleshez, vagy Entert a kilepeshez: ");
+            sb.AppendLine("if /i \"%user_answer%\" neq \"I\" (");
+            sb.AppendLine("\techo A telepites megszakitva.");
+            sb.AppendLine("\tpause");
+            sb.AppendLine("\texit");
+            sb.AppendLine(")");
+
+            sb.AppendLine("echo.");
+            sb.AppendLine($"echo Mappa torlese: {name}...");
+            sb.AppendLine($"rd /s /q \"{name}\"");
+            sb.AppendLine("color 07");
             sb.AppendLine("cls");
-            sb.AppendLine("echo Repository letrehozva!");
+
+            sb.AppendLine(":START_INSTALL");
+            sb.AppendLine("set PHPRC=");
+            sb.AppendLine("set PHP_INI_SCAN_DIR=");
+            sb.AppendLine($"set \"PATH={phpPath};%PATH%\"");
+            sb.AppendLine($"{phpExe} -c {phpIni} {composerPhar} create-project laravel/laravel {name}");
+
+            sb.AppendLine("if %errorlevel% neq 0 (");
+            sb.AppendLine("\tcolor 0C");
+            sb.AppendLine("\techo.");
+            sb.AppendLine("\techo !!!!!!!!!!! HIBA TORTENT A TELEPITES SORAN !!!!!!!!!!!");
+            sb.AppendLine("\tpause");
+            sb.AppendLine("\texit");
+            sb.AppendLine(")");
+
+            sb.AppendLine($"cd \"{name}\"");
+            sb.AppendLine("cls");
+            sb.AppendLine("color 0A");
+            sb.AppendLine("echo.");
+            sb.AppendLine($"echo A project elkeszult a(z) {name} mappaban.");
+            sb.AppendLine("echo.");
             sb.AppendLine("timeout /t 5 /nobreak >nul");
             sb.AppendLine("exit");
 
@@ -59,6 +103,38 @@ namespace Yago.RepositoryCreator.CMD
             process.Start();
         }
 
+        private void SetupPhpConfig(string phpPath)
+        {
+            string iniFile = Path.Combine(phpPath, "php.ini");
+            string iniTemplate = Path.Combine(phpPath, "php.ini-development");
+
+            if (!File.Exists(iniFile))
+            {
+                if (File.Exists(iniTemplate))
+                {
+                    File.Copy(iniTemplate, iniFile);
+                }
+                else
+                {
+                    return;
+                }
+            }
+
+            string content = File.ReadAllText(iniFile);
+
+            content = content.Replace(";extension_dir = \"ext\"", "extension_dir = \"ext\"");
+            content = content.Replace(";extension=openssl", "extension=openssl");
+            content = content.Replace(";extension=zip", "extension=zip");
+            content = content.Replace(";extension=fileinfo", "extension=fileinfo");
+            content = content.Replace(";extension=mbstring", "extension=mbstring");
+            content = content.Replace(";extension=curl", "extension=curl");
+            content = content.Replace(";extension=pdo_sqlite", "extension=pdo_sqlite");
+            content = content.Replace(";extension=sqlite3", "extension=sqlite3");
+            content = content.Replace(";extension=pdo_mysql", "extension=pdo_mysql");
+            content = content.Replace(";extension=mysqli", "extension=mysqli");
+            content = content.Replace("error_reporting = E_ALL", "error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT");
+            File.WriteAllText(iniFile, content);
+        }
 
     }
 }
