@@ -27,20 +27,9 @@ namespace Yago.RepositoryCreator.CMD
             this.composer = composer;
         }
 
-        public void Execute()
+        private string GenerateBatchScript(string phpExe, string phpIni, string composerPhar, string phpPath)
         {
-            string tempBatPath = Path.Combine(Path.GetTempPath(), "php_temp_start.bat");
-
-            string composerPath = EnvironmentManager.BasePaths[VersionType.Composer] + '\\' + 'v' + composer + '\\'; 
-            string phpPath = EnvironmentManager.BasePaths[VersionType.Php] + '\\' + "php" + php + '\\';
-
-           SetupPhpConfig(phpPath);
-
-            string phpExe = $"\"{phpPath}php.exe\"";
-            string phpIni = $"\"{phpPath}php.ini\"";
-            string composerPhar = $"\"{composerPath}composer.phar\"";
             StringBuilder sb = new StringBuilder();
-          
             sb.AppendLine("@echo off");
             sb.AppendLine($"cd /d \"{location}\"");
             sb.AppendLine($"if not exist \"{name}\" goto :START_INSTALL");
@@ -86,8 +75,24 @@ namespace Yago.RepositoryCreator.CMD
             sb.AppendLine("timeout /t 5 /nobreak >nul");
             sb.AppendLine("exit");
 
+            return sb.ToString();
+        }
 
-            File.WriteAllText(tempBatPath, sb.ToString(), Encoding.Default);
+        public void Execute()
+        {
+            string tempBatPath = Path.Combine(Path.GetTempPath(), "php_temp_start.bat");
+            string phpPath = EnvironmentManager.BasePaths[VersionType.Php] + '\\' + "php" + php + '\\';
+
+            SetupPhpConfig(phpPath);
+
+            string phpExe = $"\"{phpPath}php.exe\"";
+            string phpIni = $"\"{phpPath}php.ini\"";
+            string composerPhar = $"\"{Path.Combine(EnvironmentManager.BasePaths[VersionType.Composer], "v" + composer, "composer.phar")}\"";
+
+            string batchContent = GenerateBatchScript(phpExe, phpIni, composerPhar, phpPath);
+
+
+            File.WriteAllText(tempBatPath, batchContent, Encoding.Default);
 
             Process process = new Process
             {
