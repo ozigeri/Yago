@@ -30,17 +30,55 @@ namespace Yago.RepositoryCreator.CMD
         public void Execute()
         {
             string tempBatPath = Path.Combine(Path.GetTempPath(), "php_temp_start.bat");
-
-            string composerPath = EnvironmentManager.BasePaths[VersionType.Composer] + '\\' + 'v' + composer + '\\'; 
             string phpPath = EnvironmentManager.BasePaths[VersionType.Php] + '\\' + "php" + php + '\\';
 
-           SetupPhpConfig(phpPath);
+            SetupPhpConfig(phpPath);
 
             string phpExe = $"\"{phpPath}php.exe\"";
             string phpIni = $"\"{phpPath}php.ini\"";
-            string composerPhar = $"\"{composerPath}composer.phar\"";
+            string composerPhar = $"\"{Path.Combine(EnvironmentManager.BasePaths[VersionType.Composer], "v" + composer, "composer.phar")}\"";
+
+            string batchContent = GenerateBatchScript(phpExe, phpIni, composerPhar, phpPath);
+
+            RunBatchFile(tempBatPath, batchContent);
+        }
+
+        private void SetupPhpConfig(string phpPath)
+        {
+            string iniFile = Path.Combine(phpPath, "php.ini");
+            string iniTemplate = Path.Combine(phpPath, "php.ini-development");
+
+            if (!File.Exists(iniFile))
+            {
+                if (File.Exists(iniTemplate))
+                {
+                    File.Copy(iniTemplate, iniFile);
+                }
+                else
+                {
+                    return;
+                }
+            }
+
+            string content = File.ReadAllText(iniFile);
+
+            content = content.Replace(";extension_dir = \"ext\"", "extension_dir = \"ext\"");
+            content = content.Replace(";extension=openssl", "extension=openssl");
+            content = content.Replace(";extension=zip", "extension=zip");
+            content = content.Replace(";extension=fileinfo", "extension=fileinfo");
+            content = content.Replace(";extension=mbstring", "extension=mbstring");
+            content = content.Replace(";extension=curl", "extension=curl");
+            content = content.Replace(";extension=pdo_sqlite", "extension=pdo_sqlite");
+            content = content.Replace(";extension=sqlite3", "extension=sqlite3");
+            content = content.Replace(";extension=pdo_mysql", "extension=pdo_mysql");
+            content = content.Replace(";extension=mysqli", "extension=mysqli");
+            content = content.Replace("error_reporting = E_ALL", "error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT");
+            File.WriteAllText(iniFile, content);
+        }
+
+        private string GenerateBatchScript(string phpExe, string phpIni, string composerPhar, string phpPath)
+        {
             StringBuilder sb = new StringBuilder();
-          
             sb.AppendLine("@echo off");
             sb.AppendLine($"cd /d \"{location}\"");
             sb.AppendLine($"if not exist \"{name}\" goto :START_INSTALL");
@@ -86,54 +124,25 @@ namespace Yago.RepositoryCreator.CMD
             sb.AppendLine("timeout /t 5 /nobreak >nul");
             sb.AppendLine("exit");
 
+            return sb.ToString();
+        }
 
-            File.WriteAllText(tempBatPath, sb.ToString(), Encoding.Default);
+        private void RunBatchFile(string filePath, string content)
+        {
+            File.WriteAllText(filePath, content, Encoding.Default);
 
             Process process = new Process
             {
                 StartInfo = new ProcessStartInfo
                 {
                     FileName = "cmd.exe",
-                    Arguments = $"/k \"{tempBatPath}\"",
+                    Arguments = $"/k \"{filePath}\"",
                     UseShellExecute = true,
                     CreateNoWindow = false
                 }
             };
 
             process.Start();
-        }
-
-        private void SetupPhpConfig(string phpPath)
-        {
-            string iniFile = Path.Combine(phpPath, "php.ini");
-            string iniTemplate = Path.Combine(phpPath, "php.ini-development");
-
-            if (!File.Exists(iniFile))
-            {
-                if (File.Exists(iniTemplate))
-                {
-                    File.Copy(iniTemplate, iniFile);
-                }
-                else
-                {
-                    return;
-                }
-            }
-
-            string content = File.ReadAllText(iniFile);
-
-            content = content.Replace(";extension_dir = \"ext\"", "extension_dir = \"ext\"");
-            content = content.Replace(";extension=openssl", "extension=openssl");
-            content = content.Replace(";extension=zip", "extension=zip");
-            content = content.Replace(";extension=fileinfo", "extension=fileinfo");
-            content = content.Replace(";extension=mbstring", "extension=mbstring");
-            content = content.Replace(";extension=curl", "extension=curl");
-            content = content.Replace(";extension=pdo_sqlite", "extension=pdo_sqlite");
-            content = content.Replace(";extension=sqlite3", "extension=sqlite3");
-            content = content.Replace(";extension=pdo_mysql", "extension=pdo_mysql");
-            content = content.Replace(";extension=mysqli", "extension=mysqli");
-            content = content.Replace("error_reporting = E_ALL", "error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT");
-            File.WriteAllText(iniFile, content);
         }
 
     }

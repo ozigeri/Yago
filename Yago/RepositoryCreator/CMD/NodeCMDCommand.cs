@@ -11,9 +11,9 @@ namespace Yago.RepositoryCreator.CMD
 {
     internal class NodeCMDCommand
     {
-        string app { get; set; } 
-        string name { get; set; } 
-        string location { get; set; }        
+        string app { get; set; }
+        string name { get; set; }
+        string location { get; set; }
         string version { get; set; }
         public NodeCMDCommand(string app, string name, string location, string version)
         {
@@ -27,6 +27,14 @@ namespace Yago.RepositoryCreator.CMD
             string tempBatPath = Path.Combine(Path.GetTempPath(), "node_temp_start.bat");
             string nodeDir = Path.Combine(EnvironmentManager.BasePaths[Versions.Enums.VersionType.NodeJs], $"v{version}");
 
+            string BatchContent = GenerateBatchScript(nodeDir, opensBrowser);
+
+            RunBatchFile(tempBatPath, BatchContent);
+
+        }
+
+        private string GenerateBatchScript(string nodeDir, bool opensBrowser)
+        {
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("@echo off");
             sb.AppendLine($"cd /d \"{location}\"");
@@ -97,15 +105,19 @@ namespace Yago.RepositoryCreator.CMD
             }
             sb.AppendLine("exit");
 
+            return sb.ToString();
+        }
 
-            File.WriteAllText(tempBatPath, sb.ToString(), Encoding.Default);
+        private void RunBatchFile(string filePath, string content)
+        {
+            File.WriteAllText(filePath, content, Encoding.Default);
 
             Process process = new Process
             {
                 StartInfo = new ProcessStartInfo
                 {
                     FileName = "cmd.exe",
-                    Arguments = $"/k \"{tempBatPath}\"",
+                    Arguments = $"/k \"{filePath}\"",
                     UseShellExecute = true,
                     CreateNoWindow = false
                 }
