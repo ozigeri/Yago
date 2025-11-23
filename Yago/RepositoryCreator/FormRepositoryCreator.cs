@@ -19,7 +19,7 @@ namespace Yago.RepositoryCreator
 {
     public partial class FormRepositoryCreator : Form
     {
-        string php, composer, nodeJs, type;
+        string php, composer, nodeJs;
         bool check = false;
         public FormRepositoryCreator()
         {
@@ -49,13 +49,19 @@ namespace Yago.RepositoryCreator
 
         private void pathButton_Click(object sender, EventArgs e)
         {
-            folderBrowserDialog1.ShowDialog();
-            pathBox.Text = folderBrowserDialog1.SelectedPath;
+            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+            {
+                pathBox.Text = folderBrowserDialog1.SelectedPath;
+            }
         }
 
         private void versionButton_Click(object sender, EventArgs e)
         {
-
+            if (appBox.SelectedItem == null)
+            {
+                ShowError("Kérlek előbb válassz framework-öt!");
+                return;
+            }
 
             if (appBox.SelectedItem.ToString() == App.Laravel.ToString())
             {
@@ -65,7 +71,6 @@ namespace Yago.RepositoryCreator
                 php = selectVersion.SelectedPhp;
                 composer = selectVersion.SelectedComposer;
                 nodeJs = null;
-                type = "laravel";
             }
             else
             {
@@ -75,7 +80,6 @@ namespace Yago.RepositoryCreator
                 nodeJs = selectVersion.SelectedNode;
                 composer = null;
                 php = null;
-                type = "nemLaravel";
                 check = selectVersion.openBrowser;
             }
 
@@ -85,36 +89,46 @@ namespace Yago.RepositoryCreator
         {
             if (!ValidateBasicInputs()) return;
 
+            string selectedApp = appBox.SelectedItem.ToString();
 
-            if (type == "nemLaravel")
+
+            if (selectedApp == App.Laravel.ToString())
             {
-                if (string.IsNullOrWhiteSpace(nodeJs))
-                {
-                    ShowError("Add meg a Node.js verzióját!");
-                    return;
-
-                }
-
-                NodeCMDCommand nCMDC = new NodeCMDCommand(appBox.SelectedItem.ToString(), nameBox.Text, pathBox.Text, nodeJs);
-                nCMDC.Execute(check);
+                CreateLaravelRepository(selectedApp);
             }
             else
             {
-                if (string.IsNullOrWhiteSpace(composer))
-                {
-                    ShowError("Add meg a composer verzióját!");
-                    return;
-                }
-                if (string.IsNullOrWhiteSpace(php))
-                {
-                    ShowError("Add meg a php verzióját!");
-                    return;
-                }
-
-                phpCMDCommand pCMDC = new phpCMDCommand(appBox.SelectedItem.ToString(), nameBox.Text, pathBox.Text, php, composer);
-                pCMDC.Execute();
-
+                CreateNodeRepository(selectedApp);
             }
+        }
+
+        private void CreateLaravelRepository(string appName)
+        {
+            if (string.IsNullOrWhiteSpace(composer))
+            {
+                ShowError("Add meg a composer verzióját!");
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(php))
+            {
+                ShowError("Add meg a php verzióját!");
+                return;
+            }
+
+            phpCMDCommand pCMDC = new phpCMDCommand(appBox.SelectedItem.ToString(), nameBox.Text, pathBox.Text, php, composer);
+            pCMDC.Execute();
+        }
+
+        private void CreateNodeRepository(string appName)
+        {
+            if (string.IsNullOrWhiteSpace(nodeJs))
+            {
+                ShowError("Add meg a Node.js verzióját!");
+                return;
+            }
+
+            NodeCMDCommand nCMDC = new NodeCMDCommand(appBox.SelectedItem.ToString(), nameBox.Text, pathBox.Text, nodeJs);
+            nCMDC.Execute(check);
         }
 
         private bool ValidateBasicInputs()
