@@ -155,7 +155,7 @@ namespace Yago.RepositoryCreator
         }
         private bool ValidateBasicInputs()
         {
-            if (string.IsNullOrWhiteSpace(appBox.SelectedItem.ToString()))
+            if (appBox.SelectedItem == null || string.IsNullOrWhiteSpace(appBox.SelectedItem.ToString()))
             {
                 ShowError("Add meg a frameworkot!");
                 return false;
