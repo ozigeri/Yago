@@ -65,22 +65,13 @@ namespace Yago.RepositoryCreator
 
             if (appBox.SelectedItem.ToString() == App.Laravel.ToString())
             {
-                SelectVersionPhp selectVersion = new SelectVersionPhp(EnvironmentManager.GetSoftwareVersion(VersionType.Php).ToArray(), EnvironmentManager.GetSoftwareVersion(VersionType.Composer).ToArray(), php, composer);
-                selectVersion.StartPosition = FormStartPosition.CenterParent;
-                selectVersion.ShowDialog();
-                php = selectVersion.SelectedPhp;
-                composer = selectVersion.SelectedComposer;
-                nodeJs = null;
+                OpenPhpSelector();
+
             }
             else
             {
-                SelectVersionNodeJS selectVersion = new SelectVersionNodeJS(EnvironmentManager.GetSoftwareVersion(VersionType.NodeJs).ToArray(), nodeJs, check);
-                selectVersion.StartPosition = FormStartPosition.CenterParent;
-                selectVersion.ShowDialog();
-                nodeJs = selectVersion.SelectedNode;
-                composer = null;
-                php = null;
-                check = selectVersion.openBrowser;
+                OpenNodeSelector();
+
             }
 
         }
@@ -131,6 +122,37 @@ namespace Yago.RepositoryCreator
             nCMDC.Execute(check);
         }
 
+        private void OpenPhpSelector()
+        {
+            var phpVersions = EnvironmentManager.GetSoftwareVersion(VersionType.Php).ToArray();
+            var composerVersions = EnvironmentManager.GetSoftwareVersion(VersionType.Composer).ToArray();
+
+            var selector = new SelectVersionPhp(phpVersions, composerVersions, php, composer);
+
+            selector.StartPosition = FormStartPosition.CenterParent;
+            selector.ShowDialog();
+
+            php = selector.SelectedPhp;
+            composer = selector.SelectedComposer;
+
+            nodeJs = null;
+        }
+
+        private void OpenNodeSelector()
+        {
+            var nodeVersions = EnvironmentManager.GetSoftwareVersion(VersionType.NodeJs).ToArray();
+
+            var selector = new SelectVersionNodeJS(nodeVersions, nodeJs, check);
+
+            selector.StartPosition = FormStartPosition.CenterParent;
+            selector.ShowDialog();
+
+            nodeJs = selector.SelectedNode;
+            check = selector.openBrowser;
+
+            composer = null;
+            php = null;
+        }
         private bool ValidateBasicInputs()
         {
             if (string.IsNullOrWhiteSpace(appBox.SelectedItem.ToString()))
