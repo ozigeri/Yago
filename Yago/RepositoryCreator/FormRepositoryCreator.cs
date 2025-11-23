@@ -24,6 +24,11 @@ namespace Yago.RepositoryCreator
         public FormRepositoryCreator()
         {
             InitializeComponent();
+            InitializeUI();
+        }
+
+        private void InitializeUI()
+        {
             appBox.DataSource = Enum.GetValues(typeof(App));
 
             UIStyleHelpers.ApplyFormStyle(this);
