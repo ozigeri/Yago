@@ -79,33 +79,18 @@ namespace Yago.RepositoryCreator
                 check = selectVersion.openBrowser;
             }
 
-            
-
         }
 
         private void repoButton_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(appBox.SelectedItem.ToString()))
-            {
-                MessageBox.Show("Add meg a frameworkot!", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            if (string.IsNullOrWhiteSpace(nameBox.Text))
-            {
-                MessageBox.Show("Add meg a cél mappa nevét!", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            if (string.IsNullOrWhiteSpace(pathBox.Text) || pathBox.Text == "Elérési útvonal...")
-            {
-                MessageBox.Show("Add meg a cél mappa elérési útvonalát!", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            if (!ValidateBasicInputs()) return;
+
 
             if (type == "nemLaravel")
             {
                 if (string.IsNullOrWhiteSpace(nodeJs))
                 {
-                    MessageBox.Show("Add meg a Node.js verzióját!", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    ShowError("Add meg a Node.js verzióját!");
                     return;
 
                 }
@@ -117,12 +102,12 @@ namespace Yago.RepositoryCreator
             {
                 if (string.IsNullOrWhiteSpace(composer))
                 {
-                    MessageBox.Show("Add meg a composer verzióját!", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    ShowError("Add meg a composer verzióját!");
                     return;
                 }
                 if (string.IsNullOrWhiteSpace(php))
                 {
-                    MessageBox.Show("Add meg a php verzióját!", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    ShowError("Add meg a php verzióját!");
                     return;
                 }
 
@@ -130,6 +115,32 @@ namespace Yago.RepositoryCreator
                 pCMDC.Execute();
 
             }
+        }
+
+        private bool ValidateBasicInputs()
+        {
+            if (string.IsNullOrWhiteSpace(appBox.SelectedItem.ToString()))
+            {
+                ShowError("Add meg a frameworkot!");
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(nameBox.Text))
+            {
+                ShowError("Add meg a cél mappa nevét!");
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(pathBox.Text) || pathBox.Text == "Elérési útvonal...")
+            {
+                ShowError("Add meg a cél mappa elérési útvonalát!");
+                return false;
+            }
+
+            return true;
+        }
+
+        private void ShowError(string message)
+        {
+            MessageBox.Show(message, "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
     }
 }
