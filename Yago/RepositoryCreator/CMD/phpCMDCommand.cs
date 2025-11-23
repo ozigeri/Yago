@@ -91,21 +91,7 @@ namespace Yago.RepositoryCreator.CMD
 
             string batchContent = GenerateBatchScript(phpExe, phpIni, composerPhar, phpPath);
 
-
-            File.WriteAllText(tempBatPath, batchContent, Encoding.Default);
-
-            Process process = new Process
-            {
-                StartInfo = new ProcessStartInfo
-                {
-                    FileName = "cmd.exe",
-                    Arguments = $"/k \"{tempBatPath}\"",
-                    UseShellExecute = true,
-                    CreateNoWindow = false
-                }
-            };
-
-            process.Start();
+            RunBatchFile(tempBatPath, batchContent);
         }
 
         private void SetupPhpConfig(string phpPath)
@@ -139,6 +125,24 @@ namespace Yago.RepositoryCreator.CMD
             content = content.Replace(";extension=mysqli", "extension=mysqli");
             content = content.Replace("error_reporting = E_ALL", "error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT");
             File.WriteAllText(iniFile, content);
+        }
+
+        private void RunBatchFile(string filePath, string content)
+        {
+            File.WriteAllText(filePath, content, Encoding.Default);
+
+            Process process = new Process
+            {
+                StartInfo = new ProcessStartInfo
+                {
+                    FileName = "cmd.exe",
+                    Arguments = $"/k \"{filePath}\"",
+                    UseShellExecute = true,
+                    CreateNoWindow = false
+                }
+            };
+
+            process.Start();
         }
 
     }
