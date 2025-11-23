@@ -47,8 +47,22 @@ namespace Yago.RepositoryCreator.CMD
             sb.AppendLine("set PHP_INI_SCAN_DIR=");
             sb.AppendLine($"set \"PATH={phpPath};%PATH%\"");
             sb.AppendLine($"{phpExe} -c {phpIni} {composerPhar} create-project laravel/laravel {name}");
-            sb.AppendLine($"cd {name}");
-            sb.AppendLine("timeout /t 5 /nobreak >nul");
+
+            sb.AppendLine("if %errorlevel% neq 0 (");
+            sb.AppendLine("\tcolor 0C");
+            sb.AppendLine("\techo.");
+            sb.AppendLine("\techo !!!!!!!!!!! HIBA TORTENT A TELEPITES SORAN !!!!!!!!!!!");
+            sb.AppendLine("\tpause");
+            sb.AppendLine("\texit");
+            sb.AppendLine(")");
+
+            sb.AppendLine($"cd \"{name}\"");
+            sb.AppendLine("cls");
+            sb.AppendLine("color 0A");
+            sb.AppendLine("echo.");
+            sb.AppendLine($"echo A project elkeszult a(z) {name} mappaban.");
+            sb.AppendLine("echo.");
+            sb.AppendLine("timeout /t 50 /nobreak >nul");
             sb.AppendLine("exit");
 
 
