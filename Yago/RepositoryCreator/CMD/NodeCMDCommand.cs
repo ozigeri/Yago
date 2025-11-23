@@ -92,19 +92,13 @@ namespace Yago.RepositoryCreator.CMD
             sb.AppendLine("echo.");
             sb.AppendLine("echo Sikeres telepites!");
             sb.AppendLine($"echo A projekt elkeszult a(z) {name} mappaban.");
-            sb.AppendLine("start \"Vite Dev Server\" cmd /k \"npm run dev\"");
 
-            if (opensBrowser)
-            {
-                sb.AppendLine("timeout /t 5 /nobreak >nul");
-                sb.AppendLine("start http://localhost:5173");
-            }
-            else
-            {
-                sb.AppendLine("timeout /t 5 /nobreak >nul");
-            }
+            string npmRunDev = "npm run dev";
+            if (opensBrowser) npmRunDev += " -- --open";
+            sb.AppendLine($"start \"Vite Dev Server\" cmd /k \"{npmRunDev}\"");
+
+            sb.AppendLine("timeout /t 5 /nobreak >nul");
             sb.AppendLine("exit");
-
             return sb.ToString();
         }
 

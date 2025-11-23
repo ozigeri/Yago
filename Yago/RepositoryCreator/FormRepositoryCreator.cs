@@ -14,6 +14,7 @@ using Yago.Versions.Core;
 using Yago.Versions.Enums;
 using Yago.RepositoryCreator.CMD;
 using System.Collections;
+using System.Net.NetworkInformation;
 
 namespace Yago.RepositoryCreator
 {
@@ -59,8 +60,16 @@ namespace Yago.RepositoryCreator
         {
             if (appBox.SelectedItem == null)
             {
-                ShowError("Kérlek előbb válassz framework-öt!");
-                return;
+                if (!string.IsNullOrWhiteSpace(appBox.Text) && Enum.TryParse<App>(appBox.Text, true, out App result))
+                {
+                    appBox.SelectedItem = result;
+                }
+                else
+                {
+                    ShowError("Kérlek előbb válassz framework-öt!");
+                    return;
+                }
+   
             }
 
             if (appBox.SelectedItem.ToString() == App.Laravel.ToString())
@@ -78,6 +87,12 @@ namespace Yago.RepositoryCreator
 
         private void repoButton_Click(object sender, EventArgs e)
         {
+            if (!IsInternetAvailable())
+            {
+                ShowError("Nincs internetkapcsolat! A telepítéshez internet szükséges.");
+                return;
+            }
+
             if (!ValidateBasicInputs()) return;
 
             string selectedApp = appBox.SelectedItem.ToString();
@@ -177,6 +192,22 @@ namespace Yago.RepositoryCreator
         private void ShowError(string message)
         {
             MessageBox.Show(message, "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
+        private bool IsInternetAvailable()
+        {
+            try
+            {
+                using (var ping = new Ping())
+                {
+                    var reply = ping.Send("8.8.8.8", 1000);
+                    return reply != null && reply.Status == IPStatus.Success;
+                }
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }
