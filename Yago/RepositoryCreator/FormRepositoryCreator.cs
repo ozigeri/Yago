@@ -15,6 +15,7 @@ using Yago.Versions.Enums;
 using Yago.RepositoryCreator.CMD;
 using System.Collections;
 using System.Net.NetworkInformation;
+using System.IO;
 
 namespace Yago.RepositoryCreator
 {
@@ -96,7 +97,6 @@ namespace Yago.RepositoryCreator
             if (!ValidateBasicInputs()) return;
 
             string selectedApp = appBox.SelectedItem.ToString();
-
 
             if (selectedApp == App.Laravel.ToString())
             {
@@ -180,6 +180,12 @@ namespace Yago.RepositoryCreator
                 ShowError("Add meg a cél mappa nevét!");
                 return false;
             }
+            if (!Directory.Exists(pathBox.Text))
+            {
+                ShowError("A megadott cél mappa elérési útvonal nem létezik!");
+                return false;
+            }
+
             if (string.IsNullOrWhiteSpace(pathBox.Text) || pathBox.Text == "Elérési útvonal...")
             {
                 ShowError("Add meg a cél mappa elérési útvonalát!");

@@ -18,6 +18,7 @@ namespace Yago.RepositoryCreator
         public SelectVersionPhp(string[] php, string[] composer, string phpd, string composerd)
         {
             InitializeComponent();
+            this.FormBorderStyle = FormBorderStyle.None;
             DoubleBuffered = true;
             UIStyleHelpers.StyleComboBox(phpBox);
             UIStyleHelpers.StyleComboBox(composerBox);
