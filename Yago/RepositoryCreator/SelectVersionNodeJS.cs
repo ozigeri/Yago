@@ -19,6 +19,7 @@ namespace Yago.RepositoryCreator
         public SelectVersionNodeJS(string[] verType, string node, bool check)
         {
             InitializeComponent();
+            this.FormBorderStyle = FormBorderStyle.None;
 
             UIStyleHelpers.StyleButton(Ok);
             UIStyleHelpers.StyleComboBox(sVersionComboBox);
