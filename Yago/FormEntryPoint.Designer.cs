@@ -45,15 +45,17 @@
             this.pnlNavbar.Controls.Add(this.btnTemplates);
             this.pnlNavbar.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlNavbar.Location = new System.Drawing.Point(0, 0);
+            this.pnlNavbar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlNavbar.Name = "pnlNavbar";
-            this.pnlNavbar.Size = new System.Drawing.Size(600, 48);
+            this.pnlNavbar.Size = new System.Drawing.Size(639, 59);
             this.pnlNavbar.TabIndex = 0;
             // 
             // btnVersions
             // 
-            this.btnVersions.Location = new System.Drawing.Point(8, 8);
+            this.btnVersions.Location = new System.Drawing.Point(60, 12);
+            this.btnVersions.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnVersions.Name = "btnVersions";
-            this.btnVersions.Size = new System.Drawing.Size(96, 32);
+            this.btnVersions.Size = new System.Drawing.Size(128, 39);
             this.btnVersions.TabIndex = 0;
             this.btnVersions.Text = "Versions";
             this.btnVersions.UseVisualStyleBackColor = true;
@@ -61,9 +63,10 @@
             // 
             // btnRepoCreator
             // 
-            this.btnRepoCreator.Location = new System.Drawing.Point(110, 8);
+            this.btnRepoCreator.Location = new System.Drawing.Point(220, 12);
+            this.btnRepoCreator.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnRepoCreator.Name = "btnRepoCreator";
-            this.btnRepoCreator.Size = new System.Drawing.Size(140, 32);
+            this.btnRepoCreator.Size = new System.Drawing.Size(187, 39);
             this.btnRepoCreator.TabIndex = 1;
             this.btnRepoCreator.Text = "Repository Creator";
             this.btnRepoCreator.UseVisualStyleBackColor = true;
@@ -71,9 +74,10 @@
             // 
             // btnTemplates
             // 
-            this.btnTemplates.Location = new System.Drawing.Point(260, 8);
+            this.btnTemplates.Location = new System.Drawing.Point(440, 12);
+            this.btnTemplates.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnTemplates.Name = "btnTemplates";
-            this.btnTemplates.Size = new System.Drawing.Size(96, 32);
+            this.btnTemplates.Size = new System.Drawing.Size(128, 39);
             this.btnTemplates.TabIndex = 2;
             this.btnTemplates.Text = "Templates";
             this.btnTemplates.UseVisualStyleBackColor = true;
@@ -83,19 +87,21 @@
             // 
             this.pnlContent.BackColor = System.Drawing.Color.White;
             this.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlContent.Location = new System.Drawing.Point(0, 48);
+            this.pnlContent.Location = new System.Drawing.Point(0, 59);
+            this.pnlContent.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlContent.Name = "pnlContent";
-            this.pnlContent.Size = new System.Drawing.Size(600, 372);
+            this.pnlContent.Size = new System.Drawing.Size(639, 458);
             this.pnlContent.TabIndex = 1;
             // 
             // FormEntryPoint
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(600, 420);
+            this.ClientSize = new System.Drawing.Size(639, 517);
             this.Controls.Add(this.pnlContent);
             this.Controls.Add(this.pnlNavbar);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FormEntryPoint";
             this.Text = "YAGO Environmental Builder";
             this.Load += new System.EventHandler(this.FormEntryPoint_Load);

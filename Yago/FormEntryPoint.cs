@@ -30,7 +30,7 @@ namespace Yago
 
         private void FormEntryPoint_Load(object sender, EventArgs e)
         {
-            LoadFormInPanel(new FormVersions());
+
         }
 
         private void LoadFormInPanel(Form form)
