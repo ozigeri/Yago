@@ -23,8 +23,8 @@ namespace Yago.Versions
             UIStyleHelpers.StyleButton(btnPhpBrowse);
             UIStyleHelpers.StyleButton(btnComposerBrowse);
             UIStyleHelpers.StyleButton(btnNodeBrowse);
-            UIStyleHelpers.StyleButton(btnOk);
-            UIStyleHelpers.StyleButton(btnCancel);
+            UIStyleHelpers.StyleButton(btnOk, UIStyleHelpers.ButtonType.OK);
+            UIStyleHelpers.StyleButton(btnCancel , UIStyleHelpers.ButtonType.Delete);
 
             UIStyleHelpers.StyleTextBox(txtPhp);
             UIStyleHelpers.StyleTextBox(txtComposer);

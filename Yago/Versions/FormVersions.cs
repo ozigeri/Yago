@@ -21,9 +21,9 @@ namespace Yago.Versions
             DoubleBuffered = true;
             UIStyleHelpers.ApplyFormStyle(this);
 
-            UIStyleHelpers.StyleButton(btnStart);
+            UIStyleHelpers.StyleButton(btnStart, UIStyleHelpers.ButtonType.OK);
             UIStyleHelpers.StyleButton(btnTemplateSave);
-            UIStyleHelpers.StyleButton(btnTemplateLoad);
+            UIStyleHelpers.StyleButton(btnTemplateLoad, UIStyleHelpers.ButtonType.OK);
             UIStyleHelpers.StyleButton(btnPaths);
 
             UIStyleHelpers.StyleComboBox(comboBoxPhp);
