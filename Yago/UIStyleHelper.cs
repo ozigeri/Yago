@@ -12,6 +12,13 @@ namespace Yago
 {
     public static class UIStyleHelpers
     {
+        public enum ButtonType
+        {
+            Normal,
+            OK,
+            Delete
+        }
+
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn(
             int nLeftRect, int nTopRect, int nRightRect, int nBottomRect,
@@ -40,18 +47,40 @@ namespace Yago
                 }
             };
         }
-
-        public static void StyleButton(Button btn)
+        public static void StyleButton(Button btn, ButtonType type = ButtonType.Normal)
         {
+            Color baseColor;
+            Color hoverColor;
+
+            switch (type)
+            {
+                case ButtonType.OK:
+                    baseColor = Color.FromArgb(68, 178, 110);
+                    break;
+                case ButtonType.Delete:
+                    baseColor = Color.FromArgb(220, 53, 69);
+                    break;
+                case ButtonType.Normal:
+                default:
+                    baseColor = Color.FromArgb(47, 184, 202);
+                    break;
+            }
+
+            hoverColor = ControlPaint.Light(baseColor);
+
             btn.FlatStyle = FlatStyle.Flat;
             btn.FlatAppearance.BorderSize = 0;
-            btn.BackColor = AccentColor;
+            btn.BackColor = baseColor;
             btn.ForeColor = Color.White;
             btn.Font = new Font("Segoe UI Semibold", 10F);
+
             btn.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, btn.Width, btn.Height, 15, 15));
 
-            btn.MouseEnter += (s, e) => btn.BackColor = HoverAccentColor;
-            btn.MouseLeave += (s, e) => btn.BackColor = AccentColor;
+            btn.MouseEnter -= (s, e) => { };
+            btn.MouseLeave -= (s, e) => { };
+
+            btn.MouseEnter += (s, e) => btn.BackColor = hoverColor;
+            btn.MouseLeave += (s, e) => btn.BackColor = baseColor;
         }
 
         public static void StyleComboBox(ComboBox combo)
