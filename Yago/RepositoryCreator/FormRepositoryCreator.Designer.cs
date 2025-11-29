@@ -155,6 +155,7 @@
             // 
             // ideComboBox
             // 
+            this.ideComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ideComboBox.FormattingEnabled = true;
             this.ideComboBox.Location = new System.Drawing.Point(250, 274);
             this.ideComboBox.Name = "ideComboBox";
