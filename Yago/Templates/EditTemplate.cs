@@ -9,6 +9,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Yago.Templates.Methods;
+using Yago.Versions.Controllers;
+using Yago.Versions.Core;
+using Yago.Versions.Enums;
 
 namespace Yago.Templates
 {
@@ -30,9 +33,10 @@ namespace Yago.Templates
 
             lName.Text = currentTemplate.Name;
 
-            TemplateMethods.LoadVersionsFromDirectory(@"C:\php", comboPhp);
-            TemplateMethods.LoadVersionsFromDirectory(@"C:\composer", comboComposer);
-            TemplateMethods.LoadVersionsFromDirectory(@"C:\nodejs", comboNode);
+            
+            comboPhp.Items.AddRange(EnvironmentManager.GetSoftwareVersion(VersionType.Php).ToArray());
+            comboComposer.Items.AddRange(EnvironmentManager.GetSoftwareVersion(VersionType.Composer).ToArray());
+            comboNode.Items.AddRange(EnvironmentManager.GetSoftwareVersion(VersionType.NodeJs).ToArray());
 
             comboPhp.SelectedItem = currentTemplate.Php;
             comboComposer.SelectedItem = currentTemplate.Composer;
