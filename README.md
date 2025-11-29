@@ -83,6 +83,10 @@ A Yago alkalmazás fő használói:
   - Verziók (Versions modulból)
 - „**Create Repository**” gombbal automatikus létrehozás
 - Érvényesség ellenőrzése (név, hely)
+- Vite esetén TypeScript használatának lehetősége
+- Vite automatikus megnyitása alapértelmezett web böngészőben
+- Repository megnyitása a kiválasztott IDE-vel.
+- Automatizált GIT init, commit
 
 ### 4. Templates modul
 - Táblázatos nézet (név, verziók)
