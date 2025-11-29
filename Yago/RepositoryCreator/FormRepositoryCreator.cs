@@ -34,10 +34,12 @@ namespace Yago.RepositoryCreator
             appBox.DataSource = Enum.GetValues(typeof(App));
 
             UIStyleHelpers.ApplyFormStyle(this);
+            UIStyleHelpers.StyleLabel(GitLabel);
 
             UIStyleHelpers.StyleButton(repoButton, UIStyleHelpers.ButtonType.OK);
             UIStyleHelpers.StyleButton(versionButton);
             UIStyleHelpers.StyleButton(pathButton);
+            
 
             UIStyleHelpers.StyleComboBox(appBox);
 

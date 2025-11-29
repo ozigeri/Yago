@@ -38,53 +38,55 @@
             this.versionButton = new System.Windows.Forms.Button();
             this.repoButton = new System.Windows.Forms.Button();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.GitLabel = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // appL
             // 
             this.appL.AutoSize = true;
-            this.appL.Location = new System.Drawing.Point(121, 46);
+            this.appL.Location = new System.Drawing.Point(126, 82);
             this.appL.Name = "appL";
-            this.appL.Size = new System.Drawing.Size(35, 16);
+            this.appL.Size = new System.Drawing.Size(29, 13);
             this.appL.TabIndex = 0;
             this.appL.Text = "App:";
             // 
             // nameL
             // 
             this.nameL.AutoSize = true;
-            this.nameL.Location = new System.Drawing.Point(121, 86);
+            this.nameL.Location = new System.Drawing.Point(126, 122);
             this.nameL.Name = "nameL";
-            this.nameL.Size = new System.Drawing.Size(35, 16);
+            this.nameL.Size = new System.Drawing.Size(30, 13);
             this.nameL.TabIndex = 1;
             this.nameL.Text = "Név:";
             // 
             // pathL
             // 
             this.pathL.AutoSize = true;
-            this.pathL.Location = new System.Drawing.Point(121, 127);
+            this.pathL.Location = new System.Drawing.Point(126, 163);
             this.pathL.Name = "pathL";
-            this.pathL.Size = new System.Drawing.Size(98, 16);
+            this.pathL.Size = new System.Drawing.Size(79, 13);
             this.pathL.TabIndex = 2;
             this.pathL.Text = "Elérési útvonal:";
             // 
             // appBox
             // 
             this.appBox.FormattingEnabled = true;
-            this.appBox.Location = new System.Drawing.Point(245, 46);
+            this.appBox.Location = new System.Drawing.Point(250, 82);
             this.appBox.Name = "appBox";
-            this.appBox.Size = new System.Drawing.Size(195, 24);
+            this.appBox.Size = new System.Drawing.Size(195, 21);
             this.appBox.TabIndex = 3;
             // 
             // nameBox
             // 
-            this.nameBox.Location = new System.Drawing.Point(245, 86);
+            this.nameBox.Location = new System.Drawing.Point(250, 122);
             this.nameBox.Name = "nameBox";
-            this.nameBox.Size = new System.Drawing.Size(195, 22);
+            this.nameBox.Size = new System.Drawing.Size(195, 20);
             this.nameBox.TabIndex = 4;
             // 
             // pathButton
             // 
-            this.pathButton.Location = new System.Drawing.Point(245, 127);
+            this.pathButton.Location = new System.Drawing.Point(250, 163);
             this.pathButton.Name = "pathButton";
             this.pathButton.Size = new System.Drawing.Size(195, 25);
             this.pathButton.TabIndex = 5;
@@ -94,15 +96,15 @@
             // 
             // pathBox
             // 
-            this.pathBox.Location = new System.Drawing.Point(124, 169);
+            this.pathBox.Location = new System.Drawing.Point(129, 209);
             this.pathBox.Name = "pathBox";
-            this.pathBox.Size = new System.Drawing.Size(316, 22);
+            this.pathBox.Size = new System.Drawing.Size(316, 20);
             this.pathBox.TabIndex = 6;
             this.pathBox.Text = "Elérési útvonal...";
             // 
             // versionButton
             // 
-            this.versionButton.Location = new System.Drawing.Point(189, 262);
+            this.versionButton.Location = new System.Drawing.Point(203, 305);
             this.versionButton.Name = "versionButton";
             this.versionButton.Size = new System.Drawing.Size(180, 27);
             this.versionButton.TabIndex = 7;
@@ -112,7 +114,7 @@
             // 
             // repoButton
             // 
-            this.repoButton.Location = new System.Drawing.Point(124, 334);
+            this.repoButton.Location = new System.Drawing.Point(129, 354);
             this.repoButton.Name = "repoButton";
             this.repoButton.Size = new System.Drawing.Size(316, 34);
             this.repoButton.TabIndex = 8;
@@ -120,9 +122,29 @@
             this.repoButton.UseVisualStyleBackColor = true;
             this.repoButton.Click += new System.EventHandler(this.repoButton_Click);
             // 
+            // GitLabel
+            // 
+            this.GitLabel.AutoSize = true;
+            this.GitLabel.Location = new System.Drawing.Point(219, 271);
+            this.GitLabel.Name = "GitLabel";
+            this.GitLabel.Size = new System.Drawing.Size(81, 13);
+            this.GitLabel.TabIndex = 9;
+            this.GitLabel.Text = "Git inicializálása";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(334, 275);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(15, 14);
+            this.checkBox1.TabIndex = 10;
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
             // FormRepositoryCreator
             // 
             this.ClientSize = new System.Drawing.Size(600, 420);
+            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.GitLabel);
             this.Controls.Add(this.repoButton);
             this.Controls.Add(this.versionButton);
             this.Controls.Add(this.pathBox);
@@ -151,5 +173,7 @@
         private System.Windows.Forms.Button versionButton;
         private System.Windows.Forms.Button repoButton;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private System.Windows.Forms.Label GitLabel;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
