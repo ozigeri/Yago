@@ -22,9 +22,13 @@ namespace Yago.RepositoryCreator
     public partial class FormRepositoryCreator : Form
     {
         string php, composer, nodeJs;
-        bool check = false;
+        bool opensBrowser = false;
+        bool isTypeScript = false;
         public FormRepositoryCreator()
         {
+            php = Properties.Settings.Default.LastPhp;
+            composer = Properties.Settings.Default.LastComposer;
+            nodeJs = Properties.Settings.Default.LastNode;
             InitializeComponent();
             InitializeUI();
         }
@@ -32,12 +36,16 @@ namespace Yago.RepositoryCreator
         private void InitializeUI()
         {
             appBox.DataSource = Enum.GetValues(typeof(App));
+            ideComboBox.DataSource = Enum.GetValues(typeof(EditorTypes));
 
             UIStyleHelpers.ApplyFormStyle(this);
-
-            UIStyleHelpers.StyleButton(repoButton);
+            UIStyleHelpers.StyleLabel(GitLabel);
+            UIStyleHelpers.StyleLabel(ideLabel);
+            UIStyleHelpers.StyleComboBox(ideComboBox);
+            UIStyleHelpers.StyleButton(repoButton, UIStyleHelpers.ButtonType.OK);
             UIStyleHelpers.StyleButton(versionButton);
             UIStyleHelpers.StyleButton(pathButton);
+            
 
             UIStyleHelpers.StyleComboBox(appBox);
 
@@ -97,18 +105,19 @@ namespace Yago.RepositoryCreator
             if (!ValidateBasicInputs()) return;
 
             string selectedApp = appBox.SelectedItem.ToString();
+            string selectedEditor = ideComboBox.SelectedItem.ToString();
 
             if (selectedApp == App.Laravel.ToString())
             {
-                CreateLaravelRepository(selectedApp);
+                CreateLaravelRepository(selectedApp, selectedEditor);
             }
             else
             {
-                CreateNodeRepository(selectedApp);
+                CreateNodeRepository(selectedApp, selectedEditor);
             }
         }
 
-        private void CreateLaravelRepository(string appName)
+        private void CreateLaravelRepository(string appName, string selectedEditor)
         {
             if (string.IsNullOrWhiteSpace(composer))
             {
@@ -122,10 +131,14 @@ namespace Yago.RepositoryCreator
             }
 
             phpCMDCommand pCMDC = new phpCMDCommand(appBox.SelectedItem.ToString(), nameBox.Text, pathBox.Text, php, composer);
-            pCMDC.Execute();
+            pCMDC.Execute(GitInitCheck.Checked, selectedEditor);
+
+            Properties.Settings.Default.LastPhp = php;
+            Properties.Settings.Default.LastComposer = composer;
+            Properties.Settings.Default.Save();
         }
 
-        private void CreateNodeRepository(string appName)
+        private void CreateNodeRepository(string appName, string selectedEditor)
         {
             if (string.IsNullOrWhiteSpace(nodeJs))
             {
@@ -134,7 +147,10 @@ namespace Yago.RepositoryCreator
             }
 
             NodeCMDCommand nCMDC = new NodeCMDCommand(appBox.SelectedItem.ToString(), nameBox.Text, pathBox.Text, nodeJs);
-            nCMDC.Execute(check);
+            nCMDC.Execute(opensBrowser, GitInitCheck.Checked, isTypeScript, selectedEditor);
+
+            Properties.Settings.Default.LastNode = nodeJs;
+            Properties.Settings.Default.Save();
         }
 
         private void OpenPhpSelector()
@@ -145,28 +161,33 @@ namespace Yago.RepositoryCreator
             var selector = new SelectVersionPhp(phpVersions, composerVersions, php, composer);
 
             selector.StartPosition = FormStartPosition.CenterParent;
-            selector.ShowDialog();
 
-            php = selector.SelectedPhp;
-            composer = selector.SelectedComposer;
+            if (selector.ShowDialog() == DialogResult.OK)
+            {
+                php = selector.SelectedPhp;
+                composer = selector.SelectedComposer;
 
-            nodeJs = null;
+                nodeJs = null;
+            }
         }
 
         private void OpenNodeSelector()
         {
             var nodeVersions = EnvironmentManager.GetSoftwareVersion(VersionType.NodeJs).ToArray();
 
-            var selector = new SelectVersionNodeJS(nodeVersions, nodeJs, check);
+            var selector = new SelectVersionNodeJS(nodeVersions, nodeJs, opensBrowser, isTypeScript);
 
             selector.StartPosition = FormStartPosition.CenterParent;
-            selector.ShowDialog();
 
-            nodeJs = selector.SelectedNode;
-            check = selector.openBrowser;
+            if (selector.ShowDialog() == DialogResult.OK)
+            {
+                nodeJs = selector.SelectedNode;
+                opensBrowser = selector.openBrowser;
+                isTypeScript = selector.isTs;
 
-            composer = null;
-            php = null;
+                composer = null;
+                php = null;
+            }
         }
         private bool ValidateBasicInputs()
         {

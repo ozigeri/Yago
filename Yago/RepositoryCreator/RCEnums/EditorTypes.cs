@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Yago.RepositoryCreator.RCEnums
 {
-    public enum App
+    public enum EditorTypes
     {
-        Laravel, Vanilla, Vue, React, Preact, Lit, Svelte, Solid, Qwik
+        None, VSCode, PhpStorm
     }
 }

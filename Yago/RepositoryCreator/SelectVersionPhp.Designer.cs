@@ -33,6 +33,7 @@
             this.phpBox = new System.Windows.Forms.ComboBox();
             this.composerBox = new System.Windows.Forms.ComboBox();
             this.Ok = new System.Windows.Forms.Button();
+            this.Cancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // phpL
@@ -71,19 +72,30 @@
             // 
             // Ok
             // 
-            this.Ok.Location = new System.Drawing.Point(137, 175);
+            this.Ok.Location = new System.Drawing.Point(73, 175);
             this.Ok.Name = "Ok";
-            this.Ok.Size = new System.Drawing.Size(75, 23);
+            this.Ok.Size = new System.Drawing.Size(75, 30);
             this.Ok.TabIndex = 4;
             this.Ok.Text = "Ok";
             this.Ok.UseVisualStyleBackColor = true;
             this.Ok.Click += new System.EventHandler(this.Ok_Click);
+            // 
+            // Cancel
+            // 
+            this.Cancel.Location = new System.Drawing.Point(207, 175);
+            this.Cancel.Name = "Cancel";
+            this.Cancel.Size = new System.Drawing.Size(75, 30);
+            this.Cancel.TabIndex = 5;
+            this.Cancel.Text = "Cancel";
+            this.Cancel.UseVisualStyleBackColor = true;
+            this.Cancel.Click += new System.EventHandler(this.Cancel_Click);
             // 
             // SelectVersionPhp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(349, 261);
+            this.Controls.Add(this.Cancel);
             this.Controls.Add(this.Ok);
             this.Controls.Add(this.composerBox);
             this.Controls.Add(this.phpBox);
@@ -103,5 +115,6 @@
         private System.Windows.Forms.ComboBox phpBox;
         private System.Windows.Forms.ComboBox composerBox;
         private System.Windows.Forms.Button Ok;
+        private System.Windows.Forms.Button Cancel;
     }
 }

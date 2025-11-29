@@ -27,7 +27,7 @@ namespace Yago.RepositoryCreator.CMD
             this.composer = composer;
         }
 
-        public void Execute()
+        public void Execute(bool GitInit, string selectedEditor)
         {
             string tempBatPath = Path.Combine(Path.GetTempPath(), "php_temp_start.bat");
             string phpPath = EnvironmentManager.BasePaths[VersionType.Php] + '\\' + "php" + php + '\\';
@@ -38,7 +38,7 @@ namespace Yago.RepositoryCreator.CMD
             string phpIni = $"\"{phpPath}php.ini\"";
             string composerPhar = $"\"{Path.Combine(EnvironmentManager.BasePaths[VersionType.Composer], "v" + composer, "composer.phar")}\"";
 
-            string batchContent = GenerateBatchScript(phpExe, phpIni, composerPhar, phpPath);
+            string batchContent = GenerateBatchScript(phpExe, phpIni, composerPhar, phpPath, GitInit, selectedEditor);
 
             RunBatchFile(tempBatPath, batchContent);
         }
@@ -76,30 +76,12 @@ namespace Yago.RepositoryCreator.CMD
             File.WriteAllText(iniFile, content);
         }
 
-        private string GenerateBatchScript(string phpExe, string phpIni, string composerPhar, string phpPath)
+        private string GenerateBatchScript(string phpExe, string phpIni, string composerPhar, string phpPath, bool GitInit, string selectedEditor)
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("@echo off");
             sb.AppendLine($"cd /d \"{location}\"");
-            sb.AppendLine($"if not exist \"{name}\" goto :START_INSTALL");
-            sb.AppendLine("\tcolor 0C");
-            sb.AppendLine("\techo.");
-            sb.AppendLine($"\techo !!!!!!!!! HIBA: A(Z) {name} MAPPA MAR LETEZIK !!!!!!!!!");
-            sb.AppendLine("\techo Szeretned TOROLNI a meglevo mappat A TELJES TARTALMAVAL es folytatni a telepitest?");
-            sb.AppendLine("\techo.");
-
-            sb.AppendLine("set /p user_answer=Nyomj 'I' betut a torleshez, vagy Entert a kilepeshez: ");
-            sb.AppendLine("if /i \"%user_answer%\" neq \"I\" (");
-            sb.AppendLine("\techo A telepites megszakitva.");
-            sb.AppendLine("\tpause");
-            sb.AppendLine("\texit");
-            sb.AppendLine(")");
-
-            sb.AppendLine("echo.");
-            sb.AppendLine($"echo Mappa torlese: {name}...");
-            sb.AppendLine($"rd /s /q \"{name}\"");
-            sb.AppendLine("color 07");
-            sb.AppendLine("cls");
+            CMDHelper.CheckAndCleanDir(sb, name);
 
             sb.AppendLine(":START_INSTALL");
             sb.AppendLine("set PHPRC=");
@@ -120,6 +102,9 @@ namespace Yago.RepositoryCreator.CMD
             sb.AppendLine("color 0A");
             sb.AppendLine("echo.");
             sb.AppendLine($"echo A project elkeszult a(z) {name} mappaban.");
+            if (GitInit) CMDHelper.GitInit(sb);
+            CMDHelper.openInEditor(sb, selectedEditor);
+
             sb.AppendLine("echo.");
             sb.AppendLine("timeout /t 5 /nobreak >nul");
             sb.AppendLine("exit");
