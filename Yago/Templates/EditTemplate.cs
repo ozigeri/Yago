@@ -23,6 +23,18 @@ namespace Yago.Templates
         {
             InitializeComponent();
             templateName = name;
+
+            UIStyleHelpers.StyleLabel(lName);
+            UIStyleHelpers.StyleLabel(labelPhp);
+            UIStyleHelpers.StyleLabel(labelComposer);
+            UIStyleHelpers.StyleLabel(labelNode);
+
+            UIStyleHelpers.StyleComboBox(comboPhp);
+            UIStyleHelpers.StyleComboBox(comboComposer);
+            UIStyleHelpers.StyleComboBox(comboNode);
+
+            UIStyleHelpers.StyleButton(btnCancel, UIStyleHelpers.ButtonType.Delete);
+            UIStyleHelpers.StyleButton(btnSave, UIStyleHelpers.ButtonType.OK);
         }
 
         private void EditTemplate_Load(object sender, EventArgs e)
