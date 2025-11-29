@@ -23,11 +23,33 @@ namespace Yago.RepositoryCreator.CMD
             sb.AppendLine("\tgit init");
             sb.AppendLine("\tgit add .");
             sb.AppendLine("\tgit commit -m \"Initial commit: Yago\"");
-            sb.AppendLine("\tcls");
             sb.AppendLine("\techo.");
             sb.AppendLine("\techo Git repository letrehozva!");
             sb.AppendLine("color 0A");
             sb.AppendLine(")");
+        }
+
+        public static void CheckAndCleanDir(StringBuilder sb, string name)
+        {
+            sb.AppendLine($"if not exist \"{name}\" goto :START_INSTALL");
+            sb.AppendLine("\tcolor 0C");
+            sb.AppendLine("\techo.");
+            sb.AppendLine($"\techo !!!!!!!!! HIBA: A(Z) {name} MAPPA MAR LETEZIK !!!!!!!!!");
+            sb.AppendLine("\techo Szeretned TOROLNI a meglevo mappat A TELJES TARTALMAVAL es folytatni a telepitest?");
+            sb.AppendLine("\techo.");
+
+            sb.AppendLine("set /p user_answer=Nyomj 'I' betut a torleshez, vagy Entert a kilepeshez: ");
+            sb.AppendLine("if /i \"%user_answer%\" neq \"I\" (");
+            sb.AppendLine("\techo A telepites megszakitva.");
+            sb.AppendLine("\tpause");
+            sb.AppendLine("\texit");
+            sb.AppendLine(")");
+
+            sb.AppendLine("echo.");
+            sb.AppendLine($"echo Mappa torlese: {name}...");
+            sb.AppendLine($"rd /s /q \"{name}\"");
+            sb.AppendLine("color 07");
+            sb.AppendLine("cls");
         }
     }
 }

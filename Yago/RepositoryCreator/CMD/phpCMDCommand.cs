@@ -81,25 +81,7 @@ namespace Yago.RepositoryCreator.CMD
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("@echo off");
             sb.AppendLine($"cd /d \"{location}\"");
-            sb.AppendLine($"if not exist \"{name}\" goto :START_INSTALL");
-            sb.AppendLine("\tcolor 0C");
-            sb.AppendLine("\techo.");
-            sb.AppendLine($"\techo !!!!!!!!! HIBA: A(Z) {name} MAPPA MAR LETEZIK !!!!!!!!!");
-            sb.AppendLine("\techo Szeretned TOROLNI a meglevo mappat A TELJES TARTALMAVAL es folytatni a telepitest?");
-            sb.AppendLine("\techo.");
-
-            sb.AppendLine("set /p user_answer=Nyomj 'I' betut a torleshez, vagy Entert a kilepeshez: ");
-            sb.AppendLine("if /i \"%user_answer%\" neq \"I\" (");
-            sb.AppendLine("\techo A telepites megszakitva.");
-            sb.AppendLine("\tpause");
-            sb.AppendLine("\texit");
-            sb.AppendLine(")");
-
-            sb.AppendLine("echo.");
-            sb.AppendLine($"echo Mappa torlese: {name}...");
-            sb.AppendLine($"rd /s /q \"{name}\"");
-            sb.AppendLine("color 07");
-            sb.AppendLine("cls");
+            CMDHelper.CheckAndCleanDir(sb, name);
 
             sb.AppendLine(":START_INSTALL");
             sb.AppendLine("set PHPRC=");
