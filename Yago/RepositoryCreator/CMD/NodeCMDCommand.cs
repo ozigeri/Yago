@@ -23,18 +23,18 @@ namespace Yago.RepositoryCreator.CMD
             this.version = version;
             
         }
-        public void Execute(bool opensBrowser, bool GitInit)
+        public void Execute(bool opensBrowser, bool GitInit, bool isTypeScript)
         {
             string tempBatPath = Path.Combine(Path.GetTempPath(), "node_temp_start.bat");
             string nodeDir = Path.Combine(EnvironmentManager.BasePaths[Versions.Enums.VersionType.NodeJs], $"v{version}");
 
-            string BatchContent = GenerateBatchScript(nodeDir, opensBrowser, GitInit);
+            string BatchContent = GenerateBatchScript(nodeDir, opensBrowser, GitInit, isTypeScript);
 
             RunBatchFile(tempBatPath, BatchContent);
 
         }
 
-        private string GenerateBatchScript(string nodeDir, bool opensBrowser, bool GitInit)
+        private string GenerateBatchScript(string nodeDir, bool opensBrowser, bool GitInit, bool isTypeScript)
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("@echo off");
@@ -45,7 +45,11 @@ namespace Yago.RepositoryCreator.CMD
             sb.AppendLine("set \"PATH=%NODE_HOME%;%PATH%\"");
             sb.AppendLine("echo.");
             sb.AppendLine("echo Vite projekt letrehozasa...");
-            sb.AppendLine($"echo No | call npm create vite@latest \"{name}\" -- --template {app.ToLower()}");
+
+            string templateName = app.ToLower();
+            if (isTypeScript) templateName += "-ts";
+
+            sb.AppendLine($"echo No | call npm create vite@latest \"{name}\" -- --template {templateName}");
 
             sb.AppendLine("if %errorlevel% neq 0 (");
             sb.AppendLine("\tcolor 0C");

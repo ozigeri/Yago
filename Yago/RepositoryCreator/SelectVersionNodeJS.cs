@@ -16,7 +16,9 @@ namespace Yago.RepositoryCreator
         public string SelectedNode => sVersionComboBox.SelectedItem?.ToString();
         public bool openBrowser => viteBox.Checked;
 
-        public SelectVersionNodeJS(string[] verType, string node, bool check)
+        public bool isTs => tsCheck.Checked;
+
+        public SelectVersionNodeJS(string[] verType, string node, bool check, bool ts)
         {
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.None;
@@ -28,6 +30,7 @@ namespace Yago.RepositoryCreator
             sVersionComboBox.Items.AddRange(verType);
             sVersionComboBox.Text = node;
             viteBox.Checked = check;
+            tsCheck.Checked = ts;
         }
         private void Cancel_Click(object sender, EventArgs e)
         {

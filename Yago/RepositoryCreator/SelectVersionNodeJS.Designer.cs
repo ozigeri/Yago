@@ -33,11 +33,12 @@
             this.sVersionComboBox = new System.Windows.Forms.ComboBox();
             this.viteBox = new System.Windows.Forms.CheckBox();
             this.Cancel = new System.Windows.Forms.Button();
+            this.tsCheck = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // Ok
             // 
-            this.Ok.Location = new System.Drawing.Point(70, 140);
+            this.Ok.Location = new System.Drawing.Point(70, 166);
             this.Ok.Name = "Ok";
             this.Ok.Size = new System.Drawing.Size(75, 30);
             this.Ok.TabIndex = 0;
@@ -65,7 +66,7 @@
             // viteBox
             // 
             this.viteBox.AutoSize = true;
-            this.viteBox.Location = new System.Drawing.Point(85, 105);
+            this.viteBox.Location = new System.Drawing.Point(85, 131);
             this.viteBox.Name = "viteBox";
             this.viteBox.Size = new System.Drawing.Size(160, 17);
             this.viteBox.TabIndex = 3;
@@ -74,7 +75,7 @@
             // 
             // Cancel
             // 
-            this.Cancel.Location = new System.Drawing.Point(184, 140);
+            this.Cancel.Location = new System.Drawing.Point(184, 166);
             this.Cancel.Name = "Cancel";
             this.Cancel.Size = new System.Drawing.Size(75, 30);
             this.Cancel.TabIndex = 4;
@@ -82,11 +83,22 @@
             this.Cancel.UseVisualStyleBackColor = true;
             this.Cancel.Click += new System.EventHandler(this.Cancel_Click);
             // 
+            // tsCheck
+            // 
+            this.tsCheck.AutoSize = true;
+            this.tsCheck.Location = new System.Drawing.Point(85, 105);
+            this.tsCheck.Name = "tsCheck";
+            this.tsCheck.Size = new System.Drawing.Size(131, 17);
+            this.tsCheck.TabIndex = 5;
+            this.tsCheck.Text = "TypeScript használata";
+            this.tsCheck.UseVisualStyleBackColor = true;
+            // 
             // SelectVersionNodeJS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(326, 209);
+            this.Controls.Add(this.tsCheck);
             this.Controls.Add(this.Cancel);
             this.Controls.Add(this.viteBox);
             this.Controls.Add(this.sVersionComboBox);
@@ -106,5 +118,6 @@
         private System.Windows.Forms.ComboBox sVersionComboBox;
         private System.Windows.Forms.CheckBox viteBox;
         private System.Windows.Forms.Button Cancel;
+        private System.Windows.Forms.CheckBox tsCheck;
     }
 }

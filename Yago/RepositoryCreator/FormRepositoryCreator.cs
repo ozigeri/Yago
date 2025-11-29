@@ -23,6 +23,7 @@ namespace Yago.RepositoryCreator
     {
         string php, composer, nodeJs;
         bool opensBrowser = false;
+        bool isTypeScript = false;
         public FormRepositoryCreator()
         {
             php = Properties.Settings.Default.LastPhp;
@@ -143,7 +144,7 @@ namespace Yago.RepositoryCreator
             }
 
             NodeCMDCommand nCMDC = new NodeCMDCommand(appBox.SelectedItem.ToString(), nameBox.Text, pathBox.Text, nodeJs);
-            nCMDC.Execute(opensBrowser, GitInitCheck.Checked);
+            nCMDC.Execute(opensBrowser, GitInitCheck.Checked, isTypeScript);
 
             Properties.Settings.Default.LastNode = nodeJs;
             Properties.Settings.Default.Save();
@@ -171,7 +172,7 @@ namespace Yago.RepositoryCreator
         {
             var nodeVersions = EnvironmentManager.GetSoftwareVersion(VersionType.NodeJs).ToArray();
 
-            var selector = new SelectVersionNodeJS(nodeVersions, nodeJs, opensBrowser);
+            var selector = new SelectVersionNodeJS(nodeVersions, nodeJs, opensBrowser, isTypeScript);
 
             selector.StartPosition = FormStartPosition.CenterParent;
 
@@ -179,6 +180,7 @@ namespace Yago.RepositoryCreator
             {
                 nodeJs = selector.SelectedNode;
                 opensBrowser = selector.openBrowser;
+                isTypeScript = selector.isTs;
 
                 composer = null;
                 php = null;
