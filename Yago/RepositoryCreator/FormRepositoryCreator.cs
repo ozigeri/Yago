@@ -145,12 +145,16 @@ namespace Yago.RepositoryCreator
             var selector = new SelectVersionPhp(phpVersions, composerVersions, php, composer);
 
             selector.StartPosition = FormStartPosition.CenterParent;
-            selector.ShowDialog();
 
-            php = selector.SelectedPhp;
-            composer = selector.SelectedComposer;
+            if (selector.ShowDialog() == DialogResult.OK)
+            {
+                php = selector.SelectedPhp;
+                composer = selector.SelectedComposer;
 
-            nodeJs = null;
+                nodeJs = null;
+            }
+
+
         }
 
         private void OpenNodeSelector()

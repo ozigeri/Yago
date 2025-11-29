@@ -34,10 +34,18 @@ namespace Yago.RepositoryCreator
             composerBox.Text = composerd;
 
         }
+        private void Cancel_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
+        }
 
         private void Ok_Click(object sender, EventArgs e)
         {
+            this.DialogResult = DialogResult.OK;
             this.Close();
         }
+
+
     }
 }
