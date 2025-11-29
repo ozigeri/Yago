@@ -25,6 +25,9 @@ namespace Yago.RepositoryCreator
         bool opensBrowser = false;
         public FormRepositoryCreator()
         {
+            php = Properties.Settings.Default.LastPhp;
+            composer = Properties.Settings.Default.LastComposer;
+            nodeJs = Properties.Settings.Default.LastNode;
             InitializeComponent();
             InitializeUI();
         }
@@ -125,6 +128,10 @@ namespace Yago.RepositoryCreator
 
             phpCMDCommand pCMDC = new phpCMDCommand(appBox.SelectedItem.ToString(), nameBox.Text, pathBox.Text, php, composer);
             pCMDC.Execute(GitInitCheck.Checked);
+
+            Properties.Settings.Default.LastPhp = php;
+            Properties.Settings.Default.LastComposer = composer;
+            Properties.Settings.Default.Save();
         }
 
         private void CreateNodeRepository(string appName)
@@ -137,6 +144,9 @@ namespace Yago.RepositoryCreator
 
             NodeCMDCommand nCMDC = new NodeCMDCommand(appBox.SelectedItem.ToString(), nameBox.Text, pathBox.Text, nodeJs);
             nCMDC.Execute(opensBrowser, GitInitCheck.Checked);
+
+            Properties.Settings.Default.LastNode = nodeJs;
+            Properties.Settings.Default.Save();
         }
 
         private void OpenPhpSelector()
