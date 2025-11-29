@@ -32,13 +32,14 @@
             this.sVersionLabel = new System.Windows.Forms.Label();
             this.sVersionComboBox = new System.Windows.Forms.ComboBox();
             this.viteBox = new System.Windows.Forms.CheckBox();
+            this.Cancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Ok
             // 
-            this.Ok.Location = new System.Drawing.Point(126, 138);
+            this.Ok.Location = new System.Drawing.Point(70, 143);
             this.Ok.Name = "Ok";
-            this.Ok.Size = new System.Drawing.Size(75, 23);
+            this.Ok.Size = new System.Drawing.Size(70, 20);
             this.Ok.TabIndex = 0;
             this.Ok.Text = "Ok";
             this.Ok.UseVisualStyleBackColor = true;
@@ -71,11 +72,21 @@
             this.viteBox.Text = "Vite automatikus megnyitása";
             this.viteBox.UseVisualStyleBackColor = true;
             // 
+            // Cancel
+            // 
+            this.Cancel.Location = new System.Drawing.Point(189, 143);
+            this.Cancel.Name = "Cancel";
+            this.Cancel.Size = new System.Drawing.Size(70, 20);
+            this.Cancel.TabIndex = 4;
+            this.Cancel.Text = "Cancel";
+            this.Cancel.UseVisualStyleBackColor = true;
+            // 
             // SelectVersionNodeJS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(326, 209);
+            this.Controls.Add(this.Cancel);
             this.Controls.Add(this.viteBox);
             this.Controls.Add(this.sVersionComboBox);
             this.Controls.Add(this.sVersionLabel);
@@ -93,5 +104,6 @@
         private System.Windows.Forms.Label sVersionLabel;
         private System.Windows.Forms.ComboBox sVersionComboBox;
         private System.Windows.Forms.CheckBox viteBox;
+        private System.Windows.Forms.Button Cancel;
     }
 }
