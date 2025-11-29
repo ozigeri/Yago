@@ -29,9 +29,15 @@ namespace Yago.RepositoryCreator
             sVersionComboBox.Text = node;
             viteBox.Checked = check;
         }
+        private void Cancel_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            this.DialogResult = DialogResult.OK;
             this.Close();
         }
     }

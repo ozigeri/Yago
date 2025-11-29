@@ -153,8 +153,6 @@ namespace Yago.RepositoryCreator
 
                 nodeJs = null;
             }
-
-
         }
 
         private void OpenNodeSelector()
@@ -164,13 +162,15 @@ namespace Yago.RepositoryCreator
             var selector = new SelectVersionNodeJS(nodeVersions, nodeJs, check);
 
             selector.StartPosition = FormStartPosition.CenterParent;
-            selector.ShowDialog();
 
-            nodeJs = selector.SelectedNode;
-            check = selector.openBrowser;
+            if (selector.ShowDialog() == DialogResult.OK)
+            {
+                nodeJs = selector.SelectedNode;
+                check = selector.openBrowser;
 
-            composer = null;
-            php = null;
+                composer = null;
+                php = null;
+            }
         }
         private bool ValidateBasicInputs()
         {
