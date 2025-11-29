@@ -134,6 +134,52 @@ namespace Yago
             path.CloseFigure();
             return path;
         }
+
+        public static void ApplyRoundedGridButtonStyle(DataGridView grid, string columnName)
+        {
+            Color baseColor = Color.FromArgb(47, 184, 202);
+            Color hoverColor = ControlPaint.Light(baseColor);
+
+            int radius = 4;
+
+            grid.CellPainting += (s, e) =>
+            {
+                if (e.ColumnIndex >= 0 &&
+                    e.RowIndex >= 0 &&
+                    grid.Columns[e.ColumnIndex].Name == columnName)
+                {
+                    e.Handled = true;
+                    e.PaintBackground(e.ClipBounds, true);
+
+                    bool hovered = grid[e.ColumnIndex, e.RowIndex].Selected;
+                    Color fillColor = hovered ? hoverColor : baseColor;
+
+                    Rectangle rect = e.CellBounds;
+                    rect.Inflate(-2, -2);
+
+                    using (GraphicsPath path = RoundedRect(rect, radius))
+                    using (SolidBrush brush = new SolidBrush(fillColor))
+                    using (StringFormat sf = new StringFormat()
+                    {
+                        Alignment = StringAlignment.Center,
+                        LineAlignment = StringAlignment.Center
+                    })
+                    {
+                        e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+
+                        e.Graphics.FillPath(brush, path);
+
+                        e.Graphics.DrawString(
+                            grid.Rows[e.RowIndex].Cells[e.ColumnIndex].Value?.ToString(),
+                            new Font("Segoe UI Semibold", 10F),
+                            Brushes.White,
+                            rect,
+                            sf
+                        );
+                    }
+                }
+            };
+        }
     }
 }
 

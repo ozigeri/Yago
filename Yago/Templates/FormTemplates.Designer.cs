@@ -55,6 +55,7 @@
             // 
             // FormTemplates
             // 
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(600, 420);
             this.Controls.Add(this.btnTemplateDelete);
             this.Controls.Add(this.dataGridTemplates);

@@ -24,6 +24,8 @@ namespace Yago.Templates
             InitializeComponent();
             templateName = name;
 
+            this.FormBorderStyle = FormBorderStyle.None;
+
             UIStyleHelpers.StyleLabel(lName);
             UIStyleHelpers.StyleLabel(labelPhp);
             UIStyleHelpers.StyleLabel(labelComposer);
