@@ -43,7 +43,7 @@
             // lblName
             // 
             this.lblName.AutoSize = true;
-            this.lblName.Location = new System.Drawing.Point(331, 44);
+            this.lblName.Location = new System.Drawing.Point(169, 22);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(0, 13);
             this.lblName.TabIndex = 0;
@@ -51,7 +51,7 @@
             // lName
             // 
             this.lName.AutoSize = true;
-            this.lName.Location = new System.Drawing.Point(331, 44);
+            this.lName.Location = new System.Drawing.Point(169, 22);
             this.lName.Name = "lName";
             this.lName.Size = new System.Drawing.Size(0, 13);
             this.lName.TabIndex = 1;
@@ -59,7 +59,7 @@
             // labelPhp
             // 
             this.labelPhp.AutoSize = true;
-            this.labelPhp.Location = new System.Drawing.Point(209, 93);
+            this.labelPhp.Location = new System.Drawing.Point(71, 60);
             this.labelPhp.Name = "labelPhp";
             this.labelPhp.Size = new System.Drawing.Size(32, 13);
             this.labelPhp.TabIndex = 2;
@@ -68,7 +68,7 @@
             // labelComposer
             // 
             this.labelComposer.AutoSize = true;
-            this.labelComposer.Location = new System.Drawing.Point(209, 146);
+            this.labelComposer.Location = new System.Drawing.Point(71, 113);
             this.labelComposer.Name = "labelComposer";
             this.labelComposer.Size = new System.Drawing.Size(57, 13);
             this.labelComposer.TabIndex = 3;
@@ -77,7 +77,7 @@
             // labelNode
             // 
             this.labelNode.AutoSize = true;
-            this.labelNode.Location = new System.Drawing.Point(209, 206);
+            this.labelNode.Location = new System.Drawing.Point(71, 173);
             this.labelNode.Name = "labelNode";
             this.labelNode.Size = new System.Drawing.Size(46, 13);
             this.labelNode.TabIndex = 4;
@@ -87,7 +87,7 @@
             // 
             this.comboPhp.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboPhp.FormattingEnabled = true;
-            this.comboPhp.Location = new System.Drawing.Point(375, 85);
+            this.comboPhp.Location = new System.Drawing.Point(237, 60);
             this.comboPhp.Name = "comboPhp";
             this.comboPhp.Size = new System.Drawing.Size(121, 21);
             this.comboPhp.TabIndex = 5;
@@ -96,7 +96,7 @@
             // 
             this.comboComposer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboComposer.FormattingEnabled = true;
-            this.comboComposer.Location = new System.Drawing.Point(375, 143);
+            this.comboComposer.Location = new System.Drawing.Point(237, 110);
             this.comboComposer.Name = "comboComposer";
             this.comboComposer.Size = new System.Drawing.Size(121, 21);
             this.comboComposer.TabIndex = 6;
@@ -105,14 +105,14 @@
             // 
             this.comboNode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboNode.FormattingEnabled = true;
-            this.comboNode.Location = new System.Drawing.Point(375, 203);
+            this.comboNode.Location = new System.Drawing.Point(237, 170);
             this.comboNode.Name = "comboNode";
             this.comboNode.Size = new System.Drawing.Size(121, 21);
             this.comboNode.TabIndex = 7;
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(212, 284);
+            this.btnSave.Location = new System.Drawing.Point(74, 251);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(111, 35);
             this.btnSave.TabIndex = 8;
@@ -122,7 +122,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(392, 284);
+            this.btnCancel.Location = new System.Drawing.Point(254, 251);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(104, 35);
             this.btnCancel.TabIndex = 9;
@@ -134,7 +134,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.ClientSize = new System.Drawing.Size(410, 342);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.comboNode);

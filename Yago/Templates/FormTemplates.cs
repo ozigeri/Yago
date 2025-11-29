@@ -31,6 +31,17 @@ namespace Yago.Templates
         private void SetupGrid()
         {
             dataGridTemplates.Columns.Clear();
+            Color sameColor = this.BackColor;
+            dataGridTemplates.ColumnHeadersDefaultCellStyle.BackColor = sameColor;
+            dataGridTemplates.BackgroundColor = sameColor;
+            dataGridTemplates.DefaultCellStyle.BackColor = sameColor;
+            dataGridTemplates.BorderStyle = BorderStyle.None;
+            dataGridTemplates.CellBorderStyle = DataGridViewCellBorderStyle.None;
+            dataGridTemplates.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridTemplates.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridTemplates.EnableHeadersVisualStyles = false;
+            dataGridTemplates.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+
 
             var colName = new DataGridViewTextBoxColumn();
             colName.Name = "Name";
@@ -44,6 +55,7 @@ namespace Yago.Templates
             colEdit.Text = "Edit";
             colEdit.UseColumnTextForButtonValue = true;
             dataGridTemplates.Columns.Add(colEdit);
+            UIStyleHelpers.ApplyRoundedGridButtonStyle(dataGridTemplates, "Edit");
 
             var colSelect = new DataGridViewCheckBoxColumn();
             colSelect.Name = "Select";
@@ -53,6 +65,13 @@ namespace Yago.Templates
             dataGridTemplates.AllowUserToAddRows = false;
             dataGridTemplates.RowHeadersVisible = false;
             dataGridTemplates.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            dataGridTemplates.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridTemplates.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridTemplates.Columns["Edit"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridTemplates.Columns["Name"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridTemplates.Columns["Select"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
         }
 
         private void LoadTemplateNamesToGrid()
@@ -88,7 +107,9 @@ namespace Yago.Templates
         private void EditTemplateButton(string templateName)
         {
             EditTemplate editForm = new EditTemplate(templateName);
-            editForm.Show();
+            editForm.StartPosition = FormStartPosition.CenterParent;
+            editForm.ShowDialog();
+            
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
