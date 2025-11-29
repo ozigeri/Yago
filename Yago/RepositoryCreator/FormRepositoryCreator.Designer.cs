@@ -39,7 +39,7 @@
             this.repoButton = new System.Windows.Forms.Button();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.GitLabel = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.GitInitCheck = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // appL
@@ -131,19 +131,21 @@
             this.GitLabel.TabIndex = 9;
             this.GitLabel.Text = "Git inicializálása";
             // 
-            // checkBox1
+            // GitInitCheck
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(334, 275);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(15, 14);
-            this.checkBox1.TabIndex = 10;
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.GitInitCheck.AutoSize = true;
+            this.GitInitCheck.Checked = true;
+            this.GitInitCheck.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.GitInitCheck.Location = new System.Drawing.Point(334, 275);
+            this.GitInitCheck.Name = "GitInitCheck";
+            this.GitInitCheck.Size = new System.Drawing.Size(15, 14);
+            this.GitInitCheck.TabIndex = 10;
+            this.GitInitCheck.UseVisualStyleBackColor = true;
             // 
             // FormRepositoryCreator
             // 
             this.ClientSize = new System.Drawing.Size(600, 420);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.GitInitCheck);
             this.Controls.Add(this.GitLabel);
             this.Controls.Add(this.repoButton);
             this.Controls.Add(this.versionButton);
@@ -174,6 +176,6 @@
         private System.Windows.Forms.Button repoButton;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.Label GitLabel;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox GitInitCheck;
     }
 }

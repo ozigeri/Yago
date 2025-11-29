@@ -22,7 +22,7 @@ namespace Yago.RepositoryCreator
     public partial class FormRepositoryCreator : Form
     {
         string php, composer, nodeJs;
-        bool check = false;
+        bool opensBrowser = false;
         public FormRepositoryCreator()
         {
             InitializeComponent();
@@ -124,7 +124,7 @@ namespace Yago.RepositoryCreator
             }
 
             phpCMDCommand pCMDC = new phpCMDCommand(appBox.SelectedItem.ToString(), nameBox.Text, pathBox.Text, php, composer);
-            pCMDC.Execute();
+            pCMDC.Execute(GitInitCheck.Checked);
         }
 
         private void CreateNodeRepository(string appName)
@@ -136,7 +136,7 @@ namespace Yago.RepositoryCreator
             }
 
             NodeCMDCommand nCMDC = new NodeCMDCommand(appBox.SelectedItem.ToString(), nameBox.Text, pathBox.Text, nodeJs);
-            nCMDC.Execute(check);
+            nCMDC.Execute(opensBrowser, GitInitCheck.Checked);
         }
 
         private void OpenPhpSelector()
@@ -161,14 +161,14 @@ namespace Yago.RepositoryCreator
         {
             var nodeVersions = EnvironmentManager.GetSoftwareVersion(VersionType.NodeJs).ToArray();
 
-            var selector = new SelectVersionNodeJS(nodeVersions, nodeJs, check);
+            var selector = new SelectVersionNodeJS(nodeVersions, nodeJs, opensBrowser);
 
             selector.StartPosition = FormStartPosition.CenterParent;
 
             if (selector.ShowDialog() == DialogResult.OK)
             {
                 nodeJs = selector.SelectedNode;
-                check = selector.openBrowser;
+                opensBrowser = selector.openBrowser;
 
                 composer = null;
                 php = null;

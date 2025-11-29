@@ -21,19 +21,20 @@ namespace Yago.RepositoryCreator.CMD
             this.name = name;
             this.location = location;
             this.version = version;
+            
         }
-        public void Execute(bool opensBrowser)
+        public void Execute(bool opensBrowser, bool GitInit)
         {
             string tempBatPath = Path.Combine(Path.GetTempPath(), "node_temp_start.bat");
             string nodeDir = Path.Combine(EnvironmentManager.BasePaths[Versions.Enums.VersionType.NodeJs], $"v{version}");
 
-            string BatchContent = GenerateBatchScript(nodeDir, opensBrowser);
+            string BatchContent = GenerateBatchScript(nodeDir, opensBrowser, GitInit);
 
             RunBatchFile(tempBatPath, BatchContent);
 
         }
 
-        private string GenerateBatchScript(string nodeDir, bool opensBrowser)
+        private string GenerateBatchScript(string nodeDir, bool opensBrowser, bool GitInit)
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("@echo off");
@@ -93,6 +94,8 @@ namespace Yago.RepositoryCreator.CMD
             sb.AppendLine("echo Sikeres telepites!");
             sb.AppendLine($"echo A projekt elkeszult a(z) {name} mappaban.");
 
+            if (GitInit) CMDHelper.GitInit(sb);
+            
             string npmRunDev = "npm run dev";
             if (opensBrowser) npmRunDev += " -- --open";
             sb.AppendLine($"start \"Vite Dev Server\" cmd /k \"{npmRunDev}\"");

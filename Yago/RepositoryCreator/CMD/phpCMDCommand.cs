@@ -27,7 +27,7 @@ namespace Yago.RepositoryCreator.CMD
             this.composer = composer;
         }
 
-        public void Execute()
+        public void Execute(bool GitInit)
         {
             string tempBatPath = Path.Combine(Path.GetTempPath(), "php_temp_start.bat");
             string phpPath = EnvironmentManager.BasePaths[VersionType.Php] + '\\' + "php" + php + '\\';
@@ -38,7 +38,7 @@ namespace Yago.RepositoryCreator.CMD
             string phpIni = $"\"{phpPath}php.ini\"";
             string composerPhar = $"\"{Path.Combine(EnvironmentManager.BasePaths[VersionType.Composer], "v" + composer, "composer.phar")}\"";
 
-            string batchContent = GenerateBatchScript(phpExe, phpIni, composerPhar, phpPath);
+            string batchContent = GenerateBatchScript(phpExe, phpIni, composerPhar, phpPath, GitInit);
 
             RunBatchFile(tempBatPath, batchContent);
         }
@@ -76,7 +76,7 @@ namespace Yago.RepositoryCreator.CMD
             File.WriteAllText(iniFile, content);
         }
 
-        private string GenerateBatchScript(string phpExe, string phpIni, string composerPhar, string phpPath)
+        private string GenerateBatchScript(string phpExe, string phpIni, string composerPhar, string phpPath, bool GitInit)
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("@echo off");
@@ -120,6 +120,7 @@ namespace Yago.RepositoryCreator.CMD
             sb.AppendLine("color 0A");
             sb.AppendLine("echo.");
             sb.AppendLine($"echo A project elkeszult a(z) {name} mappaban.");
+            if (GitInit) CMDHelper.GitInit(sb);
             sb.AppendLine("echo.");
             sb.AppendLine("timeout /t 5 /nobreak >nul");
             sb.AppendLine("exit");
