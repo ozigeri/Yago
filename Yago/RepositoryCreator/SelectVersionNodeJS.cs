@@ -21,7 +21,8 @@ namespace Yago.RepositoryCreator
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.None;
 
-            UIStyleHelpers.StyleButton(Ok);
+            UIStyleHelpers.StyleButton(Ok, UIStyleHelpers.ButtonType.OK);
+            UIStyleHelpers.StyleButton(Cancel, UIStyleHelpers.ButtonType.Delete);
             UIStyleHelpers.StyleComboBox(sVersionComboBox);
             UIStyleHelpers.StyleLabel(sVersionLabel);
             sVersionComboBox.Items.AddRange(verType);

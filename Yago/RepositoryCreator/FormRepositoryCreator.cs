@@ -35,7 +35,7 @@ namespace Yago.RepositoryCreator
 
             UIStyleHelpers.ApplyFormStyle(this);
 
-            UIStyleHelpers.StyleButton(repoButton);
+            UIStyleHelpers.StyleButton(repoButton, UIStyleHelpers.ButtonType.OK);
             UIStyleHelpers.StyleButton(versionButton);
             UIStyleHelpers.StyleButton(pathButton);
 

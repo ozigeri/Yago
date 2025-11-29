@@ -20,13 +20,13 @@ namespace Yago.RepositoryCreator
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.None;
             DoubleBuffered = true;
+
+            UIStyleHelpers.StyleButton(Ok, UIStyleHelpers.ButtonType.OK);
+            UIStyleHelpers.StyleButton(Cancel, UIStyleHelpers.ButtonType.Delete);
             UIStyleHelpers.StyleComboBox(phpBox);
             UIStyleHelpers.StyleComboBox(composerBox);
-
             UIStyleHelpers.StyleLabel(phpL);
             UIStyleHelpers.StyleLabel(ComposerL);
-
-            UIStyleHelpers.StyleButton(Ok);
 
             phpBox.Items.AddRange(php);
             composerBox.Items.AddRange(composer);

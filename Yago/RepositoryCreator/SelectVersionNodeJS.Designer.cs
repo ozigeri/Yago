@@ -37,9 +37,9 @@
             // 
             // Ok
             // 
-            this.Ok.Location = new System.Drawing.Point(70, 143);
+            this.Ok.Location = new System.Drawing.Point(70, 140);
             this.Ok.Name = "Ok";
-            this.Ok.Size = new System.Drawing.Size(70, 20);
+            this.Ok.Size = new System.Drawing.Size(75, 30);
             this.Ok.TabIndex = 0;
             this.Ok.Text = "Ok";
             this.Ok.UseVisualStyleBackColor = true;
@@ -74,9 +74,9 @@
             // 
             // Cancel
             // 
-            this.Cancel.Location = new System.Drawing.Point(189, 143);
+            this.Cancel.Location = new System.Drawing.Point(184, 140);
             this.Cancel.Name = "Cancel";
-            this.Cancel.Size = new System.Drawing.Size(70, 20);
+            this.Cancel.Size = new System.Drawing.Size(75, 30);
             this.Cancel.TabIndex = 4;
             this.Cancel.Text = "Cancel";
             this.Cancel.UseVisualStyleBackColor = true;
