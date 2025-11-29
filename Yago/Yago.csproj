@@ -64,6 +64,7 @@
       <DependentUpon>FormRepositoryCreator.cs</DependentUpon>
     </Compile>
     <Compile Include="RepositoryCreator\RCEnums\App.cs" />
+    <Compile Include="RepositoryCreator\RCEnums\EditorTypes.cs" />
     <Compile Include="RepositoryCreator\SelectVersionNodeJS.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -23,18 +23,18 @@ namespace Yago.RepositoryCreator.CMD
             this.version = version;
             
         }
-        public void Execute(bool opensBrowser, bool GitInit, bool isTypeScript)
+        public void Execute(bool opensBrowser, bool GitInit, bool isTypeScript, string selectedEditor)
         {
             string tempBatPath = Path.Combine(Path.GetTempPath(), "node_temp_start.bat");
             string nodeDir = Path.Combine(EnvironmentManager.BasePaths[Versions.Enums.VersionType.NodeJs], $"v{version}");
 
-            string BatchContent = GenerateBatchScript(nodeDir, opensBrowser, GitInit, isTypeScript);
+            string BatchContent = GenerateBatchScript(nodeDir, opensBrowser, GitInit, isTypeScript, selectedEditor);
 
             RunBatchFile(tempBatPath, BatchContent);
 
         }
 
-        private string GenerateBatchScript(string nodeDir, bool opensBrowser, bool GitInit, bool isTypeScript)
+        private string GenerateBatchScript(string nodeDir, bool opensBrowser, bool GitInit, bool isTypeScript, string selectedEditor)
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("@echo off");
@@ -79,6 +79,7 @@ namespace Yago.RepositoryCreator.CMD
             sb.AppendLine($"echo A projekt elkeszult a(z) {name} mappaban.");
 
             if (GitInit) CMDHelper.GitInit(sb);
+            CMDHelper.openInEditor(sb, selectedEditor);
             
             string npmRunDev = "npm run dev";
             if (opensBrowser) npmRunDev += " -- --open";

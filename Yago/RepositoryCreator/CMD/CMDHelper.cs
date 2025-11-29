@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Yago.RepositoryCreator.RCEnums;
 
 namespace Yago.RepositoryCreator.CMD
 {
@@ -50,6 +51,31 @@ namespace Yago.RepositoryCreator.CMD
             sb.AppendLine($"rd /s /q \"{name}\"");
             sb.AppendLine("color 07");
             sb.AppendLine("cls");
+        }
+
+        public static void openInEditor(StringBuilder sb, string editorName)
+        {
+            if (!Enum.TryParse(editorName,out EditorTypes editor))
+            {
+                return;
+            }
+
+            if (editor == EditorTypes.None) return;
+
+            sb.AppendLine("echo.");
+            sb.AppendLine($"echo Megnyitas a kovetkezoben: {editorName}");
+
+            switch (editor)
+            {
+                case EditorTypes.VSCode:
+                    sb.AppendLine("start \"\" code .");
+                    break;
+                case EditorTypes.PhpStorm:
+                    sb.AppendLine("start \"\" phpstorm .");
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

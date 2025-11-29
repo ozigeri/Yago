@@ -40,12 +40,14 @@
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.GitLabel = new System.Windows.Forms.Label();
             this.GitInitCheck = new System.Windows.Forms.CheckBox();
+            this.ideLabel = new System.Windows.Forms.Label();
+            this.ideComboBox = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // appL
             // 
             this.appL.AutoSize = true;
-            this.appL.Location = new System.Drawing.Point(126, 82);
+            this.appL.Location = new System.Drawing.Point(126, 45);
             this.appL.Name = "appL";
             this.appL.Size = new System.Drawing.Size(29, 13);
             this.appL.TabIndex = 0;
@@ -54,7 +56,7 @@
             // nameL
             // 
             this.nameL.AutoSize = true;
-            this.nameL.Location = new System.Drawing.Point(126, 122);
+            this.nameL.Location = new System.Drawing.Point(126, 85);
             this.nameL.Name = "nameL";
             this.nameL.Size = new System.Drawing.Size(30, 13);
             this.nameL.TabIndex = 1;
@@ -63,7 +65,7 @@
             // pathL
             // 
             this.pathL.AutoSize = true;
-            this.pathL.Location = new System.Drawing.Point(126, 163);
+            this.pathL.Location = new System.Drawing.Point(126, 126);
             this.pathL.Name = "pathL";
             this.pathL.Size = new System.Drawing.Size(79, 13);
             this.pathL.TabIndex = 2;
@@ -72,21 +74,21 @@
             // appBox
             // 
             this.appBox.FormattingEnabled = true;
-            this.appBox.Location = new System.Drawing.Point(250, 82);
+            this.appBox.Location = new System.Drawing.Point(250, 45);
             this.appBox.Name = "appBox";
             this.appBox.Size = new System.Drawing.Size(195, 21);
             this.appBox.TabIndex = 3;
             // 
             // nameBox
             // 
-            this.nameBox.Location = new System.Drawing.Point(250, 122);
+            this.nameBox.Location = new System.Drawing.Point(250, 85);
             this.nameBox.Name = "nameBox";
             this.nameBox.Size = new System.Drawing.Size(195, 20);
             this.nameBox.TabIndex = 4;
             // 
             // pathButton
             // 
-            this.pathButton.Location = new System.Drawing.Point(250, 163);
+            this.pathButton.Location = new System.Drawing.Point(250, 126);
             this.pathButton.Name = "pathButton";
             this.pathButton.Size = new System.Drawing.Size(195, 25);
             this.pathButton.TabIndex = 5;
@@ -96,7 +98,7 @@
             // 
             // pathBox
             // 
-            this.pathBox.Location = new System.Drawing.Point(129, 209);
+            this.pathBox.Location = new System.Drawing.Point(129, 164);
             this.pathBox.Name = "pathBox";
             this.pathBox.Size = new System.Drawing.Size(316, 20);
             this.pathBox.TabIndex = 6;
@@ -104,7 +106,7 @@
             // 
             // versionButton
             // 
-            this.versionButton.Location = new System.Drawing.Point(203, 305);
+            this.versionButton.Location = new System.Drawing.Point(203, 217);
             this.versionButton.Name = "versionButton";
             this.versionButton.Size = new System.Drawing.Size(180, 27);
             this.versionButton.TabIndex = 7;
@@ -114,7 +116,7 @@
             // 
             // repoButton
             // 
-            this.repoButton.Location = new System.Drawing.Point(129, 354);
+            this.repoButton.Location = new System.Drawing.Point(129, 362);
             this.repoButton.Name = "repoButton";
             this.repoButton.Size = new System.Drawing.Size(316, 34);
             this.repoButton.TabIndex = 8;
@@ -125,7 +127,7 @@
             // GitLabel
             // 
             this.GitLabel.AutoSize = true;
-            this.GitLabel.Location = new System.Drawing.Point(219, 271);
+            this.GitLabel.Location = new System.Drawing.Point(219, 325);
             this.GitLabel.Name = "GitLabel";
             this.GitLabel.Size = new System.Drawing.Size(81, 13);
             this.GitLabel.TabIndex = 9;
@@ -136,15 +138,34 @@
             this.GitInitCheck.AutoSize = true;
             this.GitInitCheck.Checked = true;
             this.GitInitCheck.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.GitInitCheck.Location = new System.Drawing.Point(334, 275);
+            this.GitInitCheck.Location = new System.Drawing.Point(334, 329);
             this.GitInitCheck.Name = "GitInitCheck";
             this.GitInitCheck.Size = new System.Drawing.Size(15, 14);
             this.GitInitCheck.TabIndex = 10;
             this.GitInitCheck.UseVisualStyleBackColor = true;
             // 
+            // ideLabel
+            // 
+            this.ideLabel.AutoSize = true;
+            this.ideLabel.Location = new System.Drawing.Point(126, 277);
+            this.ideLabel.Name = "ideLabel";
+            this.ideLabel.Size = new System.Drawing.Size(85, 13);
+            this.ideLabel.TabIndex = 11;
+            this.ideLabel.Text = "Megnyitás ezzel:";
+            // 
+            // ideComboBox
+            // 
+            this.ideComboBox.FormattingEnabled = true;
+            this.ideComboBox.Location = new System.Drawing.Point(250, 274);
+            this.ideComboBox.Name = "ideComboBox";
+            this.ideComboBox.Size = new System.Drawing.Size(195, 21);
+            this.ideComboBox.TabIndex = 12;
+            // 
             // FormRepositoryCreator
             // 
             this.ClientSize = new System.Drawing.Size(600, 420);
+            this.Controls.Add(this.ideComboBox);
+            this.Controls.Add(this.ideLabel);
             this.Controls.Add(this.GitInitCheck);
             this.Controls.Add(this.GitLabel);
             this.Controls.Add(this.repoButton);
@@ -177,5 +198,7 @@
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.Label GitLabel;
         private System.Windows.Forms.CheckBox GitInitCheck;
+        private System.Windows.Forms.Label ideLabel;
+        private System.Windows.Forms.ComboBox ideComboBox;
     }
 }

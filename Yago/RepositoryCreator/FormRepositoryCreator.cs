@@ -36,10 +36,12 @@ namespace Yago.RepositoryCreator
         private void InitializeUI()
         {
             appBox.DataSource = Enum.GetValues(typeof(App));
+            ideComboBox.DataSource = Enum.GetValues(typeof(EditorTypes));
 
             UIStyleHelpers.ApplyFormStyle(this);
             UIStyleHelpers.StyleLabel(GitLabel);
-
+            UIStyleHelpers.StyleLabel(ideLabel);
+            UIStyleHelpers.StyleComboBox(ideComboBox);
             UIStyleHelpers.StyleButton(repoButton, UIStyleHelpers.ButtonType.OK);
             UIStyleHelpers.StyleButton(versionButton);
             UIStyleHelpers.StyleButton(pathButton);
@@ -103,18 +105,19 @@ namespace Yago.RepositoryCreator
             if (!ValidateBasicInputs()) return;
 
             string selectedApp = appBox.SelectedItem.ToString();
+            string selectedEditor = ideComboBox.SelectedItem.ToString();
 
             if (selectedApp == App.Laravel.ToString())
             {
-                CreateLaravelRepository(selectedApp);
+                CreateLaravelRepository(selectedApp, selectedEditor);
             }
             else
             {
-                CreateNodeRepository(selectedApp);
+                CreateNodeRepository(selectedApp, selectedEditor);
             }
         }
 
-        private void CreateLaravelRepository(string appName)
+        private void CreateLaravelRepository(string appName, string selectedEditor)
         {
             if (string.IsNullOrWhiteSpace(composer))
             {
@@ -128,14 +131,14 @@ namespace Yago.RepositoryCreator
             }
 
             phpCMDCommand pCMDC = new phpCMDCommand(appBox.SelectedItem.ToString(), nameBox.Text, pathBox.Text, php, composer);
-            pCMDC.Execute(GitInitCheck.Checked);
+            pCMDC.Execute(GitInitCheck.Checked, selectedEditor);
 
             Properties.Settings.Default.LastPhp = php;
             Properties.Settings.Default.LastComposer = composer;
             Properties.Settings.Default.Save();
         }
 
-        private void CreateNodeRepository(string appName)
+        private void CreateNodeRepository(string appName, string selectedEditor)
         {
             if (string.IsNullOrWhiteSpace(nodeJs))
             {
@@ -144,7 +147,7 @@ namespace Yago.RepositoryCreator
             }
 
             NodeCMDCommand nCMDC = new NodeCMDCommand(appBox.SelectedItem.ToString(), nameBox.Text, pathBox.Text, nodeJs);
-            nCMDC.Execute(opensBrowser, GitInitCheck.Checked, isTypeScript);
+            nCMDC.Execute(opensBrowser, GitInitCheck.Checked, isTypeScript, selectedEditor);
 
             Properties.Settings.Default.LastNode = nodeJs;
             Properties.Settings.Default.Save();
