@@ -18,7 +18,8 @@ namespace Yago.Templates
         public FormTemplates()
         {
             InitializeComponent();
-            
+            UIStyleHelpers.StyleButton(btnTemplateDelete, UIStyleHelpers.ButtonType.Delete);
+
         }
 
         private void TemplatesForm_Load(object sender, EventArgs e)
