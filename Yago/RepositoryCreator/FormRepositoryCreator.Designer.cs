@@ -42,6 +42,7 @@
             this.GitInitCheck = new System.Windows.Forms.CheckBox();
             this.ideLabel = new System.Windows.Forms.Label();
             this.ideComboBox = new System.Windows.Forms.ComboBox();
+            this.GitAuth = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // appL
@@ -129,9 +130,9 @@
             this.GitLabel.AutoSize = true;
             this.GitLabel.Location = new System.Drawing.Point(219, 325);
             this.GitLabel.Name = "GitLabel";
-            this.GitLabel.Size = new System.Drawing.Size(81, 13);
+            this.GitLabel.Size = new System.Drawing.Size(88, 13);
             this.GitLabel.TabIndex = 9;
-            this.GitLabel.Text = "Git inicializálása";
+            this.GitLabel.Text = "GitHub repository";
             // 
             // GitInitCheck
             // 
@@ -162,9 +163,20 @@
             this.ideComboBox.Size = new System.Drawing.Size(195, 21);
             this.ideComboBox.TabIndex = 12;
             // 
+            // GitAuth
+            // 
+            this.GitAuth.Location = new System.Drawing.Point(370, 325);
+            this.GitAuth.Name = "GitAuth";
+            this.GitAuth.Size = new System.Drawing.Size(75, 23);
+            this.GitAuth.TabIndex = 14;
+            this.GitAuth.Text = "GitHub Auth";
+            this.GitAuth.UseVisualStyleBackColor = true;
+            this.GitAuth.Click += new System.EventHandler(this.GitAuth_Click);
+            // 
             // FormRepositoryCreator
             // 
             this.ClientSize = new System.Drawing.Size(600, 420);
+            this.Controls.Add(this.GitAuth);
             this.Controls.Add(this.ideComboBox);
             this.Controls.Add(this.ideLabel);
             this.Controls.Add(this.GitInitCheck);
@@ -201,5 +213,6 @@
         private System.Windows.Forms.CheckBox GitInitCheck;
         private System.Windows.Forms.Label ideLabel;
         private System.Windows.Forms.ComboBox ideComboBox;
+        private System.Windows.Forms.Button GitAuth;
     }
 }

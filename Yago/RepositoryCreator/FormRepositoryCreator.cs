@@ -216,6 +216,7 @@ namespace Yago.RepositoryCreator
             return true;
         }
 
+
         private void ShowError(string message)
         {
             MessageBox.Show(message, "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -235,6 +236,12 @@ namespace Yago.RepositoryCreator
             {
                 return false;
             }
+        }
+        private void GitAuth_Click(object sender, EventArgs e)
+        {
+            FormGitHubSettings settingsForm = new FormGitHubSettings();
+            settingsForm.StartPosition = FormStartPosition.CenterParent;
+            settingsForm.ShowDialog();
         }
     }
 }

@@ -31,6 +31,7 @@ namespace Yago.RepositoryCreator
 
                 if (result == DialogResult.No) return false;
             }
+            return true;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
