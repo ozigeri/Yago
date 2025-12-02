@@ -117,8 +117,9 @@ namespace Yago.RepositoryCreator
             }
         }
 
-        private void CreateLaravelRepository(string appName, string selectedEditor)
+        private async void CreateLaravelRepository(string appName, string selectedEditor)
         {
+
             if (string.IsNullOrWhiteSpace(composer))
             {
                 ShowError("Add meg a composer verzióját!");
@@ -130,15 +131,23 @@ namespace Yago.RepositoryCreator
                 return;
             }
 
+            if (GitCheckBox.Checked)
+            {
+                bool success = await GitHelper.CreateGithubRepo(nameBox.Text);
+
+                if (!success) return;
+            }
+
+
             phpCMDCommand pCMDC = new phpCMDCommand(appBox.SelectedItem.ToString(), nameBox.Text, pathBox.Text, php, composer);
-            pCMDC.Execute(GitInitCheck.Checked, selectedEditor);
+            pCMDC.Execute(GitCheckBox.Checked, selectedEditor);
 
             Properties.Settings.Default.LastPhp = php;
             Properties.Settings.Default.LastComposer = composer;
             Properties.Settings.Default.Save();
         }
 
-        private void CreateNodeRepository(string appName, string selectedEditor)
+        private async void CreateNodeRepository(string appName, string selectedEditor)
         {
             if (string.IsNullOrWhiteSpace(nodeJs))
             {
@@ -146,8 +155,15 @@ namespace Yago.RepositoryCreator
                 return;
             }
 
+            if (GitCheckBox.Checked)
+            {
+                bool success = await GitHelper.CreateGithubRepo(nameBox.Text);
+
+                if (!success) return;
+            }
+
             NodeCMDCommand nCMDC = new NodeCMDCommand(appBox.SelectedItem.ToString(), nameBox.Text, pathBox.Text, nodeJs);
-            nCMDC.Execute(opensBrowser, GitInitCheck.Checked, isTypeScript, selectedEditor);
+            nCMDC.Execute(opensBrowser, GitCheckBox.Checked, isTypeScript, selectedEditor);
 
             Properties.Settings.Default.LastNode = nodeJs;
             Properties.Settings.Default.Save();

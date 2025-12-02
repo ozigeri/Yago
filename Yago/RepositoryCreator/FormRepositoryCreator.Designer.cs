@@ -39,7 +39,7 @@
             this.repoButton = new System.Windows.Forms.Button();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.GitLabel = new System.Windows.Forms.Label();
-            this.GitInitCheck = new System.Windows.Forms.CheckBox();
+            this.GitCheckBox = new System.Windows.Forms.CheckBox();
             this.ideLabel = new System.Windows.Forms.Label();
             this.ideComboBox = new System.Windows.Forms.ComboBox();
             this.GitAuth = new System.Windows.Forms.Button();
@@ -134,16 +134,16 @@
             this.GitLabel.TabIndex = 9;
             this.GitLabel.Text = "GitHub repository";
             // 
-            // GitInitCheck
+            // GitCheckBox
             // 
-            this.GitInitCheck.AutoSize = true;
-            this.GitInitCheck.Checked = true;
-            this.GitInitCheck.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.GitInitCheck.Location = new System.Drawing.Point(334, 329);
-            this.GitInitCheck.Name = "GitInitCheck";
-            this.GitInitCheck.Size = new System.Drawing.Size(15, 14);
-            this.GitInitCheck.TabIndex = 10;
-            this.GitInitCheck.UseVisualStyleBackColor = true;
+            this.GitCheckBox.AutoSize = true;
+            this.GitCheckBox.Checked = true;
+            this.GitCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.GitCheckBox.Location = new System.Drawing.Point(334, 329);
+            this.GitCheckBox.Name = "GitCheckBox";
+            this.GitCheckBox.Size = new System.Drawing.Size(15, 14);
+            this.GitCheckBox.TabIndex = 10;
+            this.GitCheckBox.UseVisualStyleBackColor = true;
             // 
             // ideLabel
             // 
@@ -179,7 +179,7 @@
             this.Controls.Add(this.GitAuth);
             this.Controls.Add(this.ideComboBox);
             this.Controls.Add(this.ideLabel);
-            this.Controls.Add(this.GitInitCheck);
+            this.Controls.Add(this.GitCheckBox);
             this.Controls.Add(this.GitLabel);
             this.Controls.Add(this.repoButton);
             this.Controls.Add(this.versionButton);
@@ -210,7 +210,7 @@
         private System.Windows.Forms.Button repoButton;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.Label GitLabel;
-        private System.Windows.Forms.CheckBox GitInitCheck;
+        private System.Windows.Forms.CheckBox GitCheckBox;
         private System.Windows.Forms.Label ideLabel;
         private System.Windows.Forms.ComboBox ideComboBox;
         private System.Windows.Forms.Button GitAuth;
