@@ -102,7 +102,11 @@ namespace Yago.RepositoryCreator.CMD
             sb.AppendLine("color 0A");
             sb.AppendLine("echo.");
             sb.AppendLine($"echo A project elkeszult a(z) {name} mappaban.");
-            if (GitInit) CMDHelper.GitInit(sb);
+            if (GitInit)
+            {
+                GitHelper.GitInit(sb);
+                GitHelper.SetupRemoteAndPush(sb, name);
+            }
             CMDHelper.openInEditor(sb, selectedEditor);
 
             sb.AppendLine("echo.");
@@ -121,7 +125,7 @@ namespace Yago.RepositoryCreator.CMD
                 StartInfo = new ProcessStartInfo
                 {
                     FileName = "cmd.exe",
-                    Arguments = $"/k \"{filePath}\"",
+                    Arguments = $"/c \"{filePath}\"",
                     UseShellExecute = true,
                     CreateNoWindow = false
                 }

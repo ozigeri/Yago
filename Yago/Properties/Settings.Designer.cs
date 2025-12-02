@@ -58,5 +58,29 @@ namespace Yago.Properties {
                 this["LastNode"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string GitHubUsername {
+            get {
+                return ((string)(this["GitHubUsername"]));
+            }
+            set {
+                this["GitHubUsername"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string GitHubToken {
+            get {
+                return ((string)(this["GitHubToken"]));
+            }
+            set {
+                this["GitHubToken"] = value;
+            }
+        }
     }
 }

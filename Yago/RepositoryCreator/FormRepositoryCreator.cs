@@ -43,6 +43,7 @@ namespace Yago.RepositoryCreator
             UIStyleHelpers.StyleLabel(ideLabel);
             UIStyleHelpers.StyleComboBox(ideComboBox);
             UIStyleHelpers.StyleButton(repoButton, UIStyleHelpers.ButtonType.OK);
+            UIStyleHelpers.StyleButton(GitAuth, UIStyleHelpers.ButtonType.Normal);
             UIStyleHelpers.StyleButton(versionButton);
             UIStyleHelpers.StyleButton(pathButton);
             
@@ -117,40 +118,85 @@ namespace Yago.RepositoryCreator
             }
         }
 
-        private void CreateLaravelRepository(string appName, string selectedEditor)
+        private async void CreateLaravelRepository(string appName, string selectedEditor)
         {
-            if (string.IsNullOrWhiteSpace(composer))
+            repoButton.Enabled = false;
+            this.Cursor = Cursors.WaitCursor;
+            try
             {
-                ShowError("Add meg a composer verzióját!");
-                return;
+                if (string.IsNullOrWhiteSpace(composer))
+                {
+                    ShowError("Add meg a composer verzióját!");
+                    return;
+                }
+                if (string.IsNullOrWhiteSpace(php))
+                {
+                    ShowError("Add meg a php verzióját!");
+                    return;
+                }
+
+                if (GitCheckBox.Checked)
+                {
+                    bool success = await GitHelper.CreateGithubRepo(nameBox.Text);
+
+                    if (!success) return;
+                }
+
+
+                phpCMDCommand pCMDC = new phpCMDCommand(appBox.SelectedItem.ToString(), nameBox.Text, pathBox.Text, php, composer);
+                pCMDC.Execute(GitCheckBox.Checked, selectedEditor);
+
+                Properties.Settings.Default.LastPhp = php;
+                Properties.Settings.Default.LastComposer = composer;
+                Properties.Settings.Default.Save();
             }
-            if (string.IsNullOrWhiteSpace(php))
+            catch (Exception ex)
             {
-                ShowError("Add meg a php verzióját!");
-                return;
+                ShowError("Váratlan hiba történt: " + ex.Message);
             }
-
-            phpCMDCommand pCMDC = new phpCMDCommand(appBox.SelectedItem.ToString(), nameBox.Text, pathBox.Text, php, composer);
-            pCMDC.Execute(GitInitCheck.Checked, selectedEditor);
-
-            Properties.Settings.Default.LastPhp = php;
-            Properties.Settings.Default.LastComposer = composer;
-            Properties.Settings.Default.Save();
+            finally
+            {
+                repoButton.Enabled = true;
+                this.Cursor = Cursors.Default;
+            }
         }
 
-        private void CreateNodeRepository(string appName, string selectedEditor)
+        private async void CreateNodeRepository(string appName, string selectedEditor)
         {
-            if (string.IsNullOrWhiteSpace(nodeJs))
+            repoButton.Enabled = false;
+            this.Cursor = Cursors.WaitCursor;
+
+            try
             {
-                ShowError("Add meg a Node.js verzióját!");
-                return;
+                if (string.IsNullOrWhiteSpace(nodeJs))
+                {
+                    ShowError("Add meg a Node.js verzióját!");
+                    return;
+                }
+
+                if (GitCheckBox.Checked)
+                {
+                    bool success = await GitHelper.CreateGithubRepo(nameBox.Text);
+
+                    if (!success) return;
+                }
+
+                NodeCMDCommand nCMDC = new NodeCMDCommand(appBox.SelectedItem.ToString(), nameBox.Text, pathBox.Text, nodeJs);
+                nCMDC.Execute(opensBrowser, GitCheckBox.Checked, isTypeScript, selectedEditor);
+
+                Properties.Settings.Default.LastNode = nodeJs;
+                Properties.Settings.Default.Save();
+            }
+            catch (Exception ex)
+            {
+                ShowError("Váratlan hiba történt: " + ex.Message);
+            }
+            finally
+            {
+                repoButton.Enabled = true;
+                this.Cursor = Cursors.Default;
             }
 
-            NodeCMDCommand nCMDC = new NodeCMDCommand(appBox.SelectedItem.ToString(), nameBox.Text, pathBox.Text, nodeJs);
-            nCMDC.Execute(opensBrowser, GitInitCheck.Checked, isTypeScript, selectedEditor);
-
-            Properties.Settings.Default.LastNode = nodeJs;
-            Properties.Settings.Default.Save();
         }
 
         private void OpenPhpSelector()
@@ -216,6 +262,7 @@ namespace Yago.RepositoryCreator
             return true;
         }
 
+
         private void ShowError(string message)
         {
             MessageBox.Show(message, "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -235,6 +282,12 @@ namespace Yago.RepositoryCreator
             {
                 return false;
             }
+        }
+        private void GitAuth_Click(object sender, EventArgs e)
+        {
+            FormGitHubSettings settingsForm = new FormGitHubSettings();
+            settingsForm.StartPosition = FormStartPosition.CenterParent;
+            settingsForm.ShowDialog();
         }
     }
 }
