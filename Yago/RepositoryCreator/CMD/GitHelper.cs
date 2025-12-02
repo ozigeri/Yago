@@ -49,7 +49,7 @@ namespace Yago.RepositoryCreator.CMD
 
             sb.AppendLine($"git remote add origin {remoteUrl}");
             sb.AppendLine("git branch -M main");
-            sb.AppendLine("git push -u origin main >nul 2>&1");
+            sb.AppendLine("git -c credential.helper= push -u origin main >nul 2>&1");
 
             sb.AppendLine("if %errorlevel% equ 0 (");
             sb.AppendLine("color 0A");

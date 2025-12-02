@@ -47,10 +47,10 @@ namespace Yago.RepositoryCreator.CMD
             switch (editor)
             {
                 case EditorTypes.VSCode:
-                    sb.AppendLine("start /b \"\" code .");
+                    sb.AppendLine("start /b cmd /c \"\" code .");
                     break;
                 case EditorTypes.PhpStorm:
-                    sb.AppendLine("start /b \"\" phpstorm .");
+                    sb.AppendLine("start /B cmd /c \"\" phpstorm .");
                     break;
                 default:
                     break;

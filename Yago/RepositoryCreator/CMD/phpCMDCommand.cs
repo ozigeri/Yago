@@ -125,7 +125,7 @@ namespace Yago.RepositoryCreator.CMD
                 StartInfo = new ProcessStartInfo
                 {
                     FileName = "cmd.exe",
-                    Arguments = $"/k \"{filePath}\"",
+                    Arguments = $"/c \"{filePath}\"",
                     UseShellExecute = true,
                     CreateNoWindow = false
                 }

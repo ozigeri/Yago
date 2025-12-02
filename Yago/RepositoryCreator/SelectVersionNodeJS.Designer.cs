@@ -44,7 +44,7 @@
             this.Ok.TabIndex = 0;
             this.Ok.Text = "Ok";
             this.Ok.UseVisualStyleBackColor = true;
-            this.Ok.Click += new System.EventHandler(this.button1_Click);
+            this.Ok.Click += new System.EventHandler(this.Ok_Click);
             // 
             // sVersionLabel
             // 
