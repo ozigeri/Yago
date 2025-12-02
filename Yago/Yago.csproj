@@ -54,6 +54,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RepositoryCreator\CMD\GitHelper.cs" />
     <Compile Include="RepositoryCreator\CMD\NodeCMDCommand.cs" />
     <Compile Include="RepositoryCreator\CMD\phpCMDCommand.cs" />
     <Compile Include="RepositoryCreator\CMD\CMDHelper.cs" />
