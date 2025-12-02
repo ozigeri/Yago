@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Octokit;
 
 namespace Yago.RepositoryCreator.CMD
 {
@@ -59,6 +60,42 @@ namespace Yago.RepositoryCreator.CMD
             sb.AppendLine("\techo Ellenorizd a tokent, vagy hogy letezik-e a repo a GitHubon!");
             sb.AppendLine(")");
 
+        }
+
+        public static async Task<bool> CreateGithubRepo(string repoName)
+        {
+            try
+            {
+                string token = Properties.Settings.Default.GitHubToken;
+
+                if (string.IsNullOrWhiteSpace(token))
+                {
+                    MessageBox.Show("A GitHub repository létrehozásához szükség van a Tokenre!\nKérlek állítsd be a Beállításokban.",
+                                    "Hiányzó Token", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+
+                var client = new GitHubClient(new ProductHeaderValue("Yago-App"));
+                var tokenAuth = new Credentials(token);
+                client.Credentials = tokenAuth;
+
+                var newRepo = new NewRepository(repoName)
+                {
+                    Private = true,
+                    AutoInit = false
+
+                };
+
+                await client.Repository.Create(newRepo);
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Nem sikerült létrehozni a GitHub repót:\n{ex.Message}",
+                                "GitHub API Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
         }
     }
 }
