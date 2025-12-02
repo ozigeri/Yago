@@ -57,6 +57,12 @@
     <Compile Include="RepositoryCreator\CMD\NodeCMDCommand.cs" />
     <Compile Include="RepositoryCreator\CMD\phpCMDCommand.cs" />
     <Compile Include="RepositoryCreator\CMD\CMDHelper.cs" />
+    <Compile Include="RepositoryCreator\FormGitHubSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RepositoryCreator\FormGitHubSettings.Designer.cs">
+      <DependentUpon>FormGitHubSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="RepositoryCreator\FormRepositoryCreator.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -124,6 +130,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="RepositoryCreator\FormGitHubSettings.resx">
+      <DependentUpon>FormGitHubSettings.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RepositoryCreator\FormRepositoryCreator.resx">
       <DependentUpon>FormRepositoryCreator.cs</DependentUpon>
     </EmbeddedResource>
