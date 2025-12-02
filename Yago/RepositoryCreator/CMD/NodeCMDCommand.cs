@@ -78,7 +78,11 @@ namespace Yago.RepositoryCreator.CMD
             sb.AppendLine("echo Sikeres telepites!");
             sb.AppendLine($"echo A projekt elkeszult a(z) {name} mappaban.");
 
-            if (GitInit) GitHelper.GitInit(sb);
+            if (GitInit)
+            {
+                GitHelper.GitInit(sb);
+                GitHelper.SetupRemoteAndPush(sb, name);
+            }
             CMDHelper.openInEditor(sb, selectedEditor);
             
             string npmRunDev = "npm run dev";

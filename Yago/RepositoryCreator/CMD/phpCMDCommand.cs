@@ -102,7 +102,11 @@ namespace Yago.RepositoryCreator.CMD
             sb.AppendLine("color 0A");
             sb.AppendLine("echo.");
             sb.AppendLine($"echo A project elkeszult a(z) {name} mappaban.");
-            if (GitInit) GitHelper.GitInit(sb);
+            if (GitInit)
+            {
+                GitHelper.GitInit(sb);
+                GitHelper.SetupRemoteAndPush(sb, name);
+            }
             CMDHelper.openInEditor(sb, selectedEditor);
 
             sb.AppendLine("echo.");
