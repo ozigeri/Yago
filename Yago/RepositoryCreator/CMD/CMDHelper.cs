@@ -68,10 +68,10 @@ namespace Yago.RepositoryCreator.CMD
             switch (editor)
             {
                 case EditorTypes.VSCode:
-                    sb.AppendLine("powershell -Command \"Start-Process code .\"");
+                    sb.AppendLine("start /b \"\" code .");
                     break;
                 case EditorTypes.PhpStorm:
-                    sb.AppendLine("powershell -Command \"Start-Process phpstorm .\"");
+                    sb.AppendLine("start /b \"\" phpstorm .");
                     break;
                 default:
                     break;
