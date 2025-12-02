@@ -15,6 +15,15 @@ namespace Yago.RepositoryCreator
         public FormGitHubSettings()
         {
             InitializeComponent();
+            this.FormBorderStyle = FormBorderStyle.None;
+
+            UIStyleHelpers.StyleButton(btnSave, UIStyleHelpers.ButtonType.OK);
+            UIStyleHelpers.StyleButton(btnCancel, UIStyleHelpers.ButtonType.Delete);
+            UIStyleHelpers.StyleLabel(NameLabel);
+            UIStyleHelpers.StyleLabel(TokenLabel);
+            UIStyleHelpers.StyleTextBox(userBox);
+            UIStyleHelpers.StyleTextBox(tokenBox);
+
             userBox.Text = Properties.Settings.Default.GitHubUsername;
             tokenBox.Text = Properties.Settings.Default.GitHubToken;
         }

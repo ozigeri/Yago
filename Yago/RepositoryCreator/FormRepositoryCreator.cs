@@ -43,6 +43,7 @@ namespace Yago.RepositoryCreator
             UIStyleHelpers.StyleLabel(ideLabel);
             UIStyleHelpers.StyleComboBox(ideComboBox);
             UIStyleHelpers.StyleButton(repoButton, UIStyleHelpers.ButtonType.OK);
+            UIStyleHelpers.StyleButton(GitAuth, UIStyleHelpers.ButtonType.Normal);
             UIStyleHelpers.StyleButton(versionButton);
             UIStyleHelpers.StyleButton(pathButton);
             

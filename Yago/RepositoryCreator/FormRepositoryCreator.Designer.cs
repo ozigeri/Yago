@@ -128,7 +128,7 @@
             // GitLabel
             // 
             this.GitLabel.AutoSize = true;
-            this.GitLabel.Location = new System.Drawing.Point(219, 325);
+            this.GitLabel.Location = new System.Drawing.Point(126, 328);
             this.GitLabel.Name = "GitLabel";
             this.GitLabel.Size = new System.Drawing.Size(88, 13);
             this.GitLabel.TabIndex = 9;
@@ -139,7 +139,7 @@
             this.GitCheckBox.AutoSize = true;
             this.GitCheckBox.Checked = true;
             this.GitCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.GitCheckBox.Location = new System.Drawing.Point(334, 329);
+            this.GitCheckBox.Location = new System.Drawing.Point(250, 332);
             this.GitCheckBox.Name = "GitCheckBox";
             this.GitCheckBox.Size = new System.Drawing.Size(15, 14);
             this.GitCheckBox.TabIndex = 10;
@@ -165,9 +165,9 @@
             // 
             // GitAuth
             // 
-            this.GitAuth.Location = new System.Drawing.Point(370, 325);
+            this.GitAuth.Location = new System.Drawing.Point(342, 325);
             this.GitAuth.Name = "GitAuth";
-            this.GitAuth.Size = new System.Drawing.Size(75, 23);
+            this.GitAuth.Size = new System.Drawing.Size(103, 31);
             this.GitAuth.TabIndex = 14;
             this.GitAuth.Text = "GitHub Auth";
             this.GitAuth.UseVisualStyleBackColor = true;
