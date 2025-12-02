@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Yago.RepositoryCreator.CMD
 {
@@ -27,6 +28,37 @@ namespace Yago.RepositoryCreator.CMD
             sb.AppendLine("\techo Git repository letrehozva!");
             sb.AppendLine("color 0A");
             sb.AppendLine(")");
+        }
+
+        public static void SetupRemoteAndPush (StringBuilder sb, string repoName)
+        {
+            string user = Properties.Settings.Default.GitHubUsername;
+            string token = Properties.Settings.Default.GitHubToken;
+
+            if (string.IsNullOrWhiteSpace(user) || string.IsNullOrWhiteSpace(token))
+            {
+                MessageBox.Show("Kérlek töltsd ki a Git Authot!", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            sb.AppendLine("echo.");
+            sb.AppendLine("Echo GitHub tavoli repozitorium beallitasa es feltoltese...");
+
+            string remoteUrl = $"https://{user}:{token}@github.com/{user}/{repoName}.git";
+
+            sb.AppendLine($"git remote add origin {remoteUrl}");
+            sb.AppendLine("git branch -M main");
+            sb.AppendLine("git push -u origin main >nul 2>&1");
+
+            sb.AppendLine("if %errorlevel% equ 0 (");
+            sb.AppendLine("color 0A");
+            sb.AppendLine("\techo SIKERES FELTOLTES A GITHUBRA!");
+            sb.AppendLine(") else (");
+            sb.AppendLine("\tcolor 0C");
+            sb.AppendLine("\techo HIBA: NEM SIKERULT A FELTOLTES!");
+            sb.AppendLine("\techo Ellenorizd a tokent, vagy hogy letezik-e a repo a GitHubon!");
+            sb.AppendLine(")");
+
         }
     }
 }
