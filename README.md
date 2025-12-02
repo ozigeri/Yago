@@ -86,7 +86,7 @@ A Yago alkalmazás fő használói:
 - Vite esetén TypeScript használatának lehetősége
 - Vite automatikus megnyitása alapértelmezett web böngészőben
 - Repository megnyitása a kiválasztott IDE-vel.
-- Automatizált GIT init, commit
+- Automatizált GIT repository létrehozás
 
 ### 4. Templates modul
 - Táblázatos nézet (név, verziók)
