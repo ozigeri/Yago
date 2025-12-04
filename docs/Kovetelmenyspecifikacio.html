@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yago - Követelményspecifikáció</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 40px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        h1 { margin-top: 0; }
+        .meta-info {
+            background-color: #eef2f5;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 30px;
+            border-left: 5px solid #2c3e50;
+        }
+        ul { margin-bottom: 20px; }
+        li { margin-bottom: 5px; }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        .section { margin-bottom: 40px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Követelményspecifikáció</h1>
+    
+    <div class="meta-info">
+        <p><strong>Projekt neve:</strong> Yago</p>
+        <p><strong>Dátum:</strong> 2025.11.03</p>
+        <p><strong>Készítette:</strong> Lénárt János, Ozibiusz Gergő, Köhler Gergő</p>
+    </div>
+
+    <div class="section">
+        <h2>Bevezetés</h2>
+        <p>A Yago Environment Builder egy Windows Forms alapú asztali alkalmazás, amely a fejlesztők munkáját segíti azáltal, hogy automatizálja és leegyszerűsíti a különböző fejlesztői környezetek létrehozását.</p>
+        <p>A rendszer célja, hogy a felhasználók könnyedén összeállíthassák a kívánt környezetet különböző verziójú komponensekből (például PHP, Node.js, Composer), sablonokat készíthessenek, illetve új repository-kat generálhassanak a megadott beállítások alapján.</p>
+        <p>Az alkalmazás célcsoportja elsősorban fejlesztők, akik gyakran dolgoznak több projekt párhuzamos kezelésével, és igénylik a gyors, automatizált környezetbeállítást.</p>
+        <p>A rendszer grafikus felülete átlátható, három fő funkcionális egységre tagolódik: verziókezelés, repository létrehozás és sablonkezelés.</p>
+    </div>
+
+    <div class="section">
+        <h2>Célok és funkciók</h2>
+        
+        <h3>1. EntryPoint (Kezdőképernyő)</h3>
+        <ul>
+            <li>A program indításakor megjelenő kezdőfelület.</li>
+            <li>Lehetővé teszi a fő modulok közötti navigációt: Versions, Repository Creator, Templates.</li>
+            <li>A logó megjelenítése.</li>
+        </ul>
+
+        <h3>2. Versions modul</h3>
+        <ul>
+            <li>A felhasználó kiválaszthatja a fejlesztői környezet komponenseinek verzióit (PHP, Node.js, Composer).</li>
+            <li>Lehetőség új konfiguráció mentésére sablonként.</li>
+            <li>Korábban mentett sablonok betöltése.</li>
+            <li>Környezet indítása a kiválasztott beállításokkal.</li>
+        </ul>
+
+        <h3>3. Repository Creator modul</h3>
+        <ul>
+            <li>Új projekt repository létrehozása megadott környezetbeállítások alapján.</li>
+            <li>A felhasználó kiválaszthatja:
+                <ul>
+                    <li>Az alkalmazás típusát (pl. React, Laravel stb.)</li>
+                    <li>A repository nevét</li>
+                    <li>A mentés helyét (helyi mappa)</li>
+                    <li>A verziókat (Versions modulból)</li>
+                    <li>Lehetőség azonnali Git repository létrehozására</li>
+                    <li>Lehetőség IDE megnyitására a repositoryn</li>
+                </ul>
+            </li>
+            <li>Repository automatikus generálása a megadott paraméterek alapján.</li>
+        </ul>
+
+        <h3>4. Templates modul</h3>
+        <ul>
+            <li>Sablonok listázása (név, verziók).</li>
+            <li>Sablon szerkesztése (PHP, Composer, Node verziók módosítása).</li>
+            <li>Új sablon mentése.</li>
+            <li>Sablon törlése a listából.</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Érintettek és szerepkörök</h2>
+        <h3>Alap felhasználó - Fejlesztő</h3>
+        <p>A fő felhasználói csoport, akik a Yago alkalmazást használják fejlesztői környezetek létrehozására. Feladataik:</p>
+        <ul>
+            <li>Környezetverziók kiválasztása és indítása</li>
+            <li>Sablonok létrehozása, szerkesztése és törlése</li>
+            <li>Új repository generálása</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Funkcionális követelmények</h2>
+        <p>Az alkalmazásnak biztosítania kell a fejlesztők számára a különböző környezetek és sablonok létrehozását, kezelését, valamint új repository-k automatikus generálását. A rendszer Windows Forms alapú, és grafikus felhasználói felületen keresztül működik.</p>
+
+        <h3>1 - EntryPoint (Kezdőképernyő)</h3>
+        <ul>
+            <li>Az alkalmazás indításakor megjelenik a kezdőképernyő a Yago logóval.</li>
+            <li>A felső menüsorból elérhetők a fő modulok: Versions, Repository Creator, Templates.</li>
+            <li>A menüpontokra kattintva a megfelelő funkcióra navigál a rendszer.</li>
+        </ul>
+
+        <h3>2 - Versions modul</h3>
+        <ul>
+            <li>A felhasználó megadhatja a fejlesztői környezet fő komponenseinek verzióját: PHP, Composer, Node.js.</li>
+            <li>A beállított verziók alapján elindítható a fejlesztői környezet.</li>
+            <li>Új sablon mentése és meglévő sablon betöltése.</li>
+            <li>A sablonok a kiválasztott verziókat mentik el későbbi felhasználásra.</li>
+        </ul>
+
+        <h3>3 - Repository Creator modul</h3>
+        <ul>
+            <li>A felhasználó létrehozhat új repository-t az alábbi adatok megadásával: App típusa, Projekt neve, Mentés helye, Verziók kiválasztása.</li>
+            <li>A „Create Repository” gomb megnyomásával a rendszer automatikusan létrehozza a repository szerkezetét.</li>
+            <li>A művelet során ellenőrzés történik, hogy a megadott név és hely érvényes-e.</li>
+        </ul>
+
+        <h3>4 - Templates modul</h3>
+        <ul>
+            <li>A sablonok listáját táblázatos formában jeleníti meg (név, verziók).</li>
+            <li>Edit: a kiválasztott sablon verzióinak (php, composer, node) szerkesztése popup ablakban.</li>
+            <li>Delete Template: sablon törlése a rendszerből.</li>
+            <li>Az adatváltoztatások mentése után az adatok frissülnek a listában.</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>5. Nem funkcionális követelmények</h2>
+        <ul>
+            <li>Gyors reakció a felhasználói műveletekre.</li>
+            <li>Hibakezelés (pl. hibás elérési út, hiányzó verzió).</li>
+            <li>Windows Forms alapú, intuitív grafikus kezelőfelület.</li>
+            <li>Jól elkülöníthető fülek a funkciókhoz.</li>
+            <li>Helyi adattárolás (nincs külső szerver).</li>
+            <li>Egységes vizuális megjelenés és egyszerű navigáció.</li>
+            <li>Visszajelzés minden fő művelet után.</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>6. Rendszerkörnyezet</h2>
+        <ul>
+            <li><strong>Nyelv:</strong> C#</li>
+            <li><strong>IDE:</strong> Visual Studio 2022</li>
+            <li><strong>Keretrendszer:</strong> .NET 4.7.2</li>
+            <li><strong>Típus:</strong> Windows Forms Application</li>
+            <li><strong>Verziókezelés:</strong> Git</li>
+        </ul>
+        <p>Az alkalmazás a sablonokat és beállításokat a <code>Templates.txt</code> fájlban tárolja a gyökérkönyvtárban.</p>
+        <p><strong>Adatstruktúra:</strong> <code>név;php;composer;node</code></p>
+        <ul>
+            <li>Név: Sablon neve (pl. Moodle, Laravel)</li>
+            <li>php: PHP verzió</li>
+            <li>composer: Composer verzió (alapértelmezett: "default")</li>
+            <li>node: Node.js verzió</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>7. Korlátozások</h2>
+        <ul>
+            <li>Kizárólag Windows operációs rendszeren futtatható.</li>
+            <li>Szükséges a .NET Runtime 8.0 vagy újabb.</li>
+            <li>Nincs automatikus frissítés.</li>
+            <li>Nem többfelhasználós (lokális használat).</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>8. Példa felhasználói történetek</h2>
+        <ul>
+            <li>Mint fejlesztő, szeretném kiválasztani a verziókat a pontos környezet beállításához.</li>
+            <li>Mint fejlesztő, szeretném elmenteni a beállításokat sablonként.</li>
+            <li>Mint fejlesztő, szeretném elindítani a környezetet, hogy azonnal dolgozhassak.</li>
+            <li>Mint fejlesztő, szeretném megadni az adatokat új repository generálásához.</li>
+            <li>Mint fejlesztő, szeretném szerkeszteni a sablonokat a naprakészség érdekében.</li>
+            <li>Mint felhasználó, szeretném törölni a felesleges sablonokat.</li>
+            <li>Mint felhasználó, visszajelzést várok a műveletek sikerességéről.</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>9. Elfogadási kritériumok</h2>
+        <ul>
+            <li>Navigáció működik a modulok között.</li>
+            <li>Verziók kiválaszthatók (PHP, Composer, Node.js).</li>
+            <li>Sablonok menthetők és betölthetők.</li>
+            <li>Fejlesztői környezet elindítható.</li>
+            <li>Új repository létrehozható, érvényesség-ellenőrzéssel.</li>
+            <li>Sablonok szerkeszthetők és törölhetők.</li>
+            <li>Visszajelzés megjelenik a műveletek után.</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>10. Jövőbeli bővítési lehetőségek</h2>
+        <ul>
+            <li>macOS és Linux támogatás.</li>
+            <li>Komponensek automatikus frissítése.</li>
+            <li>Többfelhasználós mód külön bejelentkezéssel.</li>
+            <li>Felhő alapú szinkronizáció.</li>
+            <li>Előre beállított build- és teszt-scriptek futtatása.</li>
+        </ul>
+    </div>
+
+</div>
+
+</body>
+</html>
