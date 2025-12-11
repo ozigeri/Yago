@@ -25,6 +25,8 @@
             border-bottom: 2px solid #eee;
             padding-bottom: 10px;
         }
+        h3 {margin-left: 15px;}
+        div p {margin-left: 15px;}
         h1 { margin-top: 0; }
         .meta-info {
             background-color: #eef2f5;
@@ -65,16 +67,16 @@
     </div>
 
     <div class="section">
-        <h2>Célok és funkciók</h2>
+        <h2>1. Célok és funkciók</h2>
         
-        <h3>1. EntryPoint (Kezdőképernyő)</h3>
+        <h3>EntryPoint (Kezdőképernyő)</h3>
         <ul>
             <li>A program indításakor megjelenő kezdőfelület.</li>
             <li>Lehetővé teszi a fő modulok közötti navigációt: Versions, Repository Creator, Templates.</li>
             <li>A logó megjelenítése.</li>
         </ul>
 
-        <h3>2. Versions modul</h3>
+        <h3>Versions modul</h3>
         <ul>
             <li>A felhasználó kiválaszthatja a fejlesztői környezet komponenseinek verzióit (PHP, Node.js, Composer).</li>
             <li>Lehetőség új konfiguráció mentésére sablonként.</li>
@@ -82,7 +84,7 @@
             <li>Környezet indítása a kiválasztott beállításokkal.</li>
         </ul>
 
-        <h3>3. Repository Creator modul</h3>
+        <h3>Repository Creator modul</h3>
         <ul>
             <li>Új projekt repository létrehozása megadott környezetbeállítások alapján.</li>
             <li>A felhasználó kiválaszthatja:
@@ -98,7 +100,7 @@
             <li>Repository automatikus generálása a megadott paraméterek alapján.</li>
         </ul>
 
-        <h3>4. Templates modul</h3>
+        <h3>Templates modul</h3>
         <ul>
             <li>Sablonok listázása (név, verziók).</li>
             <li>Sablon szerkesztése (PHP, Composer, Node verziók módosítása).</li>
@@ -108,7 +110,7 @@
     </div>
 
     <div class="section">
-        <h2>Érintettek és szerepkörök</h2>
+        <h2>2. Érintettek és szerepkörök</h2>
         <h3>Alap felhasználó - Fejlesztő</h3>
         <p>A fő felhasználói csoport, akik a Yago alkalmazást használják fejlesztői környezetek létrehozására. Feladataik:</p>
         <ul>
@@ -117,44 +119,9 @@
             <li>Új repository generálása</li>
         </ul>
     </div>
-
+    
     <div class="section">
-        <h2>Funkcionális követelmények</h2>
-        <p>Az alkalmazásnak biztosítania kell a fejlesztők számára a különböző környezetek és sablonok létrehozását, kezelését, valamint új repository-k automatikus generálását. A rendszer Windows Forms alapú, és grafikus felhasználói felületen keresztül működik.</p>
-
-        <h3>1 - EntryPoint (Kezdőképernyő)</h3>
-        <ul>
-            <li>Az alkalmazás indításakor megjelenik a kezdőképernyő a Yago logóval.</li>
-            <li>A felső menüsorból elérhetők a fő modulok: Versions, Repository Creator, Templates.</li>
-            <li>A menüpontokra kattintva a megfelelő funkcióra navigál a rendszer.</li>
-        </ul>
-
-        <h3>2 - Versions modul</h3>
-        <ul>
-            <li>A felhasználó megadhatja a fejlesztői környezet fő komponenseinek verzióját: PHP, Composer, Node.js.</li>
-            <li>A beállított verziók alapján elindítható a fejlesztői környezet.</li>
-            <li>Új sablon mentése és meglévő sablon betöltése.</li>
-            <li>A sablonok a kiválasztott verziókat mentik el későbbi felhasználásra.</li>
-        </ul>
-
-        <h3>3 - Repository Creator modul</h3>
-        <ul>
-            <li>A felhasználó létrehozhat új repository-t az alábbi adatok megadásával: App típusa, Projekt neve, Mentés helye, Verziók kiválasztása.</li>
-            <li>A „Create Repository” gomb megnyomásával a rendszer automatikusan létrehozza a repository szerkezetét.</li>
-            <li>A művelet során ellenőrzés történik, hogy a megadott név és hely érvényes-e.</li>
-        </ul>
-
-        <h3>4 - Templates modul</h3>
-        <ul>
-            <li>A sablonok listáját táblázatos formában jeleníti meg (név, verziók).</li>
-            <li>Edit: a kiválasztott sablon verzióinak (php, composer, node) szerkesztése popup ablakban.</li>
-            <li>Delete Template: sablon törlése a rendszerből.</li>
-            <li>Az adatváltoztatások mentése után az adatok frissülnek a listában.</li>
-        </ul>
-    </div>
-
-    <div class="section">
-        <h2>5. Nem funkcionális követelmények</h2>
+        <h2>3. Nem funkcionális követelmények</h2>
         <ul>
             <li>Gyors reakció a felhasználói műveletekre.</li>
             <li>Hibakezelés (pl. hibás elérési út, hiányzó verzió).</li>
@@ -167,7 +134,7 @@
     </div>
 
     <div class="section">
-        <h2>6. Rendszerkörnyezet</h2>
+        <h2>4. Rendszerkörnyezet</h2>
         <ul>
             <li><strong>Nyelv:</strong> C#</li>
             <li><strong>IDE:</strong> Visual Studio 2022</li>
@@ -186,7 +153,7 @@
     </div>
 
     <div class="section">
-        <h2>7. Korlátozások</h2>
+        <h2>5. Korlátozások</h2>
         <ul>
             <li>Kizárólag Windows operációs rendszeren futtatható.</li>
             <li>Szükséges a .NET Runtime 8.0 vagy újabb.</li>
@@ -196,7 +163,7 @@
     </div>
 
     <div class="section">
-        <h2>8. Példa felhasználói történetek</h2>
+        <h2>6. Példa felhasználói történetek</h2>
         <ul>
             <li>Mint fejlesztő, szeretném kiválasztani a verziókat a pontos környezet beállításához.</li>
             <li>Mint fejlesztő, szeretném elmenteni a beállításokat sablonként.</li>
@@ -209,7 +176,7 @@
     </div>
 
     <div class="section">
-        <h2>9. Elfogadási kritériumok</h2>
+        <h2>7. Elfogadási kritériumok</h2>
         <ul>
             <li>Navigáció működik a modulok között.</li>
             <li>Verziók kiválaszthatók (PHP, Composer, Node.js).</li>
@@ -222,7 +189,7 @@
     </div>
 
     <div class="section">
-        <h2>10. Jövőbeli bővítési lehetőségek</h2>
+        <h2>8. Jövőbeli bővítési lehetőségek</h2>
         <ul>
             <li>macOS és Linux támogatás.</li>
             <li>Komponensek automatikus frissítése.</li>
@@ -231,7 +198,50 @@
             <li>Előre beállított build- és teszt-scriptek futtatása.</li>
         </ul>
     </div>
+    <div class="section">
+        <h2>9. Részletes UI/UX követelmények</h2>
+        <ul>
+            <li>A felület egyszerű, áttekinthető elrendezést használ három fő modullal (Versions, Repository Creator, Templates).</li>
+            <li>Minden modul külön fülön vagy panelen jelenik meg egyértelmű címkékkel.</li>
+            <li>Minden fontos művelethez (mentés, törlés, generálás) külön gomb tartozik.</li>
+            <li>Hibás vagy hiányzó mezők esetén a rendszer vizuális jelzést ad (hibaüzenet).</li>
+            <li>Az alkalmazás modális ablakokat használ a kritikus visszajelzésekhez (pl. sikeres mentés, hibás útvonal).</li>
+            <li>A felhasználói folyamat logikus sorrendben történik (verziók kiválasztása → repository létrehozás → opcionális IDE megnyitás).</li>
+            <li>A sablonok listája rendezhető név szerint.</li>
+            <li>A felület konzisztens ikonokat és egységes színvilágot alkalmaz.</li>
+        </ul>
+    </div>
 
+    <div class="section">
+        <h2>10. Tesztelési követelmények</h2>
+        <h3>Unit tesztek</h3>
+        <ul>
+            <li>A sablonfájl (Templates.txt) olvasásának és írásának tesztelése.</li>
+            <li>A verzióválasztás validációjának tesztelése.</li>
+        </ul>
+
+        <h3>Funkcionális / manuális tesztek</h3>
+        <ul>
+            <li>Verziók kiválasztása és elindítása.</li>
+            <li>Sablon létrehozása, szerkesztése, törlése.</li>
+            <li>Repository generálása különböző beállításokkal.</li>
+            <li>Repository feltöltése GitHubra.</li>
+            <li>IDE megnyitás funkció tesztelése (ha be van állítva).</li>
+        </ul>
+
+        <h3>Integrációs tesztek</h3>
+        <ul>
+            <li>A sablonok és a Versions modul közötti kommunikáció ellenőrzése.</li>
+            <li>Repository Creator és Git inicializáló funkciók együttműködése.</li>
+        </ul>
+
+        <h3>Hibakezelés tesztelése</h3>
+        <ul>
+            <li>Érvénytelen vagy nem létező mappa kiválasztása.</li>
+            <li>Hiányzó verzió esetén megjelenő hibaüzenet.</li>
+            <li>Üres repo név esetén validáció és blokkolás.</li>
+        </ul>
+    </div>
 </div>
 
 </body>
