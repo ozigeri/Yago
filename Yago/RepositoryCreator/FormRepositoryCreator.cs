@@ -69,30 +69,42 @@ namespace Yago.RepositoryCreator
 
         private void versionButton_Click(object sender, EventArgs e)
         {
-            if (appBox.SelectedItem == null)
+            string appBoxText = appBox.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(appBoxText))
             {
-                if (!string.IsNullOrWhiteSpace(appBox.Text) && Enum.TryParse<App>(appBox.Text, true, out App result))
+                ShowError("Kérlek válassz vagy írj be egy framewörköt!");
+                return;
+            }
+
+            if (double.TryParse(appBoxText, out double numberResult))
+            {
+                ShowError($"A megadott '{appBoxText}' App típus csak nevekkel adható meg, számokkal nem!");
+                return;
+            }
+
+            App result;
+
+            if (Enum.TryParse<App>(appBoxText, ignoreCase: true, out result))
+            {
+                if (Enum.IsDefined(typeof(App),result))
                 {
                     appBox.SelectedItem = result;
-                }
-                else
-                {
-                    ShowError("Kérlek előbb válassz framework-öt!");
+
+                    if (result == App.Laravel)
+                    {
+                        OpenPhpSelector();
+                    }
+                    else
+                    {
+                        OpenNodeSelector();
+                    }
                     return;
                 }
-   
+                
             }
+            ShowError($"A megadott {appBoxText} nem érvényes framework!");
 
-            if (appBox.SelectedItem.ToString() == App.Laravel.ToString())
-            {
-                OpenPhpSelector();
-
-            }
-            else
-            {
-                OpenNodeSelector();
-
-            }
 
         }
 
