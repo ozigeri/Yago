@@ -387,6 +387,97 @@
                 <td>MessageBox hibaüzenet, visszalépés a RC-ra.</td>
                 <td>PASS*</td>
             </tr>
+            <tr>
+                <td>TC31</td>
+                <td>Verziószám tisztítása</td>
+                <td>Nincs (Statikus metódus hívás)</td>
+                <td>CleanVersionName hívása prefixelt verziókkal (pl. "php7.4.1", "v16.17.0")</td>
+                <td>A visszatérési érték nem tartalmazhat betűket, csak a verziószámot (pl. "7.4.1")</td>
+                <td>PASS</td>
+            </tr>
+            <tr>
+                <td>TC32</td>
+                <td>Szoftver verzió keresés nem létező mappában</td>
+                <td>Hibás/nem létező elérési útvonal beállítása a BasePaths-ban</td>
+                <td>GetSoftwareVersion metódus meghívása</td>
+                <td>Üres listával térjen vissza, ne dobjon kivételt</td>
+                <td>PASS</td>
+            </tr>
+            <tr>
+                <td>TC33</td>
+                <td>Útvonalak mentése és betöltése (Perzisztencia)</td>
+                <td>Ideiglenes konfigurációs fájl beállítása</td>
+                <td>Útvonal mentése fájlba, memória módosítása, majd LoadPathsFromFile hívása</td>
+                <td>A fájlból visszatöltött útvonal egyezzen meg az eredetileg elmentettel</td>
+                <td>PASS</td>
+            </tr>
+            <tr>
+                <td>TC34</td>
+                <td>Verziólista szűrése és tisztítása</td>
+                <td>Ideiglenes mappák létrehozása vegyes elnevezéssel ("php7.2.1", "invalid", "v8.0.0")</td>
+                <td>GetSoftwareVersion metódus meghívása</td>
+                <td>Csak a valid verziók jelenjenek meg a listában, tisztított formátumban; az "invalid" mappa maradjon ki</td>
+                <td>PASS</td>
+            </tr>
+            
+            <tr>
+                <td>TC35</td>
+                <td>Template mentése és visszatöltése</td>
+                <td>Tiszta template fájl</td>
+                <td>SaveTemplate hívása adatokkal, majd LoadTemplate hívása ugyanazzal a névvel</td>
+                <td>A template megjelenik a listában és a visszatöltött adatok (php, composer, node verziók) egyeznek a mentettekkel
+                </td>
+                <td>PASS</td>
+            </tr>
+            <tr>
+                <td>TC36</td>
+                <td>Template duplikáció kezelése</td>
+                <td>Egy "dupTemplate" nevű template már létezik</td>
+                <td>SaveTemplate hívása ismét "dupTemplate" névvel</td>
+                <td>A template-ek darabszáma nem növekszik (felülírás vagy eldobás történik)</td>
+                <td>PASS</td>
+            </tr>
+            <tr>
+                <td>TC37</td>
+                <td>Nem létező template betöltése</td>
+                <td>Nincs "nonexistent" nevű template mentve</td>
+                <td>LoadTemplate hívása "nonexistent" névvel</td>
+                <td>A visszatérési érték null legyen</td>
+                <td>PASS</td>
+            </tr>
+            <tr>
+                <td>TC38</td>
+                <td>Template nevek listázása</td>
+                <td>Több különböző template elmentése</td>
+                <td>GetTemplateNames metódus meghívása</td>
+                <td>A visszaadott lista tartalmazza az összes elmentett template nevét</td>
+                <td>PASS</td>
+            </tr>
+            <tr>
+                <td>TC39</td>
+                <td>Mentés üres névvel</td>
+                <td>Nincs</td>
+                <td>SaveTemplate hívása üres string névvel</td>
+                <td>A rendszer hibatűrően kezeli az esetet (nem omlik össze / figyelmeztet)</td>
+                <td>PASS</td>
+            </tr>
+            
+            <tr>
+                <td>TC40</td>
+                <td>Batch fájl generálása</td>
+                <td>Ideiglenes .bat fájl nem létezik</td>
+                <td>OpenCmdCommand példányosítása és Execute() metódus futtatása</td>
+                <td>Az env_temp_start.bat fájl fizikailag létrejön a temp mappában</td>
+                <td>PASS</td>
+            </tr>
+            <tr>
+                <td>TC41</td>
+                <td>Batch fájl tartalmi ellenőrzése</td>
+                <td>Nincs</td>
+                <td>Execute() futtatása konkrét útvonal paraméterekkel</td>
+                <td>A létrehozott fájl tartalmazza a helyes SET parancsokat (PHP_HOME, COMPOSER_HOME, NODE_HOME)</td>
+                <td>PASS</td>
+            </tr>
             </tbody>
 
     <div class="section">
