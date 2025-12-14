@@ -16,6 +16,7 @@ using Yago.RepositoryCreator.CMD;
 using System.Collections;
 using System.Net.NetworkInformation;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace Yago.RepositoryCreator
 {
@@ -282,6 +283,12 @@ namespace Yago.RepositoryCreator
                 return false;
             }
 
+            if (ValidatePath(pathBox.Text+ '\\' + nameBox.Text ))
+            {
+                ShowError("Hiba a repo. útvonalában (nem ASCII karakterek!)");
+                return false;
+            }
+
             if (string.IsNullOrWhiteSpace(pathBox.Text) || pathBox.Text == "Elérési útvonal...")
             {
                 ShowError("Add meg a cél mappa elérési útvonalát!");
@@ -291,7 +298,7 @@ namespace Yago.RepositoryCreator
             return true;
         }
 
-        public bool ValidateFile(string file)
+        private bool ValidateFile(string file)
         {
             if (!File.Exists(file))
             {
@@ -300,6 +307,10 @@ namespace Yago.RepositoryCreator
             return true;
         }
 
+        private bool ValidatePath(string path)
+        {
+            return Regex.IsMatch(path, @"[^\u0000-\u007F]");
+        }
 
         private void ShowError(string message)
         {
