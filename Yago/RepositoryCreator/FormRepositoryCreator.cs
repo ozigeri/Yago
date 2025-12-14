@@ -120,6 +120,25 @@ namespace Yago.RepositoryCreator
 
         private async void CreateLaravelRepository(string appName, string selectedEditor)
         {
+
+            string phpP = EnvironmentManager.BasePaths[VersionType.Php];
+            string composerP = EnvironmentManager.BasePaths[VersionType.Composer];
+
+            string phpPath = Path.Combine(phpP, "php" + php, "php.ini");
+            string composerPath = Path.Combine(composerP, 'v' + composer, "composer.phar");
+
+
+            if (!ValidateFile(phpPath))
+            {
+                ShowError("Nem található a kiválaszott php verzió!" + phpPath);
+                return;
+            }
+            if (!ValidateFile(composerPath))
+            {
+                ShowError("Nem található a kiválaszott composer verzió!" + composerPath);
+                return;
+            }
+
             repoButton.Enabled = false;
             this.Cursor = Cursors.WaitCursor;
             try
@@ -163,6 +182,15 @@ namespace Yago.RepositoryCreator
 
         private async void CreateNodeRepository(string appName, string selectedEditor)
         {
+            string nodePath = EnvironmentManager.BasePaths[VersionType.NodeJs];
+            string npmPath = Path.Combine(nodePath, 'v' + nodeJs, "npm.cmd");
+            if (!ValidateFile(npmPath))
+            {
+                ShowError("Nem található a kiválaszott NodeJs verzió!" + npmPath);
+                return;
+            }
+
+
             repoButton.Enabled = false;
             this.Cursor = Cursors.WaitCursor;
 
@@ -207,6 +235,7 @@ namespace Yago.RepositoryCreator
             var selector = new SelectVersionPhp(phpVersions, composerVersions, php, composer);
 
             selector.StartPosition = FormStartPosition.CenterParent;
+
 
             if (selector.ShowDialog() == DialogResult.OK)
             {
@@ -259,6 +288,15 @@ namespace Yago.RepositoryCreator
                 return false;
             }
 
+            return true;
+        }
+
+        public bool ValidateFile(string file)
+        {
+            if (!File.Exists(file))
+            {
+                return false;
+            }
             return true;
         }
 
