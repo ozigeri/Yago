@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yago - Tesztelési dokumentáció</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 40px;
+            box-shadow: 0 0 0 rgba(0,0,0,0.1);
+            border-radius: 5px;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        h1 { margin-top: 0; }
+        .meta-info {
+            background-color: #eef2f5;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 30px;
+            border-left: 5px solid #2c3e50;
+        }
+        ul, ol { margin-bottom: 20px; }
+        li { margin-bottom: 5px; }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        .section { margin-bottom: 40px; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 0.9em;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #2c3e50;
+            color: white;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .status-resolved { color: green; font-weight: bold; }
+        .status-open { color: red; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Tesztelési dokumentáció</h1>
+    
+    <div class="meta-info">
+        <p><strong>Projekt neve:</strong> Yago</p>
+        <p><strong>Dátum:</strong> 2025.11.03</p>
+        <p><strong>Készítette:</strong> Lénárt János, Ozibiusz Gergő, Köhler Gergő</p>
+    </div>
+
+    <div class="section">
+        <h2>1. Cél</h2>
+        <p>A tesztelés célja, hogy ellenőrizze a Yago Environment Builder alkalmazás működésének helyességét és stabilitását a meghatározott funkcionális és nem funkcionális követelményekkel. A tesztelés kiemelt feladata, hogy igazolja:</p>
+        <ul>
+            <li>a verzióválasztás helyesen működik (PHP, Composer, Node.js),</li>
+            <li>a sablonok kezelése megfelelő (mentés, betöltés, szerkesztés, törlés),</li>
+            <li>a repository létrehozási folyamat hibamentes,</li>
+            <li>az alkalmazás minden esetben megfelelő visszajelzést biztosít a felhasználónak.</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>2. Tesztkörnyezet</h2>
+        
+        <h3>Operációs rendszer</h3>
+        <p>Windows 10</p>
+        
+        <h3>Futtatókörnyezet</h3>
+        <p>.NET Runtime 4.7.2+</p>
+        
+        <h3>Alkalmazástechnológia</h3>
+        <p>Windows Forms (C#) .Net</p>
+        
+        <h3>Adattárolás</h3>
+        <p>Lokális fájl:</p>
+        <ul>
+            <li><code>templates.txt</code>: sablonok tárolása</li>
+            <li><code>basepath.txt</code>: NodeJs, Composer, PHP verziókat tartalmazó elérési útvonal</li>
+        </ul>
+        
+        <h3>Tesztadatok</h3>
+        <p>A tesztelés során előre összeállított mintaadatok kerülnek felhasználásra:</p>
+        <ul>
+            <li>minta sablonok különböző PHP/Composer/Node verziókkal</li>
+            <li>minta repository nevek és elérési utak</li>
+            <li>érvénytelen adatok a hibaellenőrzések vizsgálatához</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>3. Tesztelési módszertan</h2>
+        
+        <h3>Manuális funkcionális tesztelés</h3>
+        <p>A fejlesztői környezet funkcionális moduljait manuális teszteléssel vizsgáltuk. A tesztelési fázisok magukba foglalják az integrációs tesztelést, a pozitív és negatív teszteseteket, valamint a rendszer stabilitásának ellenőrzését.</p>
+        
+        <h3>Tesztelési fázisok</h3>
+        <ol>
+            <li><strong>Integrációs tesztelés:</strong> A modulok (Versions, Templates, RC) együttműködésének vizsgálata (pl. sablon betöltése és környezet indítása).</li>
+            <li><strong>Rendszertesztelés:</strong> Az alkalmazás teljes funkcionalitásának ellenőrzése a követelmények alapján.</li>
+        </ol>
+    </div>
+
+    <div class="section">
+        <h2>4. Tesztesetek (részletes):</h2>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Teszteset azonosító</th>
+                    <th>Név</th>
+                    <th>Előfeltétel</th>
+                    <th>Lépések</th>
+                    <th>Elvárt eredmény</th>
+                    <th>Állapot</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>TC01</td>
+                    <td>Alap betöltés</td>
+                    <td>Üres templatek, üres verzió elérési útvonalak</td>
+                    <td>Alkalmazás elindítása</td>
+                    <td>Verzió elérési útvonalak kiválasztása után megjelenjenek az elérhető verziók</td>
+                    <td>PASS</td>
+                </tr>
+                <tr>
+                    <td>TC02</td>
+                    <td>Template létrehozása, fileból kiolvasása</td>
+                    <td>Betöltött (elérhető) verziók</td>
+                    <td>Verziók kiválasztása, majd Template fileba mentése<br>Alkalmazás újraindítása</td>
+                    <td>Az újraindítás előtt elmentett template megjelenik a templatek között</td>
+                    <td>PASS</td>
+                </tr>
+                <tr>
+                    <td>TC03</td>
+                    <td>Template betöltése Environment builderben</td>
+                    <td>Mentett templatek kiolvasása</td>
+                    <td>Template kiválasztása, majd betöltése</td>
+                    <td>Az Env. builderben beállítódnak a templateben mentett verziók</td>
+                    <td>PASS</td>
+                </tr>
+                <tr>
+                    <td>TC04</td>
+                    <td>Environment indítása</td>
+                    <td>Verziók kiválasztása / template betöltése</td>
+                    <td>Verziók kiválasztása / template betöltése <br> Environment indítása</td>
+                    <td>Az Env. builderben beállított verziókkal az Env indítása</td>
+                    <td>PASS</td>
+                </tr>
+                <tr>
+                    <td>TC05</td>
+                    <td>Repository hibakezelés<br>(Framework, név, path hiánya esetén (kombinálva))</td>
+                    <td>Adott mező üresen hagyása</td>
+                    <td>Kombinálva a 3 mezőt üresen hagyva Repozitórium létrehozása</td>
+                    <td>MessageBox hibaüzenet</td>
+                    <td>Framework: PASS*<br>Path: PASS<br>Név: PASS</td>
+                </tr>
+                <tr>
+                    <td>TC06</td>
+                    <td>RC hibakezelés Laravel (PHP, COMPOSER verzió (kombinálva))</td>
+                    <td>Repository Creator, SelectVersion betöltése, mezők aktívak(szerkeszthetők)</td>
+                    <td>PHP és/vagy Composer verzió comboBoxának helytelen érték megadása</td>
+                    <td>MessageBox hibaüzenet, visszatérés a Repository Creatorra</td>
+                    <td>PHP: PASS<br>Composer: PASS<br>PHP&Composer: PASS</td>
+                </tr>
+                <tr>
+                    <td>TC07</td>
+                    <td>RC hibakezelés “!Laravel” framework esetén (NodeJs)</td>
+                    <td>Repository Creator, SelectVersion betöltése, mezők aktívak(szerkeszthetők)</td>
+                    <td>NodeJs ismeretlen verzió megadása</td>
+                    <td>MessageBoxhibaüzenet, visszatérés a RC-ra</td>
+                    <td>Üres NodeJs ver.: PASS<br>NodeJs ver.: PASS</td>
+                </tr>
+                <tr>
+                    <td>TC08</td>
+                    <td>RC Laravel frameworkkel  Repozitórium létrehozása</td>
+                    <td>Nincs internet</td>
+                    <td>Hálózatról lecsatlakozás<br>Mezők kitöltése, php & composer verziók választása<br>Rep. létrehozása</td> 
+                    <td>MessageBox hibaüzenet, visszatérés RC-ra.</td>
+                    <td>PASS*</td>
+                </tr>
+                <tr>
+                    <td>TC09</td>
+                    <td>RC Laravel frameworkkel  Repozitórium létrehozása</td>
+                    <td>Van internet, a megadott adatokkal, üres cél mappával Rep. létrehozása</td>
+                    <td>Mezők kitöltése, php & composer verziók választása<br>Rep. létrehozása</td> 
+                    <td>Laravel repozitórium létrejön</td>
+                    <td>PASS</td>
+                </tr>
+                <tr>
+                    <td>TC10</td>
+                    <td>RC Laravel frameworkkel repozitórium létrehozása, nem üres cél mappában</td>
+                    <td>nem üres a kiválaszott cél mappa</td>
+                    <td>Mezők kitöltése, php & composer verziók választása<br>Rep. létrehozása</td>
+                    <td>CMD-ben megkérdezi, hogy akarjuk-e űríteni a cél mappa tartalmát<br>-‘i’ esetén mappa űrítése, továbblépés a folyamatban<br>(bármi más) esetén kilépés</td> 
+                    <td>‘i’: PASS <br>Elutasítás esetén kilépés a folyamatból: PASS</td>
+                </tr>
+                <tr>
+                    <td>TC11</td>
+                    <td>RC nem Laravel frameworkkel repozitórium létrehozása</td>
+                    <td>Van internet,, a megadott adatokkal, üres cél mappával Rep. létrehozása</td>
+                    <td>Mezők kitöltése,  NodeJs verzió választása, Rep. létrehozása</td>
+                    <td>kiválasztott frameworkkel repozitórium létrejön</td>
+                    <td>PASS</td>
+                </tr>
+                <tr>
+                    <td>TC12</td>
+                    <td>RC nem Laravel frameworkkel repozitórium létrehozása, nem üres cél mappával</td>
+                    <td>nem üres a kiválaszott cél mappa</td>
+                    <td>Mezők kitöltése, NodeJs verzió választása, Rep. létrehozása</td>
+                    <td>CMD-ben megkérdezi, hogy akarjuk-e űríteni a cél mappa tartalmát -‘i’ esetén mappa űrítése, továbblépés a folyamatban -(bármi más) esetén kilépés</td>
+                    <td>‘i’: PASS <br> elutasítás esetén kilépés a folyamatból: PASS</td>
+                </tr>
+                <tr>
+                    <td>TC13</td>
+                    <td>Vite nem nyit automatikusan Vitet</td>
+                    <td>Helyes adatokkal Rep. létrehozása, Vite automatikus megnyitása checkBox := 0 </td>
+                    <td>Mezők kitöltése, NodeJs verzió választása, Vite automatikus megnyitása: 0 <br> Rep. létrehozása</td>
+                    <td>Vite létrehozásán végigmegy a folyamat, nem nyitja meg böngészőben a Vitet</td>
+                    <td>PASS</td>
+                </tr>
+                <tr>
+                    <td>TC14</td>
+                    <td>Vite automatikusan megnyitja a Vitet</td>
+                    <td>Rep. létrehozása, Vite automatikus megnyitása checkBox := 1</td>
+                    <td>Mezők kitöltése, NodeJs verzió választása, Vite automatikus megnyitása: 1 <br> Rep. létrehozása</td>
+                    <td>Vite létrehozásán végigmegy a folyamat, megnyitja böngészőben a Vitet</td>
+                    <td>PASS</td>
+                </tr>
+                <tr>
+                    <td>TC15</td>
+                    <td>Sablonok betöltése a Templates fülön</td>
+                    <td>Legalább egy előre elmentett sablon a Templates.txt fájlban</td>
+                    <td>Navigációs sávban a Templates menüpont megnyitása</td>
+                    <td>A sablonok adatai betöltődnek a DataGridbe</td>
+                    <td>PASS</td>
+                </tr>
+                <tr>
+                    <td>TC16</td>
+                    <td>Sablon szerkesztése</td>
+                    <td>Legalább egy előre elmentett sablon a Templates.txt fájlban</td>
+                    <td>Templates menüpont megnyitása Edit gombra kattintás</td>
+                    <td>A kiválasztott sablon szerkeszthető egy új felugró ablakban</td>
+                    <td>PASS</td>
+                </tr>
+                <tr>
+                    <td>TC17</td>
+                    <td>Sablon szerkesztésénél ComboBoxok értéke</td>
+                    <td>A Templates fülön az adott sablon kiválasztása után edit gombra kattintás</td>
+                    <td>Templates menüpont megnyitása Edit gombra kattintás</td>
+                    <td>A ComboBoxok lenyitásakor megjelennek azok a php,composer,node verziók amik telepítve vannak</td>
+                    <td>PASS</td>
+                </tr>
+                <tr>
+                    <td>TC18</td>
+                    <td>Sablon php, Composer,Node verziójának megváltoztatása</td>
+                    <td>A Templates fülön az adott sablon kiválasztása után edit gombra kattintás</td>
+                    <td>A legördülő mezőkben az értékeket megváltoztatjuk</td>
+                    <td>A változtatások után a mentés gombra kattintva MessageBox a változtatások mentéséről, templates.txt fájlba értékek átírása
+                        <br> Mégse gomb megnyomása esetén változtatások eldobása</td>
+                    <td>PASS</td>
+                </tr>
+                <tr>
+                    <td>TC19</td>
+                    <td>Sablonok törlése</td>
+                    <td>Templates fülre navigálás</td>
+                    <td>A törölni kívánt sablonoknál a CheckBox-ok bepipálása</td>
+                    <td>Ha több sablon is be van pipálva akkor azok közül mindegyik törölve legyen, MessageBox a </td>
+                    <td>PASS</td>
+                </tr>
+                <tr>
+                    <td>TC20</td>
+                    <td>IDE megnyitása</td>
+                    <td>IDE kiválasztása</td>
+                    <td>IDE kiválasztása, majd repository létrehozása</td>
+                    <td>IDE megnyílik a repositoryra</td>
+                    <td>PASS*</td>
+                </tr>
+            </tbody>
+
+    <div class="section">
+        <h2>Hibajegyzék (kivonat):</h2>
+        <p>A tesztelés során az alábbi hibákat (bugokat) azonosítottuk, amelyek közül a legtöbbet a jelzett verzióra javítottuk. Az "Open" státuszú hibák a fejlesztés következő fázisában kerültek megoldásra.</p>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Bug ID</th>
+                    <th>Leírás</th>
+                    <th>Súlyosság</th>
+                    <th>Prioritás</th>
+                    <th>Státusz</th>
+                    <th>Hely (Fájl)</th>
+                    <th>Megjegyzés (Javítás)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>BUG-001</td>
+                    <td>Hibakezelés nem veszi figyelembe, ha nem adunk értéket a célmappa elérési útvonalához</td>
+                    <td><span class="status-resolved">High</span></td>
+                    <td><span class="status-resolved">High</span></td>
+                    <td><span class="status-resolved">Resolved</span></td>
+                    <td>FormRepositoryCreator.cs</td>
+                    <td>Javítva. Validáció kiegészítve: most már hibát dob, ha üres az útvonal mező.</td>
+                </tr>
+                <tr>
+                    <td>BUG-002</td>
+                    <td>Indításnál nem tölti be a templateket a FormTemplatesbe</td>
+                    <td><span class="status-resolved">High</span></td>
+                    <td><span class="status-resolved">High</span></td>
+                    <td><span class="status-resolved">Resolved</span></td>
+                    <td>FormRepositoryCreator.cs</td>
+                    <td>Javítva. Hiányzó adatbetöltés pótolva az.</td>
+                </tr>
+                <tr>
+                    <td>BUG-003</td>
+                    <td>Ha kitöröljük a framework értékét a comboBoxból, exceptionnel kilép az alkalmazás.</td>
+                    <td><span class="status-resolved">High</span></td>
+                    <td><span class="status-resolved">High</span></td>
+                    <td><span class="status-resolved">Resolved</span></td>
+                    <td>FormRepositoryCreator.cs</td>
+                    <td>Javítva. Null érték kezelése megoldva, így nem fagy le a program üres mezőnél.</td>
+                </tr>
+                <tr>
+                    <td>BUG-004</td>
+                    <td>Egyszerre csak egy sablont lehet törölni a dataGrid-ből</td>
+                    <td><span class="status-open">High</span></td>
+                    <td><span class="status-open">High</span></td>
+                    <td><span class="status-open">Open</span></td>
+                    <td>TemplateMethods.cs</td>
+                    <td>Fejlesztésre vár. A kód jelenleg csak az aktív sort törli, ciklus kell a több sorhoz.</td>
+                </tr>
+                <tr>
+                    <td>BUG-005</td>
+                    <td>RC: Framework kisbetűvel beírása esetén nem ismeri fel a frameworkot</td>
+                    <td><span class="status-resolved">Medium</span></td>
+                    <td><span class="status-resolved">Medium</span></td>
+                    <td><span class="status-resolved">Resolved</span></td>
+                    <td>RepositoryCreator.cs</td>
+                    <td>Javítva.</td>
+                </tr>
+                <tr>
+                    <td>BUG-006</td>
+                    <td>RC: internet kapcsolatot nem ellenőrzi</td>
+                    <td><span class="status-resolved">High</span></td>
+                    <td><span class="status-resolved">High</span></td>
+                    <td><span class="status-resolved">Resolved</span></td>
+                    <td>RepositoryCreator.cs</td>
+                    <td>Javítva. Rep. létrehozása előttping tesztelés, internet hiánya esetén hibaüzenet.</td>
+                </tr>
+                <tr>
+                    <td>BUG-007</td>
+                    <td>RC: Vite automatikus megnyitásánál hátkódolt a localhost portja, nem mindig kapja az 5173-t</td>
+                    <td><span class="status-resolved">Medium</span></td>
+                    <td><span class="status-resolved">High</span></td>
+                    <td><span class="status-resolved">Resolved</span></td>
+                    <td>NodeCMDCommand.cs</td>
+                    <td>Javítva. vite – –open használata.</td>
+                </tr>
+                <tr>
+                    <td>BUG-008</td>
+                    <td>Environment indításánál rossz mappa névvel keresi a Composer verziót</td>
+                    <td><span class="status-resolved">High</span></td>
+                    <td><span class="status-resolved">High</span></td>
+                    <td><span class="status-resolved">Resolved</span></td>
+                    <td>EnvironmentController.cs</td>
+                    <td>Javítva. composer\composer{version} átírása composer\v{version}-re.</td>
+                </tr>
+                <tr>
+                    <td>BUG-009</td>
+                    <td>RC: akármit írsz be, elfogadja cél mappa útvonalának</td>
+                    <td><span class="status-resolved">High</span></td>
+                    <td><span class="status-resolved">High</span></td>
+                    <td><span class="status-resolved">Resolved</span></td>
+                    <td>RepositoryCreator.cs</td>
+                    <td>Javítva</td>
+                </tr>
+                <tr>
+                    <td>BUG-010</td>
+                    <td>IDE megnyitásánál RAM hiba</td>
+                    <td><span class="status-resolved">High</span></td>
+                    <td><span class="status-resolved">High</span></td>
+                    <td><span class="status-resolved">Resolved</span></td>
+                    <td>CMDHelper.cs</td>
+                    <td>Javítva, rossz paraméterezéssel indította az IDE-t.</td>
+                </tr>
+
+
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+</body>
+</html>
