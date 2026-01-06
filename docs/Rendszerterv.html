@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yago - Rendszerterv</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 40px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        h1 { margin-top: 0; }
+        .meta-info {
+            background-color: #eef2f5;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 30px;
+            border-left: 5px solid #2c3e50;
+        }
+        ul { margin-bottom: 20px; }
+        li { margin-bottom: 5px; }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        .section { margin-bottom: 40px; }
+        .section img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            margin: 20px auto;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+        .section h3 {
+            text-align: center;
+            margin: 20px 0;
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Rendszerterv</h1>
+
+    <div class="meta-info">
+        <p><strong>Projekt neve:</strong> Yago Environment Builder</p>
+        <p><strong>Dátum:</strong> 2025.11.07</p>
+        <p><strong>Készítette:</strong> Lénárt János, Ozibiusz Gergő, Köhler Gergő</p>
+    </div>
+
+    <div class="section">
+        <h2>1. Bevezetés</h2>
+        <p>A Yago Environment Builder egy Windows Forms alapú asztali alkalmazás, amely a fejlesztők munkáját támogatja azáltal, hogy automatizálja és leegyszerűsíti különböző fejlesztői környezetek, illetve repositoryk létrehozását.</p>
+        <p>Jelen rendszerterv célja, hogy a funkcionális specifikációban meghatározott elvárásokat műszakilag pontosítsa, és bemutassa a megvalósítás architekturális felépítését, adatmodelljét, folyamatait és technikai követelményeit.</p>
+    </div>
+
+    <div class="section">
+        <h2>2. Rendszer célja és környezete</h2>
+
+        <h3>2.1 Rendszer célja</h3>
+        <ul>
+            <li>A fejlesztői környezetek (PHP, Node.js, Composer verziók) gyors, ismételhető konfigurálása.</li>
+            <li>Sablonok (<em>templates</em>) segítségével egységes, újrafelhasználható beállítások kezelése.</li>
+            <li>Új projektek és repositoryk automatikus létrehozása a megadott beállítások alapján.</li>
+        </ul>
+
+        <h3>2.2 Rendszer környezete</h3>
+        <ul>
+            <li><strong>Alkalmazás típusa:</strong> Windows Forms asztali alkalmazás</li>
+            <li><strong>Fejlesztési nyelv:</strong> C#</li>
+            <li><strong>.NET verzió:</strong> .NET Framework 4.7.2 szükséges a futtatáshoz</li>
+            <li><strong>Adattárolás:</strong> helyi szöveges fájl (<code>Templates.txt</code>) a sablonok számára</li>
+            <li><strong>Cél platform:</strong> Windows operációs rendszer, egyfelhasználós környezet</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>3. Logikai architektúra</h2>
+
+        <h3>3.1 Rétegek áttekintése</h3>
+        <ul>
+            <li><strong>Prezentációs réteg (UI):</strong> Windows Forms alapú felhasználói felületek (EntryPoint, Versions, Repository Creator, Templates).</li>
+            <li><strong>Üzleti logikai réteg:</strong> a verzióválasztás, sablonkezelés, repository generálás működését megvalósító osztályok.</li>
+            <li><strong>Adatkezelési réteg:</strong> a sablonok és beállítások fájl alapú tárolásáért felelős komponensek.</li>
+        </ul>
+
+        <h3>3.2 Fő modulok és felelősségek</h3>
+        <ul>
+            <li><strong>EntryPoint modul:</strong> 
+                <ul>
+                    <li>Alkalmazás kezdőképernyője.</li>
+                    <li>Navigáció biztosítása a <em>Versions</em>, <em>Repository Creator</em> és <em>Templates</em> modulokhoz.</li>
+                </ul>
+            </li>
+            <li><strong>Versions modul (FormVersions):</strong>
+                <ul>
+                    <li>PHP, Node.js, Composer verziók kiválasztása.</li>
+                    <li>Környezet indítása.</li>
+                    <li>Sablon mentése és betöltése a <code>Templates.txt</code> fájlból.</li>
+                </ul>
+            </li>
+            <li><strong>Repository Creator modul (FormRepositoryCreator):</strong>
+                <ul>
+                    <li>App típusának, projekt nevének és mentési helyének megadása.</li>
+                    <li>Verziók átvétele a Versions modulból (popup „Select Version”).</li>
+                    <li>Repository-struktúra létrehozása, opcionális Git repository készítés, push, IDE megnyitás.</li>
+                </ul>
+            </li>
+            <li><strong>Templates modul (FormTemplates):</strong>
+                <ul>
+                    <li>Sablonok listázása táblázatos formában.</li>
+                    <li>Sablonok szerkesztése (popup), törlése és mentése.</li>
+                    <li><code>Templates.txt</code> fájl karbantartása.</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>4. Adatmodell és fájlstruktúra</h2>
+
+        <h3>4.1 Fő adatelemek</h3>
+        <ul>
+            <li><strong>Sablon (Template):</strong>
+                <ul>
+                    <li>Név (template name).</li>
+                    <li>Kapcsolódó PHP, Composer, Node.js verziók.</li>
+                </ul>
+            </li>
+            <li><strong>Verziók (Versions):</strong>
+                <ul>
+                    <li>PHP verzió.</li>
+                    <li>Composer verzió.</li>
+                    <li>Node.js verzió.</li>
+                </ul>
+            </li>
+            <li><strong>Repository beállítások:</strong>
+                <ul>
+                    <li>App típusa (React, Laravel, Angular, stb.).</li>
+                    <li>Projekt név.</li>
+                    <li>Mentési hely (lokális útvonal).</li>
+                    <li>IDE típusa (None, VS Code, Phpstorm).</li>
+                    <li>Git létrehozása, GitHub autentikációs adatok megléte.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>4.2 Templates.txt fájl</h3>
+        <ul>
+            <li><strong>Tárolás módja:</strong> helyi szöveges fájl, soronként egy sablonnal.</li>
+            <li><strong>Adatstruktúra:</strong> a sablon mezői előre definiált, konzisztens formában kerülnek sorba (';' elválasztó karakterekkel).</li>
+            <li><strong>Műveletek:</strong>
+                <ul>
+                    <li>Új sablon hozzáadása (Mentés sablonként).</li>
+                    <li>Sablon adatainak frissítése (Edit Template &rarr; Save).</li>
+                    <li>Sablon törlése (Delete Template, megerősítés után).</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>5. Folyamatok és vezérlés</h2>
+
+        <h3>5.1 Versions modul folyamata</h3>
+        <ul>
+            <li>A felhasználó megnyitja a <strong>Versions</strong> fület.</li>
+            <li>A PHP, Composer és Node.js verziókat legördülő listákból kiválasztja.</li>
+            <li><strong>Environment Start</strong> gombra kattint.</li>
+            <li>A rendszer ellenőrzi, hogy:
+                <ul>
+                    <li>minden kötelező mező ki van-e töltve,</li>
+                    <li>a verziók formátuma érvényes-e.</li>
+                </ul>
+            </li>
+            <li>Sikeres ellenőrzés esetén a rendszer inicializálja a környezeti beállításokat (lokális konfigurációk).</li>
+            <li>A felhasználó megadhat egy template nevet, majd a <strong>Save Template</strong> gombbal elmentheti az aktuális konfigurációt a <code>Templates.txt</code> fájlba.</li>
+            <li>Meglévő template is betölthető, amely automatikusan beállítja a verziókat.</li>
+        </ul>
+
+        <h3>5.2 Repository Creator modul folyamata</h3>
+        <ul>
+            <li>A felhasználó megnyitja a <strong>Repository Creator</strong> fület.</li>
+            <li>Megadja az <strong>App típusát</strong>, a <strong>Projekt nevét</strong> és a <strong>Mentési helyet</strong>.</li>
+            <li>A <strong>Select Version</strong> gombra kattintva egy popupon kiválasztja a PHP/Composer/Node verziókat (a Versions modul logikája alapján).</li>
+            <li>A <strong>Create Repository</strong> gombra kattintva a rendszer:
+                <ul>
+                    <li>ellenőrzi a projekt név és az útvonal érvényességét,</li>
+                    <li>létrehozza a mappastruktúrát és az alap fájlokat,</li>
+                    <li>ha szükséges, inicializálja a Git repositoryt és első commitot készít,</li>
+                    <li>ha be van állítva Git Auth és Git létrehozása, pusholja a GitHubra az új repót,</li>
+                    <li>ha az IDE beállítás nem <strong>None</strong>, megnyitja a repót a kiválasztott IDE-ben.</li>
+                </ul>
+            </li>
+            <li>A folyamat végén a felhasználó sikeres vagy sikertelen státuszüzenetet kap.</li>
+        </ul>
+
+        <h3>5.3 Templates modul folyamata</h3>
+        <ul>
+            <li>A felhasználó megnyitja a <strong>Templates</strong> fület, ahol táblázatos formában látja a sablonokat.</li>
+            <li><strong>Edit Template:</strong> egy sablon kiválasztása után az <strong>Edit</strong> gombra kattintva popup ablak jelenik meg, ahol a verziók módosíthatók.</li>
+            <li>A <strong>Save</strong> gomb után a rendszer validálja az adatokat, majd frissíti a <code>Templates.txt</code> fájl megfelelő sorát, és újratölti a listát.</li>
+            <li><strong>Delete Template:</strong> a törlendő sablonok checkbox-szal kijelölhetők, majd a <strong>Delete Template</strong> gomb megnyomására a rendszer megerősítést kér, és jóváhagyás után törli a sorokat a fájlból.</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>6. Nem funkcionális követelmények</h2>
+
+        <h3>6.1 Teljesítmény</h3>
+        <ul>
+            <li>A felhasználói felület műveleteire (gombnyomás, váltás) 1 másodpercen belüli reakció szükséges.</li>
+        </ul>
+
+        <h3>6.2 Megbízhatóság</h3>
+        <ul>
+            <li>Hiba esetén figyelmeztető üzenet jelenik meg a felhasználó számára.</li>
+        </ul>
+
+        <h3>6.3 Használhatóság</h3>
+        <ul>
+            <li>Egyszerű, jól áttekinthető Windows Forms felületek.</li>
+            <li>Minden fontos funkció maximum néhány kattintással elérhető (EntryPoint &rarr; modul &rarr; művelet).</li>
+            <li>Hibák és sikeres műveletek esetén egyértelmű visszajelzés.</li>
+        </ul>
+
+        <h3>6.4 Karbantarthatóság és bővíthetőség</h3>
+        <ul>
+            <li>Külön modulok a verziókezelésre, sablonkezelésre és repository generálásra.</li>
+            <li>Új app típusok vagy további verziók hozzáadása minimális kódmódosítással megoldható.</li>
+            <li>A sablonformátum egyszerű, fájl alapú, így külső eszközökkel is szerkeszthető.</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>7. Telepítés és üzemeltetés</h2>
+        <ul>
+            <li><strong>Követelmények:</strong>
+                <ul>
+                    <li>Windows operációs rendszer.</li>
+                    <li>.NET Framework 4.7.2</li>
+                    <li>Git Command Line Interface (GIT CLI) szükséges az új repository pusholásához.</li>
+                </ul>
+            </li>
+            <li><strong>Telepítés:</strong>
+                <ul>
+                    <li>Az alkalmazás futtatható állományának másolása a célgépre.</li>
+                </ul>
+            </li>
+            <li><strong>Frissítés:</strong>
+                <ul>
+                    <li>Az alkalmazás nem tartalmaz automatikus frissítési mechanizmust.</li>
+                    <li>Frissítéskor a futtatható állomány manuális cseréje szükséges.</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>8. Kockázatok és jövőbeli bővítési lehetőségek</h2>
+        <ul>
+            <li><strong>Kockázatok:</strong>
+                <ul>
+                    <li>Külső eszközök (Git, IDE-k) elérhetősége és verziókompatibilitása.</li>
+                    <li>Hibás vagy kézzel módosított <code>Templates.txt</code> fájl inkonzisztens beállításokat okozhat.</li>
+                </ul>
+            </li>
+            <li><strong>Jövőbeli bővítések:</strong>
+                <ul>
+                    <li>Automatikus frissítés és verzióellenőrzés (online ellenőrzés).</li>
+                    <li>Sablonok felhőalapú szinkronizálása több gép között.</li>
+                    <li>Többfelhasználós mód, belépés és profilok kezelése.</li>
+                    <li>Részletes naplózás és fejlettebb hibanapló.</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+</div>
+
+</body>
+</html>
